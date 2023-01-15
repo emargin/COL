@@ -7,11 +7,12 @@ const styles = {
         background: '#32323e',
         borderRadius: '8px',
         color: '#fff',
+        padding: '28px 31px'
     }
 }
 
-export default function InfoWrapper({children}) {
+export default function InfoWrapper({children, ...props}) {
   return (
-    <Box sx={styles.root}>{children}</Box>
+    <Box sx={styles.root} {...props}>{children}</Box>
   )
 }
