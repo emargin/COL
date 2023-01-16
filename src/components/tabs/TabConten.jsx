@@ -16,13 +16,7 @@ const styles = {
     },
 }
 
-
-export default function TabContent({
-    style,
-    empty = false,
-    emptyMessage,
-    children,
-}) {
+export default function TabContent({ style, empty = false, emptyMessage, children }) {
     return (
         <Card sx={styles.root}>
             {empty ? (

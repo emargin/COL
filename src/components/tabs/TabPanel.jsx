@@ -2,7 +2,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
 
-
 const styles = {
     root: {
         width: '100%',
