@@ -1,17 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import { Box } from '@mui/material'
+import { Box } from "@mui/material";
 
 const styles = {
-    root: {
-        backgroundColor: '#272732',
-    },
-}
+  root: {
+    height: "100vh",
+    backgroundColor: "#272732",
+    margin: "0 auto",
+  },
+};
 
 export default function PageLayout({ children }) {
-    return (
-        <Box sx={styles.root} variant="main">
-            {children}
-        </Box>
-    )
+  return (
+    <Box sx={styles.root} variant="section">
+      {children}
+    </Box>
+  );
 }

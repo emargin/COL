@@ -1,47 +1,97 @@
-import React from 'react'
+import React, { useState } from "react";
+import Image from "next/image";
+import { Box, Typography, Tabs, Tab } from "@mui/material";
+import { contries } from "../../mock";
+import PageLayout from "../../components/PageLayout";
+import InfoWrapper from "../../components/InfoWrapper";
+import InfoCard from "../../components/InfoCard";
+import { TabPanel, allyProps } from "../../components/tabs";
+import flagImg from "../../assets/united-kingdom.png";
 
-export default function Country() {
-    return (
+const TABS = [
+  { label: "Магазины" },
+  { label: "Жилье" },
+  { label: "Рестараны" },
+  { label: "Транспорт" },
+];
+
+export default function Country({ contries }) {
+  const [tab, setTab] = useState(0);
+  const handleTabChange = (event, newTab) => {
+    setTab(newTab);
+  };
+  React.useEffect(() => {
+    console.log("contry", contries);
+  }, [contries]);
+  return (
+    <PageLayout>
+      <InfoWrapper style={{ paddingBottom: 0 }}>
+        <Box
+          sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+        >
+          <Image
+            alt="country flag img"
+            src={flagImg.src}
+            width={24}
+            height={24}
+          />
+
+          <Typography variant="h6">Великобретания</Typography>
+        </Box>
+        <Tabs value={tab} onChange={handleTabChange}>
+          {TABS.map((item, index) => (
+            <Tab
+              key={index + item.label}
+              label={item.label}
+              {...allyProps(index)}
+            />
+          ))}
+        </Tabs>
+      </InfoWrapper>
+      <TabPanel value={tab} index={0}>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: "25px" }}>
+          <InfoCard title="Средняя цена похода в ресторан" info="1255р" />
+          <InfoCard title="Средняя продуктовая корзина" info="950р" />
+          <InfoCard title="В среднем тратят на досуг" info="455р" />
+          <InfoCard title="Средняя поездка на такси" info="155р" />
+        </Box>
+      </TabPanel>
+
+      <TabPanel value={tab} index={1}>
         <>sss</>
-        // <InfoWrapper style={{paddingBottom: 0}}>
-        //   <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-        //     <img alt="country flag img" src={flagImg.src} style={{width: '24px', height: '24px'}}/>
+      </TabPanel>
+    </PageLayout>
+  );
+}
+const getContries = async () => ({
+  data: contries,
+  message: "its ok",
+  error: null,
+});
 
-        //     <Typography variant="h6">Великобретания</Typography>
-        //   </Box>
-        //     <Tabs value={tab} onChange={handleTabChange}>
-        //         {TABS.map((item, index) => (
-        //             <Tab key={index + item.label} label={item.label} {...allyProps(index)} />
-        //         ))}
-        //     </Tabs>
-        //   </InfoWrapper>
-        //   <TabPanel value={tab} index={0}>
-        //     <Box sx={{display: 'flex', flexDirection: 'row', gap: '25px'}}>
-        //       <InfoCard title="Средняя цена похода в ресторан" info="1255р"/>
-        //       <InfoCard title="Средняя продуктовая корзина" info="950р"/>
-        //       <InfoCard title="В среднем тратят на досуг" info='455р'/>
-        //       <InfoCard title="Средняя поездка на такси" info="155р"/>
-        //     </Box>
+export async function getStaticProps() {
+  const contries = await getContries();
+  console.log("contries", contries);
 
-        //   </TabPanel>
-
-        //   <TabPanel value={tab} index={1}>
-        //       {/* <ThemesImport activeCompanyId={activeCompanyId as unknown as string} /> */}
-        //   </TabPanel>
-    )
+  // обратите внимание на сигнатуру
+  return {
+    props: {
+      contries,
+    },
+  };
 }
 
 export async function getStaticPaths() {
-    const posts = await (await fetch('https://example.com/posts'))?.json()
+  const contries = await getContries();
 
-    // обратите внимание на структуру возвращаемого массива
-    const paths = posts.map((post) => ({
-        params: { id: post.id },
-    }))
+  // обратите внимание на структуру возвращаемого массива
+  const paths = contries.data.map((post) => ({
+    params: { id: post.id.toString() },
+  }));
 
-    // `fallback: false` означает, что для ошибки 404 используется другой маршрут
-    return {
-        paths,
-        fallback: false,
-    }
+  // `fallback: false` означает, что для ошибки 404 используется другой маршрут
+  return {
+    paths,
+    fallback: false,
+  };
 }
