@@ -1,3 +1,56 @@
 {
-  "extends": "next/core-web-vitals"
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "./tsconfig.json",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "env": {
+        "node": true,
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "airbnb",
+        "airbnb-typescript",
+        "react-app",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "plugins": ["react", "@typescript-eslint", "prettier"],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+                "paths": ["src"]
+            }
+        }
+    },
+    "rules": {
+        // for 100% formatting
+        "prettier/prettier": "error",
+        "react/jsx-props-no-spreading": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        // some libs restricts function definition
+        "react/function-component-definition": "off",
+        "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_" }],
+        "no-param-reassign": "off",
+        "@typescript-eslint/default-param-last": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "import/no-cycle": "off",
+        "import/prefer-default-export": "off",
+        "react/no-array-index-key": "off",
+        "react/no-unused-prop-types": "off",
+        "react/require-default-props": "off",
+        "react/jsx-no-bind": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        // pleasure to debug actions, but better to except using everywhere
+        "no-console": ["warn", { "allow": ["warn", "error"] }],
+        "react/display-name": "off"
+    }
 }
