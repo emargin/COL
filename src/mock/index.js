@@ -5,7 +5,7 @@ export const countryInfo = {
         { id: 2, name: 'Coca-Cola 1литр', price: '65р' },
         { id: 3, name: 'Яйца 10шт', price: '120р' },
         { id: 4, name: 'Вода 1литр', price: '43р' },
-        { id: 4, name: 'Бананы 1кг', price: '118р' },
+        { id: 5, name: 'Бананы 1кг', price: '118р' },
     ],
     transprot: [
         { id: 1, name: 'Проезд на автобусе', price: '32р' },

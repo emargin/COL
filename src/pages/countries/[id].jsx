@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Box, Typography, Tabs, Tab } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { contries } from '../../mock'
 import PageLayout from '../../components/PageLayout'
 import InfoWrapper from '../../components/InfoWrapper'
@@ -26,10 +26,18 @@ const styles = {
 }
 
 export default function Country({ country }) {
+    const { restaurants, market, transprot } = country.info.statistic
     const [tab, setTab] = useState(0)
     const handleTabChange = (event, newTab) => {
         setTab(newTab)
     }
+
+    const columns = [
+        { field: 'id', headerName: 'ID', hide: true },
+        { field: 'name', headerName: 'Название', width: 150 },
+        { field: 'price', headerName: 'Название', width: 150 },
+    ]
+
     return (
         <PageLayout>
             <Box sx={styles.content}>
@@ -67,9 +75,10 @@ export default function Country({ country }) {
                         <InfoCard title="В среднем тратят на досуг" info="455р" />
                         <InfoCard title="Средняя поездка на такси" info="155р" />
                     </Box>
-                    <InfoWrapper style={{ paddingBottom: 0 }}>
-                        <DataGrid rows={[]} columns={[]} pageSize={5} rowsPerPageOptions={[5]} />
-                    </InfoWrapper>
+                    {/* <InfoWrapper style={{ paddingBottom: 0 }}>
+                        
+                    </InfoWrapper> */}
+                    <DataGrid sx={{ color: '#fff' }} autoHeight rows={market} columns={columns} />
                 </TabPanel>
 
                 <TabPanel value={tab} index={1}>
@@ -94,8 +103,6 @@ const getCountry = async (id) => ({
 export async function getStaticProps({ params }) {
     const response = await getCountry(+params.id)
     const country = response.data
-    console.log('c', country)
-    // обратите внимание на сигнатуру
     return {
         props: {
             country,
@@ -106,12 +113,10 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
     const contries = await getContries()
 
-    // обратите внимание на структуру возвращаемого массива
     const paths = contries.data.map((post) => ({
         params: { id: post.id.toString() },
     }))
 
-    // `fallback: false` означает, что для ошибки 404 используется другой маршрут
     return {
         paths,
         fallback: false,
