@@ -7,6 +7,7 @@ const styles = {
         height: '100vh',
         backgroundColor: '#272732',
         margin: '0 auto',
+        overflowX: 'auto',
     },
 }
 

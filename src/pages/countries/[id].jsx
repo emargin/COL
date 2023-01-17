@@ -34,8 +34,8 @@ export default function Country({ country }) {
 
     const columns = [
         { field: 'id', headerName: 'ID', hide: true },
-        { field: 'name', headerName: 'Название', width: 150 },
-        { field: 'price', headerName: 'Название', width: 150 },
+        { field: 'name', headerName: 'Название', flex: 1 },
+        { field: 'price', headerName: 'Цена', flex: 1 },
     ]
 
     return (
@@ -75,10 +75,14 @@ export default function Country({ country }) {
                         <InfoCard title="В среднем тратят на досуг" info="455р" />
                         <InfoCard title="Средняя поездка на такси" info="155р" />
                     </Box>
-                    {/* <InfoWrapper style={{ paddingBottom: 0 }}>
-                        
-                    </InfoWrapper> */}
-                    <DataGrid sx={{ color: '#fff' }} autoHeight rows={market} columns={columns} />
+                    <InfoWrapper>
+                        <Typography variant="h6">Магазины</Typography>
+                        <DataGrid sx={{ color: '#fff' }} autoHeight rows={market} columns={columns} />
+                        <Typography variant="h6">Рестораны</Typography>
+                        <DataGrid sx={{ color: '#fff' }} autoHeight rows={restaurants} columns={columns} />
+                        <Typography variant="h6">Транспорт</Typography>
+                        <DataGrid sx={{ color: '#fff' }} autoHeight rows={transprot} columns={columns} />
+                    </InfoWrapper>
                 </TabPanel>
 
                 <TabPanel value={tab} index={1}>
