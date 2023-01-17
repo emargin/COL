@@ -7,7 +7,7 @@ export default function InfoCard({ title, info, subInfo }) {
         <InfoWrapper style={{ maxWidth: '300px' }}>
             <Typography sx={{ color: '#adb5bd', fontSize: '16px' }}>{title}</Typography>
             <Typography sx={{ fontSize: '24px' }}>{info}</Typography>
-            <Typography>{subInfo}</Typography>
+            <Typography variant="body2">{subInfo}</Typography>
         </InfoWrapper>
     )
 }
