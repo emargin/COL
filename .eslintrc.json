@@ -13,15 +13,7 @@
         "browser": true,
         "es2021": true
     },
-    "extends": [
-        "airbnb",
-        "airbnb-typescript",
-        "react-app",
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier"
-    ],
+    "extends": ["airbnb", "react-app", "eslint:recommended", "plugin:react/recommended", "prettier"],
     "plugins": ["react", "@typescript-eslint", "prettier"],
     "settings": {
         "import/resolver": {
@@ -32,11 +24,9 @@
         }
     },
     "rules": {
-        // for 100% formatting
         "prettier/prettier": "error",
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/no-empty-function": "off",
-        // some libs restricts function definition
         "react/function-component-definition": "off",
         "@typescript-eslint/no-unused-vars": ["warn", { "varsIgnorePattern": "^_" }],
         "no-param-reassign": "off",
@@ -49,7 +39,6 @@
         "react/require-default-props": "off",
         "react/jsx-no-bind": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        // pleasure to debug actions, but better to except using everywhere
         "no-console": ["warn", { "allow": ["warn", "error"] }],
         "react/display-name": "off"
     }
