@@ -1,8 +1,8 @@
 import Head from 'next/head'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Autocomplete, TextField } from '@mui/material'
 import { Inter } from '@next/font/google'
 import Header from '@/components/Header'
-// import styles from "@/styles/Home.module.css";
+import Search from '@/components/Search'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -43,13 +43,15 @@ export default function Home() {
             </Head>
             {/* <Header /> */}
             <Box sx={styles.root} variant="main">
-                <Typography sx={styles.title} variant="h1">
+                {/* <Typography sx={styles.title} variant="h1">
                     <Typography sx={styles.mainText} variant="span">
                         Просто и удобно
                     </Typography>{' '}
                     <br />
                     сравненивайте цены в разных странах мира
-                </Typography>
+                </Typography> */}
+
+                <Search />
             </Box>
         </>
     )
