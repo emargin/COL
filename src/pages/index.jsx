@@ -9,10 +9,9 @@ const inter = Inter({ subsets: ['latin'] })
 const styles = {
     root: {
         height: '100vh',
-        backgroundColor: '#32323e',
+        // backgroundColor: '#32323e',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
         alignItems: 'center',
         minHeight: '100vh',
         padding: '14px 0',
