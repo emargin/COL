@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { Box, Autocomplete, TextField, Typography } from '@mui/material'
 
 const styles = {
@@ -15,6 +16,10 @@ const styles = {
         '.MuiInputBase-root': {
             borderRadius: '16px',
         },
+        '.MuiOutlinedInput-notchedOutline': {
+            // borderColor: 'red',
+            border: '2px solid red',
+        },
     },
     info: { maxWidth: '215px', textAlign: 'right', margin: '16px 0 0 auto', color: 'rgba(0, 0, 0, 0.38)' },
 }
@@ -22,7 +27,7 @@ const styles = {
 export default function Search() {
     return (
         <Box sx={styles.root}>
-            <Typography variant="body1" sx={styles.title}>
+            <Typography variant="h6" sx={styles.title}>
                 Сравнивайте цены в разных странах мира
             </Typography>
             <Autocomplete
@@ -33,8 +38,9 @@ export default function Search() {
                 sx={styles.input}
                 renderInput={(params) => <TextField autoFocus placeholder="Найти страну" {...params} />}
             />
+
             <Typography variant="body2" sx={styles.info}>
-                Куала-Лумпур
+                <Link href="/">Куала-Лумпур</Link>
             </Typography>
         </Box>
     )
