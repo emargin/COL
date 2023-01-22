@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { Box, Autocomplete, TextField, Typography } from '@mui/material'
+import { contries } from '@/mock'
+import { useRouter } from 'next/navigation'
 
 const styles = {
     root: { width: '60%', margin: 'calc(50vh - 120px) auto auto auto' },
@@ -10,11 +12,10 @@ const styles = {
     },
     input: {
         width: '100%',
-
-        borderColor: 'red',
         color: '#fff',
         '.MuiInputBase-root': {
             borderRadius: '16px',
+            height: '59px',
         },
         '.MuiOutlinedInput-notchedOutline': {
             border: '2px solid red',
@@ -24,6 +25,7 @@ const styles = {
 }
 
 export default function Search() {
+    const router = useRouter()
     return (
         <Box sx={styles.root}>
             <Typography variant="h6" sx={styles.title}>
@@ -32,9 +34,11 @@ export default function Search() {
             <Autocomplete
                 disablePortal
                 freeSolo
-                id="combo-box-demo"
-                options={[]}
                 sx={styles.input}
+                options={contries}
+                onChange={(_, value) => router.push(`/countries/${value.id}`)}
+                getOptionLabel={(option) => option.name}
+                onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
                 renderInput={(params) => <TextField autoFocus placeholder="Найти страну" {...params} />}
             />
 

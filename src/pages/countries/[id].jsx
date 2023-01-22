@@ -19,7 +19,6 @@ const TABS = [
 
 const styles = {
     content: {
-        maxWidth: '1290px',
         margin: 'auto',
         padding: '16px',
     },
@@ -40,55 +39,52 @@ export default function Country({ country }) {
 
     return (
         <PageLayout>
-            <Box sx={styles.content}>
-                <InfoWrapper style={{ paddingBottom: 0 }}>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                        <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
+            <InfoWrapper style={{ paddingBottom: 0 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
 
-                        <Typography sx={{ ml: 1 }} variant="h6">
-                            {country?.name || ''}
-                        </Typography>
-                    </Box>
-                    <Tabs sx={{ color: '#fff' }} value={tab} onChange={handleTabChange}>
-                        {TABS.map((item, index) => (
-                            <Tab key={index + item.label} label={item.label} {...allyProps(index)} />
-                        ))}
-                    </Tabs>
+                    <Typography sx={{ ml: 1 }} variant="h6">
+                        {country?.name || ''}
+                    </Typography>
+                </Box>
+                <Tabs sx={{ color: '#fff' }} value={tab} onChange={handleTabChange}>
+                    {TABS.map((item, index) => (
+                        <Tab key={index + item.label} label={item.label} {...allyProps(index)} />
+                    ))}
+                </Tabs>
+            </InfoWrapper>
+            <TabPanel value={tab} index={0}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        gap: '24px',
+                        flexWrap: 'wrap',
+                        mb: 3,
+                    }}
+                >
+                    <InfoCard
+                        title="Средняя цена похода в ресторан"
+                        info="1255р"
+                        subInfo="Это цена ниже чем в 55% странах"
+                    />
+                    <InfoCard title="Средняя продуктовая корзина" info="950р" />
+                    <InfoCard title="В среднем тратят на досуг" info="455р" />
+                    <InfoCard title="Средняя поездка на такси" info="155р" />
+                </Box>
+                <InfoWrapper>
+                    <Typography variant="h6">Магазины</Typography>
+                    <DataGrid sx={{ color: '#fff' }} autoHeight rows={market} columns={columns} />
+                    <Typography variant="h6">Рестораны</Typography>
+                    <DataGrid sx={{ color: '#fff' }} autoHeight rows={restaurants} columns={columns} />
+                    <Typography variant="h6">Транспорт</Typography>
+                    <DataGrid sx={{ color: '#fff' }} autoHeight rows={transprot} columns={columns} />
                 </InfoWrapper>
-                <TabPanel value={tab} index={0}>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            gap: '16px',
-                            flexGrow: 1,
-                            flexWrap: 'wrap',
-                            mb: 3,
-                        }}
-                    >
-                        <InfoCard
-                            title="Средняя цена похода в ресторан"
-                            info="1255р"
-                            subInfo="Это цена ниже чем в 55% странах"
-                        />
-                        <InfoCard title="Средняя продуктовая корзина" info="950р" />
-                        <InfoCard title="В среднем тратят на досуг" info="455р" />
-                        <InfoCard title="Средняя поездка на такси" info="155р" />
-                    </Box>
-                    <InfoWrapper>
-                        <Typography variant="h6">Магазины</Typography>
-                        <DataGrid sx={{ color: '#fff' }} autoHeight rows={market} columns={columns} />
-                        <Typography variant="h6">Рестораны</Typography>
-                        <DataGrid sx={{ color: '#fff' }} autoHeight rows={restaurants} columns={columns} />
-                        <Typography variant="h6">Транспорт</Typography>
-                        <DataGrid sx={{ color: '#fff' }} autoHeight rows={transprot} columns={columns} />
-                    </InfoWrapper>
-                </TabPanel>
+            </TabPanel>
 
-                <TabPanel value={tab} index={1}>
-                    <>sss</>
-                </TabPanel>
-            </Box>
+            <TabPanel value={tab} index={1}>
+                <>sss</>
+            </TabPanel>
         </PageLayout>
     )
 }
