@@ -23,8 +23,36 @@ export const contries = [
             statistic: countryInfo,
         },
     },
-    { id: 2, name: 'США' },
-    { id: 3, name: 'Чехия' },
-    { id: 4, name: 'Малайзия' },
-    { id: 5, name: 'КНР' },
+    {
+        id: 2,
+        name: 'США',
+        info: {
+            extraInfo: {},
+            statistic: [],
+        },
+    },
+    {
+        id: 3,
+        name: 'Чехия',
+        info: {
+            extraInfo: {},
+            statistic: [],
+        },
+    },
+    {
+        id: 4,
+        name: 'Малайзия',
+        info: {
+            extraInfo: {},
+            statistic: [],
+        },
+    },
+    {
+        id: 5,
+        name: 'КНР',
+        info: {
+            extraInfo: {},
+            statistic: [],
+        },
+    },
 ]

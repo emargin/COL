@@ -12,22 +12,6 @@ const styles = {
         // backgroundColor: '#32323e',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        minHeight: '100vh',
-        padding: '14px 0',
-    },
-    title: {
-        fontSize: '3.8rem',
-        fontWeight: 700,
-        lineHeight: '1.2',
-        color: '#fff',
-        maxWidth: 900,
-    },
-    mainText: {
-        backgroundColor: '#2AA5A0',
-        backgroundImage: 'linear-gradient(90deg,#00aff5,#9a6afa)',
-        backgroundClip: 'text',
-        textFillColor: 'transparent',
     },
 }
 
@@ -40,16 +24,8 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            {/* <Header /> */}
             <Box sx={styles.root} variant="main">
-                {/* <Typography sx={styles.title} variant="h1">
-                    <Typography sx={styles.mainText} variant="span">
-                        Просто и удобно
-                    </Typography>{' '}
-                    <br />
-                    сравненивайте цены в разных странах мира
-                </Typography> */}
-
+                <Header />
                 <Search />
             </Box>
         </>
