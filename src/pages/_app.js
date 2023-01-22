@@ -1,12 +1,11 @@
+import React from 'react'
 import '@/styles/globals.css'
-
-import { ThemeProvider } from '@mui/material'
-import { theme } from '@/theme'
+import ThemeBuilder from '@/ThemeBuilder'
 
 export default function App({ Component, pageProps }) {
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeBuilder>
             <Component {...pageProps} />
-        </ThemeProvider>
+        </ThemeBuilder>
     )
 }
