@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Box, Autocomplete, TextField, Typography } from '@mui/material'
 
 const styles = {
-    root: { width: '60%', margin: 'auto' },
+    root: { width: '60%', margin: 'calc(50vh - 120px) auto auto auto' },
     title: {
         textAlign: 'left',
         marginBottom: '16px',
@@ -17,7 +17,6 @@ const styles = {
             borderRadius: '16px',
         },
         '.MuiOutlinedInput-notchedOutline': {
-            // borderColor: 'red',
             border: '2px solid red',
         },
     },
