@@ -40,7 +40,7 @@ export default function Country({ country }) {
     return (
         <PageLayout>
             <InfoWrapper style={{ paddingBottom: 0 }}>
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mb: 2 }}>
                     <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
 
                     <Typography sx={{ ml: 1 }} variant="h6">
@@ -64,13 +64,13 @@ export default function Country({ country }) {
                     }}
                 >
                     <InfoCard
-                        title="Средняя цена похода в ресторан"
+                        title="Похода в ресторан"
                         info="1255р"
                         subInfo="Это цена ниже чем в 55% странах"
                     />
-                    <InfoCard title="Средняя продуктовая корзина" info="950р" />
+                    <InfoCard title="Продуктовая корзина" info="950р" />
                     <InfoCard title="В среднем тратят на досуг" info="455р" />
-                    <InfoCard title="Средняя поездка на такси" info="155р" />
+                    <InfoCard title="Поездка на такси" info="155р" />
                 </Box>
                 <InfoWrapper>
                     <Typography variant="h6">Магазины</Typography>

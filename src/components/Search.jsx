@@ -43,7 +43,7 @@ export default function Search() {
             />
 
             <Typography variant="body2" sx={styles.info}>
-                <Link href="/">Куала-Лумпур</Link>
+                <Link href="/countries/1">Куала-Лумпур</Link>
             </Typography>
         </Box>
     )
