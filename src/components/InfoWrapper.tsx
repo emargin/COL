@@ -13,7 +13,7 @@ const styles = {
     },
 }
 
-export default function InfoWrapper({ children, ...props }) {
+export default function InfoWrapper({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
     return (
         <Box sx={styles.root} {...props}>
             {children}
