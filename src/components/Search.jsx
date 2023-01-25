@@ -36,7 +36,7 @@ export default function Search() {
                 freeSolo
                 sx={styles.input}
                 options={contries}
-                onChange={(_, value) => router.push(`/countries/${value.id}`)}
+                onChange={(_, value) => router.push(`/countries/${value.id}`, { shallow: true })}
                 getOptionLabel={(option) => option.name}
                 onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
                 renderInput={(params) => <TextField autoFocus placeholder="Найти страну" {...params} />}

@@ -13,6 +13,9 @@ export default function ThemeBuilder({ children }) {
             createTheme({
                 palette: {
                     mode: 'dark', // prefersDarkMode ? 'dark' : 'light'
+                    common: {
+                        black: '#282732',
+                    },
                 },
             }),
         [prefersDarkMode],
