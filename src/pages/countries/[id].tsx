@@ -9,6 +9,8 @@ import InfoCard from '../../components/InfoCard'
 import { TabPanel, allyProps } from '../../components/tabs'
 import flagImg from '../../assets/united-kingdom.png'
 
+type IContry = any
+
 const TABS = [
     { label: 'Общие' },
     { label: 'Магазины' },
@@ -17,17 +19,11 @@ const TABS = [
     { label: 'Транспорт' },
 ]
 
-const styles = {
-    content: {
-        margin: 'auto',
-        padding: '16px',
-    },
-}
-
-export default function Country({ country }) {
+export default function Country({ country }: IContry) {
     const { restaurants, market, transprot } = country.info.statistic
     const [tab, setTab] = useState(0)
-    const handleTabChange = (event, newTab) => {
+
+    const handleTabChange = (event: React.SyntheticEvent, newTab: number) => {
         setTab(newTab)
     }
 
@@ -94,13 +90,13 @@ const getContries = async () => ({
     error: null,
 })
 
-const getCountry = async (id) => ({
+const getCountry = async (id: number) => ({
     data: contries.filter((country) => country.id === id)[0],
     message: 'its ok',
     error: null,
 })
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
     const response = await getCountry(+params.id)
     const country = response.data
     return {

@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 
 import { ThemeProvider } from '@mui/material'
 
-export default function ThemeBuilder({ children }) {
+export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivElement>) {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
     const theme = React.useMemo(

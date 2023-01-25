@@ -5,7 +5,6 @@ import { Box } from '@mui/material'
 const styles = {
     root: {
         height: '100vh',
-
         // backgroundColor: '#272732',
         margin: '0 auto',
         overflowX: 'auto',
@@ -16,9 +15,9 @@ const styles = {
     },
 }
 
-export default function PageLayout({ children }) {
+export default function PageLayout({ children }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-        <Box sx={styles.root} variant="section">
+        <Box sx={styles.root} component="section">
             <Box sx={styles.content}>{children}</Box>
         </Box>
     )

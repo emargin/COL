@@ -1,8 +1,7 @@
-import React from 'react'
-import '@/styles/globals.css'
+import type { AppProps } from 'next/app'
 import ThemeBuilder from '@/ThemeBuilder'
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
     return (
         <ThemeBuilder>
             <Component {...pageProps} />
