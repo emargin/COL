@@ -5,7 +5,7 @@ import { contries } from '@/mock'
 import { useRouter } from 'next/navigation'
 
 const styles = {
-    root: { width: '60%', margin: 'calc(50vh - 120px) auto auto auto' },
+    root: { width: '75%', margin: 'calc(50vh - 120px) auto auto auto' },
     title: {
         textAlign: 'left',
         marginBottom: '16px',
@@ -18,7 +18,7 @@ const styles = {
             height: '59px',
         },
         '.MuiOutlinedInput-notchedOutline': {
-            border: '2px solid red',
+            // border: '2px solid red',
         },
     },
     info: { maxWidth: '215px', textAlign: 'right', margin: '16px 0 0 auto', color: 'rgba(0, 0, 0, 0.38)' },

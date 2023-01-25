@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Box } from '@mui/material'
+import Header from './Header'
 
 const styles = {
     root: {
@@ -18,6 +19,7 @@ const styles = {
 export default function PageLayout({ children }: React.HTMLAttributes<HTMLDivElement>) {
     return (
         <Box sx={styles.root} component="section">
+            <Header />
             <Box sx={styles.content}>{children}</Box>
         </Box>
     )

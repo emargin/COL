@@ -1,6 +1,8 @@
 import React from 'react'
+import Image from 'next/image'
 import { Box, Typography, Switch } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import Link from 'next/link'
 
 const label = { inputProps: { 'aria-label': 'change-app-theme' } }
 
@@ -11,6 +13,7 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        padding: '0 25px',
     },
 }
 
@@ -51,8 +54,11 @@ const StyledSwitch = styled(Switch)(({ theme }) => ({
 
 export default function Header() {
     return (
-        <Box sx={styles.root}>
-            <Typography>LOGO </Typography>
+        <Box sx={styles.root} component="header">
+            <Link href="/">
+                <Image alt="LOGO" width={24} height={24} />
+            </Link>
+
             <StyledSwitch {...label} defaultChecked />
         </Box>
     )

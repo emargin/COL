@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Box, Typography, Tabs, Tab } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
@@ -34,7 +34,7 @@ export default function Country({ country }: IContry) {
     ]
 
     return (
-        <PageLayout>
+        <>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mb: 2 }}>
                     <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
@@ -81,7 +81,7 @@ export default function Country({ country }: IContry) {
             <TabPanel value={tab} index={1}>
                 <>sss</>
             </TabPanel>
-        </PageLayout>
+        </>
     )
 }
 const getContries = async () => ({
@@ -95,6 +95,10 @@ const getCountry = async (id: number) => ({
     message: 'its ok',
     error: null,
 })
+
+Country.getLayout = function getLayout(page: ReactElement) {
+    return <PageLayout>{page}</PageLayout>
+}
 
 export async function getStaticProps({ params }: any) {
     const response = await getCountry(+params.id)
