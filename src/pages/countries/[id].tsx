@@ -3,11 +3,12 @@ import Image from 'next/image'
 import { Box, Typography, Tabs, Tab } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { contries } from '../../mock'
-import PageLayout from '../../components/PageLayout'
+import PageLayout from '@/layouts/PageLayout'
 import InfoWrapper from '../../components/InfoWrapper'
 import InfoCard from '../../components/InfoCard'
 import { TabPanel, allyProps } from '../../components/tabs'
 import flagImg from '../../assets/united-kingdom.png'
+import GeneralInfo from '@/components/countries/GeneralInfo'
 
 type IContry = any
 
@@ -20,18 +21,12 @@ const TABS = [
 ]
 
 export default function Country({ country }: IContry) {
-    const { restaurants, market, transprot } = country.info.statistic
+    // const { restaurants, market, transport } = country.info.statistic
     const [tab, setTab] = useState(0)
 
     const handleTabChange = (event: React.SyntheticEvent, newTab: number) => {
         setTab(newTab)
     }
-
-    const columns = [
-        { field: 'id', headerName: 'ID', hide: true },
-        { field: 'name', headerName: 'Название', flex: 1 },
-        { field: 'price', headerName: 'Цена', flex: 1 },
-    ]
 
     return (
         <>
@@ -50,32 +45,7 @@ export default function Country({ country }: IContry) {
                 </Tabs>
             </InfoWrapper>
             <TabPanel value={tab} index={0}>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        gap: '24px',
-                        flexWrap: 'wrap',
-                        mb: 3,
-                    }}
-                >
-                    <InfoCard
-                        title="Похода в ресторан"
-                        info="1255р"
-                        subInfo="Это цена ниже чем в 55% странах"
-                    />
-                    <InfoCard title="Продуктовая корзина" info="950р" />
-                    <InfoCard title="В среднем тратят на досуг" info="455р" />
-                    <InfoCard title="Поездка на такси" info="155р" />
-                </Box>
-                <InfoWrapper>
-                    <Typography variant="h6">Магазины</Typography>
-                    <DataGrid sx={{ color: '#fff' }} autoHeight rows={market} columns={columns} />
-                    <Typography variant="h6">Рестораны</Typography>
-                    <DataGrid sx={{ color: '#fff' }} autoHeight rows={restaurants} columns={columns} />
-                    <Typography variant="h6">Транспорт</Typography>
-                    <DataGrid sx={{ color: '#fff' }} autoHeight rows={transprot} columns={columns} />
-                </InfoWrapper>
+                <GeneralInfo categoryInfo={country.info.statistic} />
             </TabPanel>
 
             <TabPanel value={tab} index={1}>

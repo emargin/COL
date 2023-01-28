@@ -7,7 +7,7 @@ export const countryInfo = {
         { id: 4, name: 'Вода 1литр', price: '43р' },
         { id: 5, name: 'Бананы 1кг', price: '118р' },
     ],
-    transprot: [
+    transport: [
         { id: 1, name: 'Проезд на автобусе', price: '32р' },
         { id: 2, name: 'Такси', price: '125р' },
         { id: 3, name: 'Месячный проездной', price: '1123р' },
