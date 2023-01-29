@@ -15,10 +15,10 @@ const styles = {
 }
 
 const CARDS = [
-    { title: 'Похода в ресторан', info: '1255р', subInfo: 'Это цена ниже чем в 55% странах' },
-    { title: 'Продуктовая корзина', info: '950р', subInfo: 'На 12% выше чем в Малазии' },
-    { title: 'Тратят на досуг', info: '455р', subInfo: 'На 35% ниже чем в Малазии' },
-    { title: 'Поездка на такси', info: '155р', subInfo: 'На 51% ниже чем в Малазии ' },
+    { id: 1, title: 'Похода в ресторан', info: '1255р', subInfo: 'Это цена ниже чем в 55% странах' },
+    { id: 2, title: 'Продуктовая корзина', info: '950р', subInfo: 'На 12% выше чем в Малазии' },
+    { id: 3, title: 'Тратят на досуг', info: '455р', subInfo: 'На 35% ниже чем в Малазии' },
+    { id: 4, title: 'Поездка на такси', info: '155р', subInfo: 'На 51% ниже чем в Малазии ' },
 ]
 
 const columns = [
@@ -33,7 +33,12 @@ export default function GeneralInfo({ categoryInfo }: any) {
         <>
             <Box sx={styles.root}>
                 {CARDS.map((item) => (
-                    <InfoCard title={item.title} info={item.info} subInfo={item.subInfo || ''} />
+                    <InfoCard
+                        key={`${item.id}-${item.title}`}
+                        title={item.title}
+                        info={item.info}
+                        subInfo={item.subInfo || ''}
+                    />
                 ))}
             </Box>
             <InfoWrapper>
