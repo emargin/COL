@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Box, Typography, Switch } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Link from 'next/link'
+import ThemeSwitchBtn from './ThemeSwitchBtn'
 
 const label = { inputProps: { 'aria-label': 'change-app-theme' } }
 
@@ -58,8 +59,8 @@ export default function Header() {
             <Link href="/">
                 <Image alt="LOGO" width={24} height={24} />
             </Link>
-
-            <StyledSwitch {...label} defaultChecked />
+            <ThemeSwitchBtn />
+            {/* <StyledSwitch {...label} defaultChecked /> */}
         </Box>
     )
 }

@@ -20,15 +20,28 @@ const getDesignTokens = (mode: PaletteMode) => ({
     },
 })
 
+export const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
+
 export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivElement>) {
+    const [mode, setMode] = React.useState<'light' | 'dark'>('light')
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
 
-    const theme = React.useMemo(() => createTheme(getDesignTokens('light')), [prefersDarkMode])
+    const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [prefersDarkMode, mode])
+    const colorMode = React.useMemo(
+        () => ({
+            toggleColorMode: () => {
+                setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
+            },
+        }),
+        [],
+    )
 
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline />
-            {children}
-        </ThemeProvider>
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                {children}
+            </ThemeProvider>
+        </ColorModeContext.Provider>
     )
 }
