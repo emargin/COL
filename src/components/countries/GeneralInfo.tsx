@@ -21,11 +21,48 @@ const styles = {
     },
 }
 
+export enum PricePosition {
+    UPPER = 1,
+    LOWER = 2,
+}
+
 const CARDS = [
-    { id: 1, title: 'Похода в ресторан', info: '1255р', subInfo: 'Это цена ниже чем в 55% странах' },
-    { id: 2, title: 'Продуктовая корзина', info: '950р', subInfo: 'На 12% выше чем в Малазии' },
-    { id: 3, title: 'Тратят на досуг', info: '455р', subInfo: 'На 35% ниже чем в Малазии' },
-    { id: 4, title: 'Поездка на такси', info: '155р', subInfo: 'На 51% ниже чем в Малазии ' },
+    {
+        id: 1,
+        title: 'Похода в ресторан',
+        price: '1255р',
+        pricePosition: {
+            position: 1,
+            percent: '13%',
+        },
+    },
+    {
+        id: 2,
+        title: 'Продуктовая корзина',
+        price: '950р',
+        pricePosition: {
+            position: 1,
+            percent: '48%',
+        },
+    },
+    {
+        id: 3,
+        title: 'Тратят на досуг',
+        price: '455р',
+        pricePosition: {
+            position: 2,
+            percent: '62%',
+        },
+    },
+    {
+        id: 4,
+        title: 'Поездка на такси',
+        price: '155р',
+        pricePosition: {
+            position: 2,
+            percent: '74%',
+        },
+    },
 ]
 
 const columns = [
@@ -43,8 +80,8 @@ export default function GeneralInfo({ categoryInfo }: any) {
                     <InfoCard
                         key={`${item.id}-${item.title}`}
                         title={item.title}
-                        info={item.info}
-                        subInfo={item.subInfo || ''}
+                        price={item.price}
+                        pricePosition={item.pricePosition}
                     />
                 ))}
             </Box>
