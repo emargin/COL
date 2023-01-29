@@ -26,18 +26,25 @@ const styles = {
 
 export default function Search() {
     const router = useRouter()
+
+    const handleCoyntryInfo = (_: unknown, value: any) => {
+        console.log('value', value)
+        router.push(`/countries/${value.id}`)
+    }
     return (
         <Box sx={styles.root}>
             <Typography variant="h6" sx={styles.title}>
                 Сравнивайте цены в разных странах мира
             </Typography>
             <Autocomplete
+                autoSelect
                 disablePortal
                 freeSolo
                 sx={styles.input}
                 options={contries}
-                onChange={(_, value: any) => router.push(`/countries/${value.id}`)}
-                getOptionLabel={(option: any) => option.name}
+                onChange={handleCoyntryInfo}
+                // getOptionLabel={(option: any) => option.name}
+                getOptionLabel={(option: any) => (option.name ? option.name : option)}
                 onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
                 renderInput={(params) => <TextField autoFocus placeholder="Найти страну" {...params} />}
             />

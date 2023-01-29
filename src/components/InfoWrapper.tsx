@@ -1,12 +1,12 @@
 import React from 'react'
-import { Box } from '@mui/material'
+import { Paper } from '@mui/material'
 
 const styles = {
     root: {
         width: '100%',
-        background: '#32323e', // take from theme
+        // background: '#32323e', // take from theme
         // background: '#fff', // white
-        // background: 'background.default',
+        // background: 'background.paper',
         borderRadius: '8px',
         color: 'text.primary',
         padding: '28px 31px',
@@ -15,8 +15,8 @@ const styles = {
 
 export default function InfoWrapper({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-        <Box sx={styles.root} {...props}>
+        <Paper sx={styles.root} elevation={0} {...props}>
             {children}
-        </Box>
+        </Paper>
     )
 }

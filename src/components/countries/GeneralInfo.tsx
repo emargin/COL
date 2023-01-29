@@ -5,12 +5,19 @@ import InfoWrapper from '../InfoWrapper'
 import { DataGrid } from '@mui/x-data-grid'
 
 const styles = {
-    root: {
+    root: {},
+    infoBlocks: {
         display: 'flex',
         flexDirection: 'row',
         gap: '24px',
         flexWrap: 'wrap',
         mb: 3,
+    },
+    infoTables: {
+        display: 'flex',
+        gap: '24px',
+
+        flexDirection: 'column',
     },
 }
 
@@ -30,8 +37,8 @@ const columns = [
 export default function GeneralInfo({ categoryInfo }: any) {
     const { restaurants, market, transport } = categoryInfo
     return (
-        <>
-            <Box sx={styles.root}>
+        <Box sx={styles.root}>
+            <Box sx={styles.infoBlocks}>
                 {CARDS.map((item) => (
                     <InfoCard
                         key={`${item.id}-${item.title}`}
@@ -41,14 +48,20 @@ export default function GeneralInfo({ categoryInfo }: any) {
                     />
                 ))}
             </Box>
-            <InfoWrapper>
-                <Typography variant="h6">Магазины</Typography>
-                <DataGrid autoHeight rows={market} columns={columns} />
-                <Typography variant="h6">Рестораны</Typography>
-                <DataGrid autoHeight rows={restaurants} columns={columns} />
-                <Typography variant="h6">Транспорт</Typography>
-                <DataGrid autoHeight rows={transport} columns={columns} />
-            </InfoWrapper>
-        </>
+            <Box sx={styles.infoTables}>
+                <InfoWrapper>
+                    <Typography variant="h6">Магазины</Typography>
+                    <DataGrid autoHeight rows={market} columns={columns} />
+                </InfoWrapper>
+                <InfoWrapper>
+                    <Typography variant="h6">Рестораны</Typography>
+                    <DataGrid autoHeight rows={restaurants} columns={columns} />
+                </InfoWrapper>
+                <InfoWrapper>
+                    <Typography variant="h6">Транспорт</Typography>
+                    <DataGrid autoHeight rows={transport} columns={columns} />
+                </InfoWrapper>
+            </Box>
+        </Box>
     )
 }
