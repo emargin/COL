@@ -21,8 +21,7 @@ const TABS = [
 ]
 
 export default function Country({ country }: IContry) {
-    // const { restaurants, market, transport } = country.info.statistic
-    const [tab, setTab] = useState(0)
+    const [tab, setTab] = useState<number>(0)
 
     const handleTabChange = (event: React.SyntheticEvent, newTab: number) => {
         setTab(newTab)

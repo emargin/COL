@@ -5,7 +5,7 @@ import { contries } from '@/mock'
 import { useRouter } from 'next/navigation'
 
 const styles = {
-    root: { width: '75%', margin: 'calc(50vh - 120px) auto auto auto' },
+    root: { width: '78%', margin: 'calc(50vh - 120px) auto auto auto' },
     title: {
         textAlign: 'left',
         marginBottom: '16px',

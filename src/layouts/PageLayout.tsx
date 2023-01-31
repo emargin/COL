@@ -7,7 +7,6 @@ import Head from 'next/head'
 const styles = {
     root: {
         height: '100vh',
-        // backgroundColor: '#272732',
         margin: '0 auto',
         overflowX: 'auto',
     },
@@ -27,8 +26,10 @@ export default function PageLayout({ children }: React.HTMLAttributes<HTMLDivEle
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Box sx={styles.root} component="section">
-                <Header />
-                <Box sx={styles.content}>{children}</Box>
+                <Box sx={styles.content}>
+                    <Header />
+                    {children}
+                </Box>
             </Box>
         </>
     )
