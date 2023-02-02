@@ -33,11 +33,11 @@ export default function InfoCard({ title, price, pricePosition }: InfoCardProps)
                 <Typography variant="body2">На</Typography>
 
                 {pricePosition.position === PricePosition.LOWER ? (
-                    <Typography variant="body2" sx={{ color: 'red', display: 'flex', mr: 0.5 }}>
+                    <Typography variant="body2" sx={{ color: 'error.main', display: 'flex', mr: 0.5 }}>
                         <ArrowDropDownIcon fontSize="small" /> {pricePosition.percent}
                     </Typography>
                 ) : (
-                    <Typography variant="body2" sx={{ color: 'green', display: 'flex', mr: 0.5 }}>
+                    <Typography variant="body2" sx={{ color: 'success.main', display: 'flex', mr: 0.5 }}>
                         <ArrowDropUpIcon fontSize="small" /> {pricePosition.percent}
                     </Typography>
                 )}
