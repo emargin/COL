@@ -2,7 +2,8 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import InfoCard from '../InfoCard'
 import InfoWrapper from '../InfoWrapper'
-import { DataGrid } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
+import PriceRange from '../PriceRange'
 
 const styles = {
     root: {},
@@ -65,10 +66,20 @@ const CARDS = [
     },
 ]
 
-const columns = [
+const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', hide: true },
     { field: 'name', headerName: 'Название', flex: 1 },
     { field: 'price', headerName: 'Цена', flex: 1 },
+    {
+        field: 'priceRange',
+        headerName: 'Диапозон цен',
+        flex: 1,
+        renderCell: (params: GridRenderCellParams) => {
+            const { min, max } = params.row.priceRange
+            const currentPrice = params.row.price
+            return <PriceRange min={min} max={max} current={currentPrice} />
+        },
+    },
 ]
 
 export default function GeneralInfo({ categoryInfo }: any) {
@@ -76,12 +87,12 @@ export default function GeneralInfo({ categoryInfo }: any) {
     return (
         <Box sx={styles.root}>
             <Box sx={styles.infoBlocks}>
-                {CARDS.map((item) => (
+                {CARDS.map((card) => (
                     <InfoCard
-                        key={`${item.id}-${item.title}`}
-                        title={item.title}
-                        price={item.price}
-                        pricePosition={item.pricePosition}
+                        key={`${card.id}-${card.title}`}
+                        title={card.title}
+                        price={card.price}
+                        pricePosition={card.pricePosition}
                     />
                 ))}
             </Box>
