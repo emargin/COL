@@ -26,10 +26,8 @@ export default function PageLayout({ children }: React.HTMLAttributes<HTMLDivEle
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Box sx={styles.root} component="section">
-                <Box sx={styles.content}>
-                    <Header />
-                    {children}
-                </Box>
+                <Header />
+                <Box sx={styles.content}>{children}</Box>
             </Box>
         </>
     )

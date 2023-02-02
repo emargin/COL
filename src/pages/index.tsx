@@ -7,7 +7,6 @@ const inter = Inter({ subsets: ['latin'] })
 const styles = {
     root: {
         height: '100vh',
-        // backgroundColor: '#32323e',
         display: 'flex',
         flexDirection: 'column',
     },
