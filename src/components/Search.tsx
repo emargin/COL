@@ -18,7 +18,12 @@ const styles = {
             height: '59px',
         },
         '.MuiOutlinedInput-notchedOutline': {
-            // border: '2px solid red',
+            borderWidth: '2px',
+            borderColor: 'primary.main',
+        },
+        '&:hover:not($disabled) fieldset': {
+            borderColor: 'primary.main',
+            // borderColor: 'primary.main!important',
         },
     },
     info: { maxWidth: '215px', textAlign: 'right', margin: '16px 0 0 auto', color: 'rgba(0, 0, 0, 0.38)' },
@@ -27,8 +32,7 @@ const styles = {
 export default function Search() {
     const router = useRouter()
 
-    const handleCoyntryInfo = (_: unknown, value: any) => {
-        console.log('value', value)
+    const redirectToCountryInfo = (_: unknown, value: any) => {
         router.push(`/countries/${value.id}`)
     }
     return (
@@ -42,7 +46,7 @@ export default function Search() {
                 freeSolo
                 sx={styles.input}
                 options={contries}
-                onChange={handleCoyntryInfo}
+                onChange={redirectToCountryInfo}
                 // getOptionLabel={(option: any) => option.name}
                 getOptionLabel={(option: any) => (option.name ? option.name : option)}
                 onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}

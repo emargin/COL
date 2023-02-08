@@ -1,18 +1,17 @@
 import React from 'react'
-import { Paper } from '@mui/material'
+import { Paper, PaperProps } from '@mui/material'
 
 const styles = {
     root: {
         width: '100%',
-        borderRadius: '8px',
         color: 'text.primary',
         padding: '28px 31px',
     },
 }
 
-export default function InfoWrapper({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+export default function InfoWrapper({ children, sx, ...props }: PaperProps) {
     return (
-        <Paper sx={styles.root} elevation={0} {...props}>
+        <Paper sx={[styles.root, sx]} elevation={0} {...props}>
             {children}
         </Paper>
     )

@@ -28,7 +28,7 @@ export default function Country({ country }: IContry) {
     }
 
     return (
-        <>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mb: 2 }}>
                     <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
@@ -43,14 +43,14 @@ export default function Country({ country }: IContry) {
                     ))}
                 </Tabs>
             </InfoWrapper>
-            <TabPanel value={tab} index={0}>
-                <GeneralInfo categoryInfo={country.info.statistic} />
+            <TabPanel value={tab} index={0} style={{ padding: 0 }}>
+                <GeneralInfo countryName={country.name} categoryInfo={country.info.statistic} />
             </TabPanel>
 
             <TabPanel value={tab} index={1}>
                 <>sss</>
             </TabPanel>
-        </>
+        </Box>
     )
 }
 const getContries = async () => ({

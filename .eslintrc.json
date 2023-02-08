@@ -23,7 +23,7 @@
             }
         }
     },
-    "rules": {
+    "extension": {
         "prettier/prettier": "error",
         "react/jsx-props-no-spreading": "off",
         "@typescript-eslint/no-empty-function": "off",
