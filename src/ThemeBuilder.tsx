@@ -1,11 +1,10 @@
-import React from 'react'
-import { createTheme, PaletteMode } from '@mui/material'
+import React, { useEffect } from 'react'
+import { createTheme, PaletteMode, ThemeProvider } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
 
-import { ThemeProvider } from '@mui/material'
-
 const getDesignTokens = (mode: PaletteMode) => ({
+    shape: { borderRadius: 8 },
     palette: {
         mode,
         ...(mode === 'light'
@@ -23,10 +22,10 @@ const getDesignTokens = (mode: PaletteMode) => ({
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
 
 export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivElement>) {
-    const [mode, setMode] = React.useState<'light' | 'dark'>('light')
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+    const [mode, setMode] = React.useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light')
 
-    const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [prefersDarkMode, mode])
+    const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode])
     const colorMode = React.useMemo(
         () => ({
             toggleColorMode: () => {
@@ -35,6 +34,10 @@ export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivE
         }),
         [],
     )
+
+    useEffect(() => {
+        setMode(prefersDarkMode ? 'dark' : 'light')
+    }, [prefersDarkMode])
 
     return (
         <ColorModeContext.Provider value={colorMode}>
