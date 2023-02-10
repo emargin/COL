@@ -28,7 +28,7 @@ export const contries = [
         name: 'США',
         info: {
             extraInfo: {},
-            statistic: [],
+            statistic: countryInfo,
         },
     },
     {
@@ -36,7 +36,7 @@ export const contries = [
         name: 'Чехия',
         info: {
             extraInfo: {},
-            statistic: [],
+            statistic: countryInfo,
         },
     },
     {
@@ -44,7 +44,7 @@ export const contries = [
         name: 'Малайзия',
         info: {
             extraInfo: {},
-            statistic: [],
+            statistic: countryInfo,
         },
     },
     {
@@ -52,7 +52,7 @@ export const contries = [
         name: 'КНР',
         info: {
             extraInfo: {},
-            statistic: [],
+            statistic: countryInfo,
         },
     },
 ]

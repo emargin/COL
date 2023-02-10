@@ -9,7 +9,7 @@ interface PriceRangeProps {
 
 const styles = {
     root: {
-        width: '120px',
+        width: '60px',
         borderRadius: '6px',
         padding: '3px 10px',
         fontSize: '12px',
@@ -51,10 +51,24 @@ export default function PriceRange({ max, min, current }: PriceRangeProps) {
     console.log('current/max', (current / max) * 10)
     return (
         <Tooltip title={`Средняя цена ${current}`} disableInteractive>
-            <Box sx={{ display: 'flex', flexDirection: 'row', gap: '8px' }}>
-                <Typography variant="caption"> {min}</Typography>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: '8px',
+                    height: '5px',
+                }}
+            >
+                <Typography variant="caption" sx={{ color: 'GrayText' }}>
+                    {' '}
+                    {min}
+                </Typography>
                 <Range position={(current / max) * 100} />
-                <Typography variant="caption"> {max}</Typography>
+                <Typography variant="caption" sx={{ color: 'GrayText' }}>
+                    {' '}
+                    {max}
+                </Typography>
             </Box>
         </Tooltip>
     )

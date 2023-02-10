@@ -143,7 +143,7 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
             </InfoWrapper>
             <InfoWrapper>
                 <Typography variant="h6">Магазины</Typography>
-                <DataGrid
+                {/* <DataGrid
                     sx={styles.table}
                     autoHeight
                     rows={market}
@@ -152,7 +152,28 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
                     disableSelectionOnClick
                     hideFooterPagination
                     hideFooterSelectedRowCount
-                />
+                /> */}
+                {market.map((item: any) => (
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            height: '50px',
+                        }}
+                    >
+                        <Typography sx={{ fontWeight: 600 }}>{item.name}</Typography>
+                        <Box sx={{ textAlign: 'center' }}>
+                            <Typography>{item.price}₽</Typography>
+                            <PriceRange
+                                min={item.priceRange.min}
+                                max={item.priceRange.max}
+                                current={item.price}
+                            />
+                        </Box>
+                    </Box>
+                ))}
             </InfoWrapper>
             <InfoWrapper>
                 <Typography variant="h6">Рестораны</Typography>

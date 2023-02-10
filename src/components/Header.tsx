@@ -23,10 +23,10 @@ const styles = {
 
 export default function Header() {
     return (
-        <Box sx={styles.root} elevation={0} component="header">
+        <Box sx={styles.root} component="header">
             <Box sx={styles.content}>
                 <Link href="/">
-                    <Image alt="LOGO" width={24} height={24} />
+                    <Image src="" alt="LOGO" width={24} height={24} />
                 </Link>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <ThemeSwitchBtn />

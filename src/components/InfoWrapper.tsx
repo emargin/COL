@@ -9,9 +9,9 @@ const styles = {
     },
 }
 
-export default function InfoWrapper({ children, sx, ...props }: PaperProps) {
+export default function InfoWrapper({ children, sx = {}, ...props }: PaperProps) {
     return (
-        <Paper sx={[styles.root, sx]} elevation={0} {...props}>
+        <Paper sx={{ ...styles.root, ...sx }} elevation={0} {...props}>
             {children}
         </Paper>
     )
