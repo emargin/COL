@@ -11,7 +11,7 @@ const styles = {
     root: {
         width: '60px',
         borderRadius: '6px',
-        padding: '3px 10px',
+        padding: '3px 8px',
         fontSize: '12px',
         position: 'relative',
         color: '#619E64',
