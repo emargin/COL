@@ -37,7 +37,7 @@ export default function Country({ country }: IContry) {
                         {country?.name || ''}
                     </Typography>
                 </Box>
-                <Tabs sx={{ color: '#fff' }} value={tab} onChange={handleTabChange}>
+                <Tabs value={tab} onChange={handleTabChange}>
                     {TABS.map((item, index) => (
                         <Tab key={index + item.label} label={item.label} {...allyProps(index)} />
                     ))}
@@ -48,7 +48,7 @@ export default function Country({ country }: IContry) {
             </TabPanel>
 
             <TabPanel value={tab} index={1}>
-                <>sss</>
+                <>В разработке....</>
             </TabPanel>
         </Box>
     )
