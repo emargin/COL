@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useMemo, useState, useEffect, createContext } from 'react'
 import { createTheme, PaletteMode, ThemeProvider } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
 
-const getDesignTokens = (mode: PaletteMode) => ({
+const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
     shape: { borderRadius: 8 },
     palette: {
         mode,
@@ -17,16 +17,20 @@ const getDesignTokens = (mode: PaletteMode) => ({
                   background: { default: '#272731', paper: '#32323e' },
               }),
     },
+    typography: {
+        fontSize: isMobileDevice ? 12 : 14,
+    },
 })
 
-export const ColorModeContext = React.createContext({ toggleColorMode: () => {} })
+export const ColorModeContext = createContext({ toggleColorMode: () => {} })
 
 export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivElement>) {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-    const [mode, setMode] = React.useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light')
+    const isMobileDevice = useMediaQuery('(max-width:425px)')
+    const [mode, setMode] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light')
 
-    const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode])
-    const colorMode = React.useMemo(
+    const theme = useMemo(() => createTheme(getDesignTokens(mode, isMobileDevice)), [mode])
+    const colorMode = useMemo(
         () => ({
             toggleColorMode: () => {
                 setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
