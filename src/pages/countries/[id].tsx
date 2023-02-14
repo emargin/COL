@@ -28,7 +28,7 @@ export default function Country({ country }: IContry) {
     }
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px', p: 2 }}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mb: 2 }}>
                     <Image alt="country flag img" src={flagImg.src} width={24} height={24} />

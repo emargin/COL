@@ -48,7 +48,6 @@ const Range = ({ position }: { position: number }) => (
 )
 
 export default function PriceRange({ max, min, current }: PriceRangeProps) {
-    console.log('current/max', (current / max) * 10)
     return (
         <Tooltip title={`Средняя цена ${current}`} disableInteractive>
             <Box

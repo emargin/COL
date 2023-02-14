@@ -1,47 +1,14 @@
-import React from 'react'
-import { Box, IconButton, Typography } from '@mui/material'
+import React, { useEffect } from 'react'
+import Link from 'next/link'
+import { Box, IconButton, Typography, useMediaQuery } from '@mui/material'
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
+
+import EditIcon from '@mui/icons-material/Edit'
+
 import InfoCard from '../InfoCard'
 import InfoWrapper from '../InfoWrapper'
-import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import PriceRange from '../PriceRange'
-import EditIcon from '@mui/icons-material/Edit'
-import Link from 'next/link'
-
-const styles = {
-    root: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '24px',
-    },
-    infoBlocks: {
-        display: 'flex',
-        flexDirection: 'row',
-        gap: '24px',
-        flexWrap: 'wrap',
-    },
-    table: {
-        '& .MuiDataGrid-row': {
-            '&: hover': {
-                '.price-btn': {
-                    display: 'block',
-                },
-            },
-        },
-        '& .MuiDataGrid-cell:focus': {
-            outline: 'none',
-        },
-    },
-    priceCell: {
-        display: 'flex',
-        alignItems: 'center',
-        width: '100%',
-    },
-}
-
-export enum PricePosition {
-    UPPER = 1,
-    LOWER = 2,
-}
+import MobileRowInfo from '../MobileRowInfo'
 
 const CARDS = [
     {
@@ -81,6 +48,42 @@ const CARDS = [
         },
     },
 ]
+
+const styles = {
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+    },
+    infoBlocks: {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: '24px',
+        flexWrap: 'wrap',
+    },
+    table: {
+        '& .MuiDataGrid-row': {
+            '&: hover': {
+                '.price-btn': {
+                    display: 'block',
+                },
+            },
+        },
+        '& .MuiDataGrid-cell:focus': {
+            outline: 'none',
+        },
+    },
+    priceCell: {
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',
+    },
+}
+
+export enum PricePosition {
+    UPPER = 1,
+    LOWER = 2,
+}
 
 const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', hide: true },
@@ -123,7 +126,9 @@ const columns: GridColDef[] = [
 ]
 
 export default function GeneralInfo({ countryName, categoryInfo }: any) {
+    const isMobileDevice = useMediaQuery('(max-width:425px)')
     const { restaurants, market, transport } = categoryInfo
+
     return (
         <Box sx={styles.root}>
             <Box sx={styles.infoBlocks}>
@@ -143,37 +148,33 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
             </InfoWrapper>
             <InfoWrapper>
                 <Typography variant="h6">Магазины</Typography>
-                {/* <DataGrid
-                    sx={styles.table}
-                    autoHeight
-                    rows={market}
-                    columns={columns}
-                    disableColumnMenu
-                    disableSelectionOnClick
-                    hideFooterPagination
-                    hideFooterSelectedRowCount
-                /> */}
-                {market.map((item: any) => (
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            height: '50px',
-                        }}
-                    >
-                        <Typography sx={{ fontWeight: 600 }}>{item.name}</Typography>
-                        <Box sx={{ textAlign: 'center' }}>
-                            <Typography>{item.price}₽</Typography>
-                            <PriceRange
+                {/* MOBILE VARIANT */}
+                {isMobileDevice && (
+                    <>
+                        {market.map((item: any) => (
+                            <MobileRowInfo
+                                name={item.name}
+                                price={item.price}
                                 min={item.priceRange.min}
                                 max={item.priceRange.max}
                                 current={item.price}
                             />
-                        </Box>
-                    </Box>
-                ))}
+                        ))}
+                    </>
+                )}
+                {/* DESCKTOP VARIANT */}
+                {!isMobileDevice && (
+                    <DataGrid
+                        sx={styles.table}
+                        autoHeight
+                        rows={market}
+                        columns={columns}
+                        disableColumnMenu
+                        disableSelectionOnClick
+                        hideFooterPagination
+                        hideFooterSelectedRowCount
+                    />
+                )}
             </InfoWrapper>
             <InfoWrapper>
                 <Typography variant="h6">Рестораны</Typography>
