@@ -45,9 +45,10 @@ export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivE
         [],
     )
 
-    useEffect(() => {
-        setMode(prefersDarkMode ? 'dark' : 'light')
-    }, [prefersDarkMode])
+    // the selected theme is reset when changing the page
+    // useEffect(() => {
+    //     setMode(prefersDarkMode ? 'dark' : 'light')
+    // }, [prefersDarkMode])
 
     return (
         <ColorModeContext.Provider value={colorMode}>
