@@ -8,7 +8,8 @@ import EditIcon from '@mui/icons-material/Edit'
 import InfoCard from '../InfoCard'
 import InfoWrapper from '../InfoWrapper'
 import PriceRange from '../PriceRange'
-import MobileRowInfo from '../MobileRowInfo'
+import MobileRowInfo from '../mobileMod/RowInfo'
+import { MobileDataDrawer } from '../mobileMod'
 
 const CARDS = [
     {
@@ -149,19 +150,7 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
             <InfoWrapper>
                 <Typography variant="h6">Магазины</Typography>
                 {/* MOBILE VARIANT */}
-                {isMobileDevice && (
-                    <>
-                        {market.map((item: any) => (
-                            <MobileRowInfo
-                                name={item.name}
-                                price={item.price}
-                                min={item.priceRange.min}
-                                max={item.priceRange.max}
-                                current={item.price}
-                            />
-                        ))}
-                    </>
-                )}
+                {isMobileDevice && <MobileDataDrawer rows={market} />}
                 {/* DESCKTOP VARIANT */}
                 {!isMobileDevice && (
                     <DataGrid
@@ -178,29 +167,35 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
             </InfoWrapper>
             <InfoWrapper>
                 <Typography variant="h6">Рестораны</Typography>
-                <DataGrid
-                    sx={styles.table}
-                    autoHeight
-                    rows={restaurants}
-                    columns={columns}
-                    disableColumnMenu
-                    disableSelectionOnClick
-                    hideFooterPagination
-                    hideFooterSelectedRowCount
-                />
+                {isMobileDevice && <MobileDataDrawer rows={restaurants} />}
+                {!isMobileDevice && (
+                    <DataGrid
+                        sx={styles.table}
+                        autoHeight
+                        rows={restaurants}
+                        columns={columns}
+                        disableColumnMenu
+                        disableSelectionOnClick
+                        hideFooterPagination
+                        hideFooterSelectedRowCount
+                    />
+                )}
             </InfoWrapper>
             <InfoWrapper>
                 <Typography variant="h6">Транспорт</Typography>
-                <DataGrid
-                    sx={styles.table}
-                    autoHeight
-                    rows={transport}
-                    columns={columns}
-                    disableColumnMenu
-                    disableSelectionOnClick
-                    hideFooterPagination
-                    hideFooterSelectedRowCount
-                />
+                {isMobileDevice && <MobileDataDrawer rows={transport} />}
+                {!isMobileDevice && (
+                    <DataGrid
+                        sx={styles.table}
+                        autoHeight
+                        rows={transport}
+                        columns={columns}
+                        disableColumnMenu
+                        disableSelectionOnClick
+                        hideFooterPagination
+                        hideFooterSelectedRowCount
+                    />
+                )}
             </InfoWrapper>
         </Box>
     )

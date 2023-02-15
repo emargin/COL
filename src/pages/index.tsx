@@ -4,14 +4,6 @@ import PageLayout from '@/layouts/PageLayout'
 
 const inter = Inter({ subsets: ['latin'] })
 
-const styles = {
-    root: {
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-}
-
 export default function Home() {
     return (
         <PageLayout>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
-import PriceRange from './PriceRange'
+import PriceRange from '../PriceRange'
 
 const styles = {
     root: {
