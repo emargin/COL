@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
-import { Box, IconButton, Typography, useMediaQuery } from '@mui/material'
+import { Box, Button, IconButton, SwipeableDrawer, Typography, useMediaQuery } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 
 import EditIcon from '@mui/icons-material/Edit'
@@ -8,8 +8,8 @@ import EditIcon from '@mui/icons-material/Edit'
 import InfoCard from '../InfoCard'
 import InfoWrapper from '../InfoWrapper'
 import PriceRange from '../PriceRange'
-import MobileRowInfo from '../mobileMod/RowInfo'
 import { MobileDataDrawer } from '../mobileMod'
+import SwipeableEdgeDrawer from '../SwipableModal'
 
 const CARDS = [
     {
@@ -127,11 +127,12 @@ const columns: GridColDef[] = [
 ]
 
 export default function GeneralInfo({ countryName, categoryInfo }: any) {
-    const isMobileDevice = useMediaQuery('(max-width:425px)')
     const { restaurants, market, transport } = categoryInfo
+    const isMobileDevice = useMediaQuery('(max-width:426px)')
 
     return (
         <Box sx={styles.root}>
+            <SwipeableEdgeDrawer />
             <Box sx={styles.infoBlocks}>
                 {CARDS.map((card) => (
                     <InfoCard
