@@ -1,5 +1,6 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, IconButton, Typography } from '@mui/material'
+import EditIcon from '@mui/icons-material/Edit'
 import PriceRange from '../PriceRange'
 
 const styles = {
@@ -10,14 +11,29 @@ const styles = {
         alignItems: 'center',
         height: '50px',
     },
+    price: {
+        position: 'relative',
+        width: 'auto',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 }
 
 export default function MobileRowInfo({ name, price, ...props }: any) {
     return (
         <Box sx={styles.root}>
             <Typography>{name}</Typography>
-            <Box sx={{ textAlign: 'center' }}>
-                <Typography>{price}₽</Typography>
+
+            <Box>
+                <Box sx={styles.price}>
+                    <Typography>{price}₽</Typography>
+                    <IconButton sx={{ position: 'absolute', right: 3 }}>
+                        <EditIcon sx={{ width: '12px' }} />
+                    </IconButton>
+                </Box>
+
                 {/* TODO: IS IT TOO BIG ? */}
                 <PriceRange {...props} />
             </Box>
