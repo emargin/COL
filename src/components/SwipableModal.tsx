@@ -9,14 +9,6 @@ import DoneIcon from '@mui/icons-material/Done'
 const drawerBleeding = 32
 const modalSize = 35
 
-interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window?: () => Window
-}
-
 const Root = styled('div')(({ theme }) => ({
     height: '100%',
     backgroundColor: theme.palette.mode === 'light' ? grey[100] : theme.palette.background.default,
@@ -36,8 +28,27 @@ const Puller = styled(Box)(({ theme }) => ({
     left: `calc(50% - 15px)`,
 }))
 
-export default function SwipeableEdgeDrawer(props: Props) {
-    const { window } = props
+const styles = {
+    global: {
+        '.MuiDrawer-root > .MuiPaper-root': {
+            height: `calc(${modalSize}% - ${drawerBleeding}px)`,
+            overflow: 'visible',
+        },
+    },
+    modalContent: {
+        px: 2,
+        pb: 2,
+        height: '100%',
+        overflow: 'auto',
+    },
+    applyBtn: {
+        width: 30,
+        height: 30,
+        backgroundColor: 'blue',
+    },
+}
+
+export default function SwipeableEdgeDrawer() {
     const inputRef = React.useRef<HTMLDivElement | null>(null)
     const [open, setOpen] = React.useState(false)
 
@@ -45,36 +56,22 @@ export default function SwipeableEdgeDrawer(props: Props) {
         setOpen(newOpen)
     }
 
-    // This is used only for the example
-    const container = window !== undefined ? () => window().document.body : undefined
-
     React.useEffect(() => {
         if (open) inputRef.current?.focus()
     }, [open])
     return (
         <Root>
-            <Global
-                styles={{
-                    '.MuiDrawer-root > .MuiPaper-root': {
-                        height: `calc(${modalSize}% - ${drawerBleeding}px)`,
-                        overflow: 'visible',
-                    },
-                }}
-            />
+            <Global styles={styles.global} />
             <Box sx={{ textAlign: 'center', pt: 1 }}>
                 <Button onClick={toggleDrawer(true)}>Open</Button>
             </Box>
             <SwipeableDrawer
-                container={container}
                 anchor="bottom"
                 open={open}
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
                 swipeAreaWidth={drawerBleeding}
                 disableSwipeToOpen={false}
-                // ModalProps={{
-                //     keepMounted: true,
-                // }}
             >
                 <StyledBox
                     sx={{
@@ -90,14 +87,7 @@ export default function SwipeableEdgeDrawer(props: Props) {
                 >
                     <Puller />
                 </StyledBox>
-                <StyledBox
-                    sx={{
-                        px: 2,
-                        pb: 2,
-                        height: '100%',
-                        overflow: 'auto',
-                    }}
-                >
+                <StyledBox sx={styles.modalContent}>
                     <TextField
                         fullWidth
                         inputRef={inputRef}
@@ -106,17 +96,10 @@ export default function SwipeableEdgeDrawer(props: Props) {
                         placeholder="Введите стоимость продукта"
                         InputProps={{
                             sx: { borderRadius: 3 },
-                            startAdornment: <InputAdornment position="start">₽</InputAdornment>,
+                            startAdornment: <InputAdornment position="start">₽</InputAdornment>, // get from data
                             endAdornment: (
-                                <IconButton
-                                    sx={{
-                                        width: 30,
-                                        height: 30,
-                                        '&:hover, &.Mui-focusVisible': { backgroundColor: 'blue' },
-                                    }}
-                                    aria-label="add price data"
-                                >
-                                    <DoneIcon sx={{}} fontSize="small" />
+                                <IconButton sx={styles.applyBtn} aria-label="add price data">
+                                    <DoneIcon fontSize="small" />
                                 </IconButton>
                             ),
                         }}
