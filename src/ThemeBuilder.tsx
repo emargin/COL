@@ -2,7 +2,6 @@ import React, { useMemo, useState, useEffect, createContext } from 'react'
 import { createTheme, PaletteMode, ThemeProvider } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
-import { red } from '@mui/material/colors'
 
 const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
     shape: { borderRadius: 8 },
@@ -22,6 +21,13 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
     components: {
         MuiCssBaseline: {
             styleOverrides: {
+                'input::-webkit-outer-spin-button, input::-webkit-inner-spin-button': {
+                    '-webkit-appearance': 'none',
+                    margin: 0 /* <-- Apparently some margin are still there even though it's hidden */,
+                },
+                'input[type=number]': {
+                    '-moz-appearance': 'textfield' /* Firefox */,
+                },
                 a: { color: 'inherit', textDecoration: 'none' },
             },
         },
@@ -44,11 +50,6 @@ export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivE
         }),
         [],
     )
-
-    // the selected theme is reset when changing the page
-    // useEffect(() => {
-    //     setMode(prefersDarkMode ? 'dark' : 'light')
-    // }, [prefersDarkMode])
 
     return (
         <ColorModeContext.Provider value={colorMode}>
