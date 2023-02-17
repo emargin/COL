@@ -20,6 +20,21 @@ const TABS = [
     { label: 'Транспорт' },
 ]
 
+const styles = {
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        p: 2,
+    },
+    country: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '8px',
+    },
+}
+
 export default function Country({ country }: IContry) {
     const [tab, setTab] = useState<number>(0)
 
@@ -28,14 +43,11 @@ export default function Country({ country }: IContry) {
     }
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '24px', p: 2 }}>
+        <Box sx={styles.root}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
-                <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', mb: 2 }}>
+                <Box sx={styles.country}>
                     <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
-
-                    <Typography sx={{ ml: 1 }} variant="h6">
-                        {country?.name || ''}
-                    </Typography>
+                    <Typography variant="h6">{country?.name || ''}</Typography>
                 </Box>
                 <Tabs value={tab} onChange={handleTabChange}>
                     {TABS.map((item, index) => (
