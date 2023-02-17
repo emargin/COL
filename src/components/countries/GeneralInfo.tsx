@@ -8,8 +8,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import InfoCard from '../InfoCard'
 import InfoWrapper from '../InfoWrapper'
 import PriceRange from '../PriceRange'
-import { MobileDataDrawer } from '../mobileMod'
-import SwipeableEdgeDrawer from '../SwipableModal'
+import { MobileDataDrawer, SwipableModal } from '../mobileMod'
 
 const CARDS = [
     {
@@ -132,7 +131,7 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
 
     return (
         <Box sx={styles.root}>
-            <SwipeableEdgeDrawer />
+            <SwipableModal />
             <Box sx={styles.infoBlocks}>
                 {CARDS.map((card) => (
                     <InfoCard

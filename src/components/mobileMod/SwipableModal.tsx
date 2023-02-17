@@ -95,7 +95,7 @@ export default function SwipeableEdgeDrawer() {
                         type="number"
                         placeholder="Введите стоимость продукта"
                         InputProps={{
-                            sx: { borderRadius: 3 },
+                            sx: { borderRadius: 2 },
                             startAdornment: <InputAdornment position="start">₽</InputAdornment>, // get from data
                             endAdornment: (
                                 <IconButton sx={styles.applyBtn} aria-label="add price data">
