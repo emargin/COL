@@ -7,7 +7,7 @@ import { IconButton, InputAdornment, TextField, Box, Button } from '@mui/materia
 import DoneIcon from '@mui/icons-material/Done'
 
 const drawerBleeding = 32
-const modalSize = 35
+const modalSize = 15
 
 const Root = styled('div')(({ theme }) => ({
     height: '100%',
@@ -91,7 +91,6 @@ export default function SwipeableEdgeDrawer() {
                     <TextField
                         fullWidth
                         inputRef={inputRef}
-                        size="small"
                         type="number"
                         placeholder="Введите стоимость продукта"
                         InputProps={{
