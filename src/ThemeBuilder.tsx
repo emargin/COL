@@ -31,6 +31,13 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
                 a: { color: 'inherit', textDecoration: 'none' },
             },
         },
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: mode === 'light' ? '#fff' : '#32323e',
+                },
+            },
+        },
     },
 })
 

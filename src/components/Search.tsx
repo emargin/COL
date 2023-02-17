@@ -5,16 +5,15 @@ import { contries } from '@/mock'
 import { useRouter } from 'next/navigation'
 
 const styles = {
-    root: { width: '78%', margin: 'calc(50vh - 120px) auto auto auto' },
+    root: { width: '78%', margin: 'calc(50vh - 150px) auto auto auto' },
     title: {
         textAlign: 'left',
-        marginBottom: '16px',
+        mb: 2,
     },
     input: {
         width: '100%',
-        color: '#fff',
         '.MuiInputBase-root': {
-            borderRadius: '16px',
+            borderRadius: 2,
             height: '59px',
         },
         '.MuiOutlinedInput-notchedOutline': {
@@ -23,7 +22,6 @@ const styles = {
         },
         '&:hover:not($disabled) fieldset': {
             borderColor: 'primary.main',
-            // borderColor: 'primary.main!important',
         },
     },
     info: { maxWidth: '215px', textAlign: 'right', margin: '16px 0 0 auto', color: 'rgba(0, 0, 0, 0.38)' },
@@ -35,9 +33,10 @@ export default function Search() {
     const redirectToCountryInfo = (_: unknown, value: any) => {
         router.push(`/countries/${value.id}`)
     }
+
     return (
         <Box sx={styles.root}>
-            <Typography variant="h6" sx={styles.title}>
+            <Typography variant="h5" component="h1" sx={styles.title}>
                 Сравнивайте цены в разных странах мира
             </Typography>
             <Autocomplete
@@ -47,7 +46,6 @@ export default function Search() {
                 sx={styles.input}
                 options={contries}
                 onChange={redirectToCountryInfo}
-                // getOptionLabel={(option: any) => option.name}
                 getOptionLabel={(option: any) => (option.name ? option.name : option)}
                 onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
                 renderInput={(params) => <TextField autoFocus placeholder="Найти страну" {...params} />}
