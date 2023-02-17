@@ -5,7 +5,7 @@ import { contries } from '@/mock'
 import { useRouter } from 'next/navigation'
 
 const styles = {
-    root: { width: '78%', margin: 'calc(50vh - 150px) auto auto auto' },
+    root: { width: '78%', margin: 'calc(50vh - 140px) auto auto auto' },
     title: {
         textAlign: 'left',
         mb: 2,
@@ -29,6 +29,11 @@ const styles = {
 
 export default function Search() {
     const router = useRouter()
+    const [filter, setFilter] = React.useState('')
+    const avalibleCountries = React.useMemo(
+        () => contries.filter((contry) => contry.name.toLowerCase().includes(filter.toLowerCase())),
+        [filter],
+    )
 
     const redirectToCountryInfo = (_: unknown, value: any) => {
         router.push(`/countries/${value.id}`)
@@ -44,7 +49,8 @@ export default function Search() {
                 disablePortal
                 freeSolo
                 sx={styles.input}
-                options={contries}
+                options={avalibleCountries}
+                onInputChange={(_, value) => setFilter(value)}
                 onChange={redirectToCountryInfo}
                 getOptionLabel={(option: any) => (option.name ? option.name : option)}
                 onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}

@@ -44,9 +44,10 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
 export const ColorModeContext = createContext({ toggleColorMode: () => {} })
 
 export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivElement>) {
-    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+    const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)')
+    console.log('prefersLightMode', prefersLightMode)
     const isMobileDevice = useMediaQuery('(max-width:425px)')
-    const [mode, setMode] = useState<'light' | 'dark'>(prefersDarkMode ? 'dark' : 'light')
+    const [mode, setMode] = useState<'light' | 'dark'>(prefersLightMode ? 'light' : 'dark')
 
     const theme = useMemo(() => createTheme(getDesignTokens(mode, isMobileDevice)), [mode, isMobileDevice])
     const colorMode = useMemo(
@@ -57,6 +58,10 @@ export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivE
         }),
         [],
     )
+    // Мерцание
+    useEffect(() => {
+        setMode(prefersLightMode ? 'light' : 'dark')
+    }, [prefersLightMode])
 
     return (
         <ColorModeContext.Provider value={colorMode}>
