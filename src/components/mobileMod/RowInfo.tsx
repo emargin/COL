@@ -21,7 +21,7 @@ const styles = {
     },
 }
 
-export default function MobileRowInfo({ name, price, ...props }: any) {
+export default function MobileRowInfo({ name, price, onEdit, ...props }: any) {
     return (
         <Box sx={styles.root}>
             <Typography>{name}</Typography>
@@ -29,7 +29,7 @@ export default function MobileRowInfo({ name, price, ...props }: any) {
             <Box>
                 <Box sx={styles.price}>
                     <Typography>{price}₽</Typography>
-                    <IconButton sx={{ position: 'absolute', right: 3 }}>
+                    <IconButton sx={{ position: 'absolute', right: 3 }} onClick={onEdit}>
                         <EditIcon sx={{ width: '12px' }} />
                     </IconButton>
                 </Box>

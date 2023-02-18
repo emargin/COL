@@ -131,7 +131,6 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
 
     return (
         <Box sx={styles.root}>
-            <SwipableModal />
             <Box sx={styles.infoBlocks}>
                 {CARDS.map((card) => (
                     <InfoCard

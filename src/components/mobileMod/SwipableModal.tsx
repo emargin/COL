@@ -48,13 +48,8 @@ const styles = {
     },
 }
 
-export default function SwipeableEdgeDrawer() {
+export default function SwipeableEdgeDrawer({ open, onOpen, onClose }: any) {
     const inputRef = React.useRef<HTMLDivElement | null>(null)
-    const [open, setOpen] = React.useState(false)
-
-    const toggleDrawer = (newOpen: boolean) => () => {
-        setOpen(newOpen)
-    }
 
     React.useEffect(() => {
         if (open) inputRef.current?.focus()
@@ -62,14 +57,11 @@ export default function SwipeableEdgeDrawer() {
     return (
         <Root>
             <Global styles={styles.global} />
-            <Box sx={{ textAlign: 'center', pt: 1 }}>
-                <Button onClick={toggleDrawer(true)}>Open</Button>
-            </Box>
             <SwipeableDrawer
                 anchor="bottom"
                 open={open}
-                onClose={toggleDrawer(false)}
-                onOpen={toggleDrawer(true)}
+                onOpen={onOpen} // toggleDrawer(true)
+                onClose={onClose} // toggleDrawer(false)
                 swipeAreaWidth={drawerBleeding}
                 disableSwipeToOpen={false}
             >
