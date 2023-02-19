@@ -20,7 +20,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 const Puller = styled(Box)(({ theme }) => ({
     width: 30,
-    height: 6,
+    height: 7,
     backgroundColor: theme.palette.mode === 'light' ? grey[300] : grey[900],
     borderRadius: 3,
     position: 'absolute',
@@ -60,8 +60,8 @@ export default function SwipeableEdgeDrawer({ open, onOpen, onClose }: any) {
             <SwipeableDrawer
                 anchor="bottom"
                 open={open}
-                onOpen={onOpen} // toggleDrawer(true)
-                onClose={onClose} // toggleDrawer(false)
+                onOpen={onOpen}
+                onClose={onClose}
                 swipeAreaWidth={drawerBleeding}
                 disableSwipeToOpen={false}
             >
