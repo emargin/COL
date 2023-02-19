@@ -9,7 +9,7 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
         mode,
         ...(mode === 'light'
             ? {
-                  background: { default: '#ebeced', paper: '#fff' },
+                  background: { default: '#f5f5f5', paper: '#fff' },
               }
             : {
                   background: { default: '#272731', paper: '#32323e' },
@@ -45,7 +45,6 @@ export const ColorModeContext = createContext({ toggleColorMode: () => {} })
 
 export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivElement>) {
     const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)')
-    console.log('prefersLightMode', prefersLightMode)
     const isMobileDevice = useMediaQuery('(max-width:425px)')
     const [mode, setMode] = useState<'light' | 'dark'>(prefersLightMode ? 'light' : 'dark')
 
