@@ -2,13 +2,13 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Box, Typography, Tabs, Tab } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import { contries } from '../../mock'
+import { contries } from '@/mock'
 import PageLayout from '@/layouts/PageLayout'
-import InfoWrapper from '../../components/InfoWrapper'
-import InfoCard from '../../components/InfoCard'
-import { TabPanel, allyProps } from '../../components/tabs'
-import flagImg from '../../assets/united-kingdom.png'
-import GeneralInfo from '@/components/countries/GeneralInfo'
+import InfoWrapper from '@/components/InfoWrapper'
+import InfoCard from '@/components/InfoCard'
+import { TabPanel, allyProps } from '@/components/tabs'
+import flagImg from '@/assets/united-kingdom.png'
+import GeneralInfo from './GeneralInfo'
 
 type IContry = any
 
@@ -25,7 +25,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         gap: '24px',
-        p: 2,
+        // p: 2,
     },
     country: {
         display: 'flex',
