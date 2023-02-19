@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Global } from '@emotion/react'
 import { styled } from '@mui/material/styles'
 import { grey } from '@mui/material/colors'
@@ -49,9 +49,9 @@ const styles = {
 }
 
 export default function SwipeableEdgeDrawer({ open, onOpen, onClose }: any) {
-    const inputRef = React.useRef<HTMLDivElement | null>(null)
+    const inputRef = useRef<HTMLDivElement | null>(null)
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (open) inputRef.current?.focus()
     }, [open])
     return (

@@ -4,7 +4,8 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp' // TODO: FIND SVG 
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
 import InfoWrapper from './InfoWrapper'
-import { PricePosition } from './countries/GeneralInfo'
+import { PricePosition } from '../pages/countries/GeneralInfo'
+// EXPORT TO @TYPES
 
 interface InfoCardProps {
     title: string

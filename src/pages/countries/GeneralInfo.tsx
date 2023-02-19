@@ -5,10 +5,10 @@ import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 
 import EditIcon from '@mui/icons-material/Edit'
 
-import InfoCard from '../InfoCard'
-import InfoWrapper from '../InfoWrapper'
-import PriceRange from '../PriceRange'
-import { MobileDataDrawer, SwipableModal } from '../mobileMod'
+import InfoCard from '@/components/InfoCard'
+import InfoWrapper from '@/components/InfoWrapper'
+import PriceRange from '@/components/PriceRange'
+import { MobileDataDrawer, SwipableModal } from '@/components/mobileMod'
 
 const CARDS = [
     {

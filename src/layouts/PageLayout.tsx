@@ -9,6 +9,7 @@ const styles = {
         height: '100vh',
         margin: '0 auto',
         overflowX: 'auto',
+        // p: 2,
     },
     content: {
         maxWidth: '1290px',

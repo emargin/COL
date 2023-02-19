@@ -17,7 +17,7 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
 
-        padding: '0 25px',
+        pb: '25px',
     },
 }
 
