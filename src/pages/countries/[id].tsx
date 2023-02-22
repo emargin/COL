@@ -8,7 +8,7 @@ import InfoWrapper from '@/components/InfoWrapper'
 import InfoCard from '@/components/InfoCard'
 import { TabPanel, allyProps } from '@/components/tabs'
 import flagImg from '@/assets/united-kingdom.png'
-import GeneralInfo from './GeneralInfo'
+import GeneralInfo from '@/components/GeneralInfo'
 
 type IContry = any
 
@@ -25,7 +25,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         gap: '24px',
-        // p: 2,
+        p: 2,
     },
     country: {
         display: 'flex',

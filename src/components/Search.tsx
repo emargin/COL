@@ -1,12 +1,21 @@
 import React from 'react'
 import Link from 'next/link'
-import { Box, Autocomplete, TextField, Typography, Button, IconButton, useMediaQuery } from '@mui/material'
+import {
+    Box,
+    Autocomplete,
+    TextField,
+    Typography,
+    Button,
+    IconButton,
+    useMediaQuery,
+    Divider,
+} from '@mui/material'
 import { contries } from '@/mock'
 import { useRouter } from 'next/navigation'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 
 const styles = {
-    root: { width: '78%', margin: 'calc(50vh - 140px) auto auto auto' },
+    root: { width: '78%', margin: 'calc(50vh - 170px) auto auto auto' },
     title: {
         textAlign: 'left',
         mb: 3,
@@ -69,12 +78,26 @@ export default function Search() {
                     onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
                     renderInput={(params) => <TextField autoFocus placeholder="Откуда" {...params} />}
                 />
-                <IconButton sx={{ height: '35px', width: '35px' }}>
-                    <SwapHorizIcon
-                        fontSize="small"
-                        sx={isMobileDevice ? { transform: 'rotate(90deg)' } : undefined}
-                    />
-                </IconButton>
+
+                {isMobileDevice && (
+                    <Divider sx={{ width: '90%' }} variant="middle">
+                        <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
+                            <SwapHorizIcon
+                                fontSize="small"
+                                sx={isMobileDevice ? { transform: 'rotate(90deg)' } : undefined}
+                            />
+                        </IconButton>
+                    </Divider>
+                )}
+                {!isMobileDevice && (
+                    <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
+                        <SwapHorizIcon
+                            fontSize="small"
+                            sx={isMobileDevice ? { transform: 'rotate(90deg)' } : undefined}
+                        />
+                    </IconButton>
+                )}
+
                 <Autocomplete
                     autoSelect
                     disablePortal
@@ -88,7 +111,6 @@ export default function Search() {
                     renderInput={(params) => <TextField placeholder="Куда" {...params} />}
                 />
             </Box>
-
             {/* <Typography variant="body2" sx={styles.info}>
                 <Link href="/countries/1">Куала-Лумпур</Link>
             </Typography> */}
