@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import Link from 'next/link'
 import {
     Box,
@@ -44,14 +44,19 @@ const styles = {
             borderColor: 'primary.main',
         },
     },
-    info: { maxWidth: '215px', textAlign: 'right', margin: '16px 0 0 auto', color: 'rgba(0, 0, 0, 0.38)' },
+    info: {
+        maxWidth: '215px',
+        textAlign: 'right',
+        margin: '16px 0 0 auto',
+        color: 'rgba(0, 0, 0, 0.38)',
+    },
 }
 
 export default function Search() {
     const isMobileDevice = useMediaQuery('(max-width:426px)')
     const router = useRouter()
-    const [filter, setFilter] = React.useState('')
-    const avalibleCountries = React.useMemo(
+    const [filter, setFilter] = useState('')
+    const avalibleCountries = useMemo(
         () => contries.filter((contry) => contry.name.toLowerCase().includes(filter.toLowerCase())),
         [filter],
     )
