@@ -10,7 +10,7 @@ import {
     useMediaQuery,
     Divider,
 } from '@mui/material'
-import { contries } from '@/mock'
+import { cities } from '@/mock'
 import { useRouter } from 'next/navigation'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 
@@ -57,12 +57,12 @@ export default function Search() {
     const router = useRouter()
     const [filter, setFilter] = useState('')
     const avalibleCountries = useMemo(
-        () => contries.filter((contry) => contry.name.toLowerCase().includes(filter.toLowerCase())),
+        () => cities.filter((city) => city.name.toLowerCase().includes(filter.toLowerCase())),
         [filter],
     )
 
     const redirectToCountryInfo = (_: unknown, value: any) => {
-        router.push(`/countries/${value.id}`)
+        router.push(`/city/${value.slug}`)
     }
 
     return (

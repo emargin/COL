@@ -14,7 +14,7 @@ export const countryInfo = {
     ],
 }
 
-export const contries = [
+export const cities = [
     {
         id: 1,
         name: 'Россия',
@@ -22,6 +22,7 @@ export const contries = [
             extraInfo: {},
             statistic: countryInfo,
         },
+        slug: 'Russia',
     },
     {
         id: 2,
@@ -30,6 +31,8 @@ export const contries = [
             extraInfo: {},
             statistic: countryInfo,
         },
+
+        slug: 'USA',
     },
     {
         id: 3,
@@ -38,6 +41,7 @@ export const contries = [
             extraInfo: {},
             statistic: countryInfo,
         },
+        slug: 'Czech',
     },
     {
         id: 4,
@@ -46,6 +50,7 @@ export const contries = [
             extraInfo: {},
             statistic: countryInfo,
         },
+        slug: 'Malaysia',
     },
     {
         id: 5,
@@ -54,5 +59,6 @@ export const contries = [
             extraInfo: {},
             statistic: countryInfo,
         },
+        slug: 'China',
     },
 ]

@@ -54,6 +54,7 @@ export default function SwipeableEdgeDrawer({ open, onOpen, onClose }: any) {
     useEffect(() => {
         if (open) inputRef.current?.focus()
     }, [open])
+
     return (
         <Root>
             <Global styles={styles.global} />

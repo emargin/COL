@@ -2,13 +2,14 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Box, Typography, Tabs, Tab } from '@mui/material'
 import { DataGrid, GridColDef } from '@mui/x-data-grid'
-import { contries } from '@/mock'
+import { cities } from '@/mock'
 import PageLayout from '@/layouts/PageLayout'
 import InfoWrapper from '@/components/InfoWrapper'
 import InfoCard from '@/components/InfoCard'
 import { TabPanel, allyProps } from '@/components/tabs'
 import flagImg from '@/assets/united-kingdom.png'
 import GeneralInfo from '@/components/GeneralInfo'
+import CityLayout from '@/layouts/CityLayout'
 
 type IContry = any
 
@@ -35,7 +36,7 @@ const styles = {
     },
 }
 
-export default function Country({ country }: IContry) {
+export default function City({ city }: IContry) {
     const [tab, setTab] = useState<number>(0)
 
     const handleTabChange = (event: React.SyntheticEvent, newTab: number) => {
@@ -47,7 +48,7 @@ export default function Country({ country }: IContry) {
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
                     <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
-                    <Typography variant="h6">{country?.name || ''}</Typography>
+                    <Typography variant="h6">{city?.name || ''}</Typography>
                 </Box>
                 <Tabs value={tab} onChange={handleTabChange}>
                     {TABS.map((item, index) => (
@@ -56,7 +57,7 @@ export default function Country({ country }: IContry) {
                 </Tabs>
             </InfoWrapper>
             <TabPanel value={tab} index={0} style={{ padding: 0 }}>
-                <GeneralInfo countryName={country.name} categoryInfo={country.info.statistic} />
+                <GeneralInfo countryName={city.name} categoryInfo={city.info.statistic} />
             </TabPanel>
 
             <TabPanel value={tab} index={1}>
@@ -65,37 +66,37 @@ export default function Country({ country }: IContry) {
         </Box>
     )
 }
-const getContries = async () => ({
-    data: contries,
+const getCities = async () => ({
+    data: cities,
     message: 'its ok',
     error: null,
 })
 
-const getCountry = async (id: number) => ({
-    data: contries.filter((country) => country.id === id)[0],
+const getCity = async (slug: string) => ({
+    data: cities.filter((city) => city.slug === slug)[0],
     message: 'its ok',
     error: null,
 })
 
-Country.getLayout = function getLayout(page: ReactElement) {
-    return <PageLayout>{page}</PageLayout>
+City.getLayout = function getLayout(page: ReactElement) {
+    return <CityLayout>{page}</CityLayout>
 }
 
 export async function getStaticProps({ params }: any) {
-    const response = await getCountry(+params.id)
-    const country = response.data
+    const response = await getCity(params.slug)
+    const city = response.data
     return {
         props: {
-            country,
+            city,
         },
     }
 }
 
 export async function getStaticPaths() {
-    const contries = await getContries()
+    const contries = await getCities()
 
-    const paths = contries.data.map((post) => ({
-        params: { id: post.id.toString() },
+    const paths = contries.data.map((path) => ({
+        params: { slug: path.slug },
     }))
 
     return {
