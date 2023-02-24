@@ -16,12 +16,11 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-
         p: 2,
     },
 }
 
-export default function Header() {
+export default function Header({ homePageView = false }: { homePageView?: boolean }) {
     return (
         <Box sx={styles.root} component="header">
             <Box sx={styles.content}>
@@ -30,7 +29,7 @@ export default function Header() {
                 </Link>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <ThemeSwitchBtn />
-                    <CurrensySelect />
+                    {!homePageView && <CurrensySelect />}
                 </Box>
             </Box>
         </Box>

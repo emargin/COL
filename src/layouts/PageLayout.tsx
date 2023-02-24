@@ -1,23 +1,17 @@
 import React from 'react'
 
 import { Box } from '@mui/material'
-import Header from '@/components/Header'
 import Head from 'next/head'
+import RootLayout from './RootLayout'
 
 const styles = {
-    root: {
-        height: '100vh',
-        margin: '0 auto',
-        overflowX: 'auto',
-        // p: 2,
-    },
     content: {
         maxWidth: '1290px',
         margin: 'auto',
     },
 }
 
-export default function PageLayout({ children }: React.HTMLAttributes<HTMLDivElement>) {
+export default function PageLayout({ children }: Pick<React.HTMLAttributes<HTMLDivElement>, 'children'>) {
     return (
         <>
             <Head>
@@ -26,10 +20,9 @@ export default function PageLayout({ children }: React.HTMLAttributes<HTMLDivEle
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Box sx={styles.root} component="section">
-                <Header />
+            <RootLayout>
                 <Box sx={styles.content}>{children}</Box>
-            </Box>
+            </RootLayout>
         </>
     )
 }
