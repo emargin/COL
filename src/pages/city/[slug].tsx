@@ -1,15 +1,14 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Box, Typography, Tabs, Tab } from '@mui/material'
-import { DataGrid, GridColDef } from '@mui/x-data-grid'
 import { cities } from '@/mock'
-import PageLayout from '@/layouts/PageLayout'
 import InfoWrapper from '@/components/InfoWrapper'
 import InfoCard from '@/components/InfoCard'
 import { TabPanel, allyProps } from '@/components/tabs'
 import flagImg from '@/assets/united-kingdom.png'
-import GeneralInfo from '@/components/GeneralInfo'
-import CityLayout from '@/layouts/CityLayout'
+
+import { CityLayout } from '@/layouts'
+import { GeneralInfo } from '@/components/city'
 
 type IContry = any
 
@@ -38,13 +37,35 @@ const styles = {
 
 export default function City({ city }: IContry) {
     const [tab, setTab] = useState<number>(0)
+    let startX = 0
+    let endX = 0
 
-    const handleTabChange = (event: React.SyntheticEvent, newTab: number) => {
+    const handleTabChange = (_: unknown, newTab: number) => {
         setTab(newTab)
     }
 
+    const checkDirection = () => {
+        const swipeSize = Math.abs(endX - startX)
+        if (swipeSize < 80) return
+        if (endX < startX && tab + 1 < TABS.length) {
+            setTab((prev) => prev + 1)
+        }
+        if (endX > startX && tab !== 0) {
+            setTab((prev) => prev - 1)
+        }
+    }
+
+    const handleTouchStart = (e: any) => {
+        startX = e.changedTouches[0].screenX
+    }
+
+    const handleTouchEnd = (e: any) => {
+        endX = e.changedTouches[0].screenX
+        checkDirection()
+    }
+
     return (
-        <Box sx={styles.root}>
+        <Box sx={styles.root} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
                     <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
