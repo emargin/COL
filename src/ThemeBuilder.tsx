@@ -45,7 +45,7 @@ export const ColorModeContext = createContext({ toggleColorMode: () => {} })
 
 export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivElement>) {
     const prefersLightMode = useMediaQuery('(prefers-color-scheme: light)')
-    const isMobileDevice = useMediaQuery('(max-width:425px)')
+    const isMobileDevice = useMediaQuery('(max-width:600px)')
     const [mode, setMode] = useState<'light' | 'dark'>(prefersLightMode ? 'light' : 'dark')
 
     const theme = useMemo(() => createTheme(getDesignTokens(mode, isMobileDevice)), [mode, isMobileDevice])

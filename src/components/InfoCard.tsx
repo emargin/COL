@@ -26,13 +26,14 @@ const userCounry = 'Малайзии'
 
 export default function InfoCard({ title, price, pricePosition }: InfoCardProps) {
     return (
-        <InfoWrapper style={styles.root}>
+        <InfoWrapper sx={styles.root}>
             {/* TODO: get color from theme */}
-            <Typography sx={{ color: '#adb5bd', fontSize: '16px' }}>{title}</Typography>
-            <Typography sx={{ fontSize: '24px' }}>{price}</Typography>
-            <Box sx={styles.subTitle}>
-                <Typography variant="body2">На</Typography>
 
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                {title}
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Typography sx={{ fontSize: '24px' }}>{price}</Typography>
                 {pricePosition.position === PricePosition.LOWER ? (
                     <Typography variant="body2" sx={{ color: 'error.main', display: 'flex', mr: 0.5 }}>
                         <ArrowDropDownIcon fontSize="small" /> {pricePosition.percent}
@@ -42,7 +43,20 @@ export default function InfoCard({ title, price, pricePosition }: InfoCardProps)
                         <ArrowDropUpIcon fontSize="small" /> {pricePosition.percent}
                     </Typography>
                 )}
-                <Typography variant="body2">{`чем в ${userCounry}`}</Typography>
+            </Box>
+            <Box sx={styles.subTitle}>
+                {/* <Typography variant="body2">На</Typography>
+
+                {pricePosition.position === PricePosition.LOWER ? (
+                    <Typography variant="body2" sx={{ color: 'error.main', display: 'flex', mr: 0.5 }}>
+                        <ArrowDropDownIcon fontSize="small" /> {pricePosition.percent}
+                    </Typography>
+                ) : (
+                    <Typography variant="body2" sx={{ color: 'success.main', display: 'flex', mr: 0.5 }}>
+                        <ArrowDropUpIcon fontSize="small" /> {pricePosition.percent}
+                    </Typography>
+                )} */}
+                {/* <Typography variant="body2">{`чем в ${userCounry}`}</Typography> */}
             </Box>
         </InfoWrapper>
     )

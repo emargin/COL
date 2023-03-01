@@ -6,6 +6,9 @@ const styles = {
         width: '100%',
         color: 'text.primary',
         padding: '28px 31px',
+        '@media (max-width: 600px)': {
+            p: 1.5,
+        },
     },
 }
 
