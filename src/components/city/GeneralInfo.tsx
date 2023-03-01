@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
-import { Box, Button, IconButton, SwipeableDrawer, Typography, useMediaQuery } from '@mui/material'
+import { Alert, Box, Button, IconButton, SwipeableDrawer, Typography, useMediaQuery } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 
 import EditIcon from '@mui/icons-material/Edit'
@@ -9,6 +9,7 @@ import InfoCard from '@/components/InfoCard'
 import InfoWrapper from '@/components/InfoWrapper'
 import PriceRange from '@/components/PriceRange'
 import { MobileDataDrawer, SwipableModal } from '@/components/mobileMod'
+import InfoAlert from './InfoAlert'
 
 const CARDS = [
     {
@@ -58,7 +59,7 @@ const styles = {
     infoBlocks: {
         display: 'flex',
         flexDirection: 'row',
-        gap: '24px',
+        gap: '16px', // '24px'
         flexWrap: 'wrap',
     },
     table: {
@@ -127,7 +128,7 @@ const columns: GridColDef[] = [
 
 export default function GeneralInfo({ countryName, categoryInfo }: any) {
     const { restaurants, market, transport } = categoryInfo
-    const isMobileDevice = useMediaQuery('(max-width:426px)')
+    const isMobileDevice = useMediaQuery('(max-width:600px)')
 
     return (
         <Box sx={styles.root}>
@@ -141,11 +142,7 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
                     />
                 ))}
             </Box>
-            <InfoWrapper sx={{ bgcolor: 'warning.main' }}>
-                Помогите другим пушествиникам узнать цены в {countryName}!{' '}
-                <Link href="">Заполните чек лист</Link> или{' '}
-                <Link href="">отправьте нам фото вашего чека</Link>
-            </InfoWrapper>
+            <InfoAlert locationName={countryName} />
             <InfoWrapper>
                 <Typography variant="h6">Магазины</Typography>
                 {/* MOBILE VARIANT */}
