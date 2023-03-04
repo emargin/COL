@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import InfoCard from '@/components/InfoCard'
 import InfoWrapper from '@/components/InfoWrapper'
 import PriceRange from '@/components/PriceRange'
-import { MobileDataDrawer, SwipableModal } from '@/components/mobileMod'
+import { MobileDataDrawer } from '@/components/mobileMod'
 import InfoAlert from './InfoAlert'
 
 const CARDS = [
@@ -59,7 +59,7 @@ const styles = {
     infoBlocks: {
         display: 'flex',
         flexDirection: 'row',
-        gap: '16px', // '24px'
+        gap: '16px',
         flexWrap: 'wrap',
     },
     table: {
@@ -126,7 +126,7 @@ const columns: GridColDef[] = [
     },
 ]
 
-export default function GeneralInfo({ countryName, categoryInfo }: any) {
+export default function GeneralInfo({ locationName, categoryInfo }: any) {
     const { restaurants, market, transport } = categoryInfo
     const isMobileDevice = useMediaQuery('(max-width:600px)')
 
@@ -142,7 +142,7 @@ export default function GeneralInfo({ countryName, categoryInfo }: any) {
                     />
                 ))}
             </Box>
-            <InfoAlert locationName={countryName} />
+            <InfoAlert locationName={locationName} />
             <InfoWrapper>
                 <Typography variant="h6">Магазины</Typography>
                 {/* MOBILE VARIANT */}

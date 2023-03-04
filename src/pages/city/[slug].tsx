@@ -11,6 +11,7 @@ import { CityLayout } from '@/layouts'
 import { GeneralInfo } from '@/components/city'
 
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt'
 
 type IContry = any
 
@@ -70,9 +71,9 @@ export default function City({ city }: IContry) {
         <Box sx={styles.root} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                         <Typography variant="h6">
-                            Из
+                            {/* Из */}
                             <Image
                                 alt="country flag img"
                                 style={{ margin: '0 8px' }}
@@ -81,10 +82,9 @@ export default function City({ city }: IContry) {
                                 height={16}
                             />
                             {city?.name || ''}
-                            <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
-                                <SwapHorizIcon fontSize="small" />
-                            </IconButton>
-                            в
+                        </Typography>
+                        <ArrowRightAltIcon fontSize="small" sx={{ color: 'text.secondary', m: '0 10px' }} />
+                        <Typography variant="h6">
                             <Image
                                 alt="country flag img"
                                 style={{ margin: '0 8px' }}
@@ -94,6 +94,9 @@ export default function City({ city }: IContry) {
                             />
                             Малайзиа
                         </Typography>
+                        <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
+                            <SwapHorizIcon fontSize="small" />
+                        </IconButton>
 
                         {/* <Typography variant="h6">{`Из ${city?.name || ''} в ${city?.name || ''}`}</Typography> */}
                         {/* <Box sx={{ height: '1px', background: 'black', m: 2, width: 30 }} /> */}
