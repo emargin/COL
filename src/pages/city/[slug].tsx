@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Box, Typography, Tabs, Tab } from '@mui/material'
+import { Box, Typography, Tabs, Tab, IconButton } from '@mui/material'
 import { cities } from '@/mock'
 import InfoWrapper from '@/components/InfoWrapper'
 import InfoCard from '@/components/InfoCard'
@@ -9,6 +9,8 @@ import flagImg from '@/assets/united-kingdom.png'
 
 import { CityLayout } from '@/layouts'
 import { GeneralInfo } from '@/components/city'
+
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 
 type IContry = any
 
@@ -68,8 +70,35 @@ export default function City({ city }: IContry) {
         <Box sx={styles.root} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
-                    <Image alt="country flag img" src={flagImg.src} width={24} height={24} />
-                    <Typography variant="h6">{city?.name || ''}</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Typography variant="h6">
+                            Из
+                            <Image
+                                alt="country flag img"
+                                style={{ margin: '0 8px' }}
+                                src={flagImg.src}
+                                width={16}
+                                height={16}
+                            />
+                            {city?.name || ''}
+                            <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
+                                <SwapHorizIcon fontSize="small" />
+                            </IconButton>
+                            в
+                            <Image
+                                alt="country flag img"
+                                style={{ margin: '0 8px' }}
+                                src={flagImg.src}
+                                width={16}
+                                height={16}
+                            />
+                            Малайзиа
+                        </Typography>
+
+                        {/* <Typography variant="h6">{`Из ${city?.name || ''} в ${city?.name || ''}`}</Typography> */}
+                        {/* <Box sx={{ height: '1px', background: 'black', m: 2, width: 30 }} /> */}
+                        {/* <Typography variant="h6">{city?.name || ''}</Typography> */}
+                    </Box>
                 </Box>
                 <Tabs value={tab} onChange={handleTabChange}>
                     {TABS.map((item, index) => (
@@ -78,7 +107,7 @@ export default function City({ city }: IContry) {
                 </Tabs>
             </InfoWrapper>
             <TabPanel value={tab} index={0} style={{ padding: 0 }}>
-                <GeneralInfo countryName={city.name} categoryInfo={city.info.statistic} />
+                <GeneralInfo locationName={city.name} categoryInfo={city.info.statistic} />
             </TabPanel>
 
             <TabPanel value={tab} index={1}>
