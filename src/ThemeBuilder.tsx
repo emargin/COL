@@ -38,6 +38,14 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
                 },
             },
         },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    margin: 'auto 4px',
+                    borderRadius: 8,
+                },
+            },
+        },
     },
 })
 
