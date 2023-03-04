@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import {
     Box,
@@ -10,9 +10,10 @@ import {
     useMediaQuery,
     Divider,
 } from '@mui/material'
-import { cities } from '@/mock'
 import { useRouter } from 'next/navigation'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
+import api from '@/api'
+import { debounce } from '@/utils'
 
 const styles = {
     root: { width: '78%', margin: 'calc(50vh - 170px) auto auto auto' },
@@ -40,6 +41,9 @@ const styles = {
             borderWidth: '2px',
             borderColor: 'transparent',
         },
+        '.MuiAutocomplete-popper': {
+            bgcolor: 'red',
+        },
         '&:hover:not($disabled) fieldset': {
             borderColor: 'primary.main',
         },
@@ -53,16 +57,18 @@ const styles = {
 }
 
 export default function Search() {
-    const isMobileDevice = useMediaQuery('(max-width:426px)')
+    const isMobileDevice = useMediaQuery('(max-width:600px)')
     const router = useRouter()
-    const [filter, setFilter] = useState('')
-    const avalibleCountries = useMemo(
-        () => cities.filter((city) => city.name.toLowerCase().includes(filter.toLowerCase())),
-        [filter],
-    )
+    const [searchCities, setSearchCities] = useState([])
 
     const redirectToCountryInfo = (_: unknown, value: any) => {
-        router.push(`/city/${value.slug}`)
+        // router.push(`/city/${value.slug}`)
+    }
+
+    const handleSearch = async (query: string) => {
+        if (query.length < 2) return
+        const response = await api.search(query)
+        setSearchCities(response.search_results)
     }
 
     return (
@@ -76,8 +82,8 @@ export default function Search() {
                     disablePortal
                     freeSolo
                     sx={styles.input}
-                    options={avalibleCountries}
-                    onInputChange={(_, value) => setFilter(value)}
+                    options={searchCities}
+                    onInputChange={debounce((_: unknown, value: string) => handleSearch(value))}
                     onChange={redirectToCountryInfo}
                     getOptionLabel={(option: any) => (option.name ? option.name : option)}
                     onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
@@ -108,8 +114,8 @@ export default function Search() {
                     disablePortal
                     freeSolo
                     sx={styles.input}
-                    options={avalibleCountries}
-                    onInputChange={(_, value) => setFilter(value)}
+                    options={searchCities}
+                    onInputChange={debounce((_: unknown, value: string) => handleSearch(value))}
                     onChange={redirectToCountryInfo}
                     getOptionLabel={(option: any) => (option.name ? option.name : option)}
                     onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}

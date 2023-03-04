@@ -9,4 +9,11 @@ export const api = {
             },
         })
     },
+    search(query: string) {
+        return instance('/search', {
+            query: {
+                query,
+            },
+        })
+    },
 }
