@@ -103,7 +103,7 @@ export default function City({ city }: IContry) {
                         {/* <Typography variant="h6">{city?.name || ''}</Typography> */}
                     </Box>
                 </Box>
-                <Tabs value={tab} onChange={handleTabChange}>
+                <Tabs value={tab} onChange={handleTabChange} variant="scrollable">
                     {TABS.map((item, index) => (
                         <Tab key={index + item.label} label={item.label} {...allyProps(index)} />
                     ))}
