@@ -11,7 +11,7 @@ interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
 const styles = {
     root: {
         width: '100%',
-        padding: '25px 0',
+        padding: '0',
     },
 }
 

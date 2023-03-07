@@ -68,7 +68,7 @@ export default function City({ city }: IContry) {
     }
 
     return (
-        <Box sx={styles.root} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <Box sx={styles.root}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
                     <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
@@ -109,12 +109,18 @@ export default function City({ city }: IContry) {
                     ))}
                 </Tabs>
             </InfoWrapper>
-            <TabPanel value={tab} index={0} style={{ padding: 0 }}>
+            <TabPanel value={tab} index={0} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
                 <GeneralInfo locationName={city.name} categoryInfo={city.info.statistic} />
             </TabPanel>
 
-            <TabPanel value={tab} index={1}>
-                <>В разработке....</>
+            <TabPanel value={tab} index={1} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+                <Box sx={{ height: '100vh' }}>В разработке...</Box>
+            </TabPanel>
+            <TabPanel value={tab} index={2} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+                <Box sx={{ height: '100vh' }}>В разработке...</Box>
+            </TabPanel>
+            <TabPanel value={tab} index={3} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+                <Box sx={{ height: '100vh' }}>В разработке...</Box>
             </TabPanel>
         </Box>
     )
