@@ -2,9 +2,10 @@ import React from 'react'
 import { Box, IconButton, Typography, useMediaQuery } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
-import { MobileDataDrawer } from '@/shared/components/mobileMod'
 import InfoWrapper from '@/shared/components/InfoWrapper'
 import PricePosition from '@/entities/PricePosition'
+// ERROR
+import MobileDataDrawer from '@/widgets/mobile/MobileDataDrawer'
 
 const styles = {
     table: {

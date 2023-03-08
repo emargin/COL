@@ -1,8 +1,8 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import InfoCard from '@/entities/InfoCard'
-import CityCategoryInfo from '@/features/CityCategoryInfo'
 import AddInfoAlert from '@/features/AddInfoAlert'
+import CityCategoryInfo from './CityCategoryInfo'
 
 const CARDS = [
     {

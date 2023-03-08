@@ -3,7 +3,7 @@ import { Global } from '@emotion/react'
 import { styled } from '@mui/material/styles'
 import { grey } from '@mui/material/colors'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
-import { IconButton, InputAdornment, TextField, Box, Button } from '@mui/material'
+import { IconButton, InputAdornment, TextField, Box } from '@mui/material'
 import DoneIcon from '@mui/icons-material/Done'
 
 const drawerBleeding = 32

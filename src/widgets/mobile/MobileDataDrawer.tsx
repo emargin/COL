@@ -1,5 +1,5 @@
-import React from 'react'
-import RowInfo from './RowInfo'
+import React, { useState } from 'react'
+import RowInfo from '@/features/mobile/RowInfo'
 import SwipableModal from './SwipableModal'
 
 interface MobileDataDrawerProps {
@@ -7,7 +7,7 @@ interface MobileDataDrawerProps {
 }
 
 export default function MobileDataDrawer({ rows }: MobileDataDrawerProps) {
-    const [editOpen, setEditOpen] = React.useState(false)
+    const [editOpen, setEditOpen] = useState(false)
 
     const handleEditOpen = () => {
         setEditOpen(true)
