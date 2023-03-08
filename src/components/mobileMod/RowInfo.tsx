@@ -1,15 +1,22 @@
-import React from 'react'
-import { Box, IconButton, Typography } from '@mui/material'
+import React, { useState } from 'react'
+import { Box, Collapse, Divider, IconButton, Typography } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import PriceRange from '../PriceRange'
+import PricePosition from '../PricePosition'
 
 const styles = {
     root: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         height: '50px',
+        width: '100%',
+    },
+    title: {
+        // minWidth: '140px',
+        flexGrow: 1,
     },
     price: {
         position: 'relative',
@@ -22,21 +29,29 @@ const styles = {
 }
 
 export default function MobileRowInfo({ name, price, onEdit, ...props }: any) {
+    const [extroInfoOpen, setExtroInfoOpen] = useState(false)
     return (
-        <Box sx={styles.root}>
-            <Typography>{name}</Typography>
-
-            <Box>
-                <Box sx={styles.price}>
-                    <Typography>{price}₽</Typography>
-                    <IconButton sx={{ position: 'absolute', right: 3 }} onClick={onEdit}>
-                        <EditIcon sx={{ width: '12px' }} />
-                    </IconButton>
+        <>
+            <Box sx={styles.root} onClick={() => setExtroInfoOpen((prev) => !prev)}>
+                {extroInfoOpen && <KeyboardArrowUpIcon />}
+                {!extroInfoOpen && <KeyboardArrowDownIcon />}
+                <Typography sx={styles.title}>{name}</Typography>
+                <Divider sx={{ flexGrow: 3 }} variant="middle" />
+                <Box sx={{ display: 'flex', gap: '8px' }}>
+                    <Box sx={styles.price}>
+                        <Typography>{price}₽</Typography>
+                        {/* <PricePosition position={1} percent="30%" /> */}
+                    </Box>
+                    <Box sx={styles.price}>
+                        <PricePosition position={2} percent="55%" />
+                    </Box>
                 </Box>
-
-                {/* TODO: IS IT TOO BIG ? */}
-                <PriceRange {...props} />
             </Box>
-        </Box>
+            <Collapse in={extroInfoOpen}>
+                <Box sx={{ display: 'flex', height: '210px' }}>
+                    <PriceRange {...props} />
+                </Box>
+            </Collapse>
+        </>
     )
 }
