@@ -2,16 +2,15 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Box, Typography, Tabs, Tab, IconButton } from '@mui/material'
 import { cities } from '@/mock'
-import InfoWrapper from '@/components/InfoWrapper'
-import InfoCard from '@/components/InfoCard'
-import { TabPanel, allyProps } from '@/components/tabs'
-import flagImg from '@/assets/united-kingdom.png'
+import InfoWrapper from '@/shared/components/InfoWrapper'
+import { TabPanel, allyProps } from '@/shared/components/tabs'
+import flagImg from '@/shared/assets/united-kingdom.png'
 
 import { CityLayout } from '@/layouts'
-import { GeneralInfo } from '@/components/city'
 
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt'
+import EastIcon from '@mui/icons-material/East'
+import CityGeneralInfo from '@/widgets/CityGeneralInfo'
 
 type IContry = any
 
@@ -28,7 +27,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         gap: '24px',
-        p: 2,
+        p: '0 16px',
     },
     country: {
         display: 'flex',
@@ -83,7 +82,7 @@ export default function City({ city }: IContry) {
                             />
                             {city?.name || ''}
                         </Typography>
-                        <ArrowRightAltIcon fontSize="small" sx={{ color: 'text.secondary', m: '0 10px' }} />
+                        <EastIcon fontSize="small" sx={{ color: 'text.secondary', m: '0 10px' }} />
                         <Typography variant="h6">
                             <Image
                                 alt="country flag img"
@@ -97,10 +96,6 @@ export default function City({ city }: IContry) {
                         <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
                             <SwapHorizIcon fontSize="small" />
                         </IconButton>
-
-                        {/* <Typography variant="h6">{`Из ${city?.name || ''} в ${city?.name || ''}`}</Typography> */}
-                        {/* <Box sx={{ height: '1px', background: 'black', m: 2, width: 30 }} /> */}
-                        {/* <Typography variant="h6">{city?.name || ''}</Typography> */}
                     </Box>
                 </Box>
                 <Tabs value={tab} onChange={handleTabChange} variant="scrollable">
@@ -110,7 +105,7 @@ export default function City({ city }: IContry) {
                 </Tabs>
             </InfoWrapper>
             <TabPanel value={tab} index={0} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-                <GeneralInfo locationName={city.name} categoryInfo={city.info.statistic} />
+                <CityGeneralInfo locationName={city.name} categoryInfo={city.info.statistic} />
             </TabPanel>
 
             <TabPanel value={tab} index={1} onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>

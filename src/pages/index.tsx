@@ -1,7 +1,7 @@
 import { Inter } from '@next/font/google'
-import Search from '@/components/Search'
 import PageLayout from '@/layouts/PageLayout'
-import Header from '@/components/Header'
+import Header from '@/shared/components/Header'
+import Search from '@/features/Search'
 // import localFont from 'next/font/local'
 
 const inter = Inter({ subsets: ['latin'] })

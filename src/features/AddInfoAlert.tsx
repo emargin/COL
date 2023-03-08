@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Box, Alert, Collapse, IconButton, Link } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 
-export default function InfoAlert({ locationName }: { locationName: string }) {
+export default function AddInfoAlert({ locationName }: { locationName: string }) {
     const [open, setOpen] = useState<boolean>(true)
 
     return (

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { Box, Collapse, Divider, IconButton, Typography } from '@mui/material'
-import EditIcon from '@mui/icons-material/Edit'
+import { Box, Collapse, Divider, Typography } from '@mui/material'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import PriceRange from '../PriceRange'
-import PricePosition from '../PricePosition'
+import PriceRange from '@/entities/PriceRange'
+import PricePosition from '@/entities/PricePosition'
 
 const styles = {
     root: {
@@ -13,9 +12,9 @@ const styles = {
         alignItems: 'center',
         height: '50px',
         width: '100%',
+        cursor: 'pointer',
     },
     title: {
-        // minWidth: '140px',
         flexGrow: 1,
     },
     price: {

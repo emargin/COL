@@ -2,7 +2,7 @@ import React from 'react'
 import { Box } from '@mui/material'
 import Head from 'next/head'
 import RootLayout from './RootLayout'
-import Header from '@/components/Header'
+import Header from '@/shared/components/Header'
 
 const styles = {
     content: {

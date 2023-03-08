@@ -2,7 +2,7 @@ import { ReactElement, ReactNode, useEffect } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import ThemeBuilder from '@/ThemeBuilder'
-import api from '@/api'
+import api from '@/shared/api'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode

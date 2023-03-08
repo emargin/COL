@@ -1,8 +1,9 @@
 import React from 'react'
 import { Box, Typography, useMediaQuery } from '@mui/material'
 
-import InfoWrapper from './InfoWrapper'
 import PricePosition from './PricePosition'
+import InfoWrapper from '@/shared/components/InfoWrapper'
+
 // EXPORT TO @TYPES
 
 interface InfoCardProps {
@@ -39,7 +40,7 @@ const MobileCard = ({ title, price, pricePosition }: InfoCardProps) => (
             {title}
         </Typography>
         <Box sx={styles.priceWrapper}>
-            <Typography sx={styles.price}>{price}</Typography>
+            <Typography sx={styles.price}>{price}₽</Typography>
             <PricePosition position={pricePosition.position} percent={pricePosition.percent} />
         </Box>
     </InfoWrapper>
@@ -50,7 +51,7 @@ const DesktopCard = ({ title, price, pricePosition }: InfoCardProps) => (
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
             {title}
         </Typography>
-        <Typography sx={styles.price}>{price}</Typography>
+        <Typography sx={styles.price}>{price}₽</Typography>
         <Box sx={styles.subTitle}>
             <Typography variant="body2">На</Typography>
             <PricePosition position={pricePosition.position} percent={pricePosition.percent} />
@@ -61,5 +62,8 @@ const DesktopCard = ({ title, price, pricePosition }: InfoCardProps) => (
 
 export default function InfoCard(props: InfoCardProps) {
     const isMobileDevice = useMediaQuery('(max-width:600px)')
+    // TODO: REWORK APP TO MOBILE FIRST
+    // const isDesctopDevice = useMediaQuery('(min-width:600px)')
+    // console.log('isDesctopDevice', isDesctopDevice)
     return isMobileDevice ? <MobileCard {...props} /> : <DesktopCard {...props} />
 }

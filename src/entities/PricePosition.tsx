@@ -9,15 +9,21 @@ export enum PricePositionEnum {
 }
 
 export default function PricePosition(props: any) {
-    const { position, percent } = props
+    const { position, percent, variant } = props
     return (
         <>
             {position === PricePositionEnum.LOWER ? (
-                <Typography variant="body2" sx={{ color: 'success.main', display: 'flex', mr: 0.5 }}>
+                <Typography
+                    variant={variant || 'body2'}
+                    sx={{ color: 'success.main', display: 'flex', mr: 0.5 }}
+                >
                     <ArrowDropDownIcon fontSize="small" /> {percent}
                 </Typography>
             ) : (
-                <Typography variant="body2" sx={{ color: 'error.main', display: 'flex', mr: 0.5 }}>
+                <Typography
+                    variant={variant || 'body2'}
+                    sx={{ color: 'error.main', display: 'flex', mr: 0.5 }}
+                >
                     <ArrowDropUpIcon fontSize="small" /> {percent}
                 </Typography>
             )}

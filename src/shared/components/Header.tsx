@@ -1,9 +1,9 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Box, Paper } from '@mui/material'
-import ThemeSwitchBtn from './ThemeSwitchBtn'
-import CurrensySelect from './CurrensySelect'
+import { Box } from '@mui/material'
+import CurrensySelect from '@/features/CurrensySelect'
+import ThemeSwitchBtn from '@/features/ThemeSwitchBtn'
 
 const styles = {
     root: {

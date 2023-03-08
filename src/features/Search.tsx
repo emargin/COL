@@ -12,8 +12,8 @@ import {
 } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
-import api from '@/api'
-import { debounce } from '@/utils'
+import api from '@/shared/api'
+import { debounce } from '@/shared/utils'
 
 const styles = {
     root: { width: '78%', margin: 'calc(50vh - 170px) auto auto auto' },
