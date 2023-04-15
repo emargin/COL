@@ -28,7 +28,17 @@ export default function SearchContainer() {
             <Typography variant="h5" component="h1" sx={styles.title}>
                 Сравнивайте цены по всему миру
             </Typography>
-            <Search />
+            <Box
+                sx={{
+                    display: 'flex',
+                    gap: '16px',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Search sx={{ width: '100%' }} />
+                <Search sx={{ width: '425px', flexWrap: 'wrap', padding: '16px' }} />
+            </Box>
         </Box>
     )
 }

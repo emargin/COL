@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Autocomplete, Box, Button, Divider, IconButton, TextField, useMediaQuery } from '@mui/material'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import api from '@/shared/api'
 
 const styles = {
@@ -11,8 +13,10 @@ const styles = {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
+        gap: '8px',
         '@media screen and (max-width:426px)': {
             flexWrap: 'wrap',
+            padding: '16px',
         },
     },
     input: {
@@ -32,9 +36,32 @@ const styles = {
             borderColor: 'primary.main',
         },
     },
+    swapButton: {
+        height: '35px',
+        width: '35px',
+        textAlign: 'center',
+        transitionDuration: '0.3s',
+        transitionProperty: 'transform',
+        '&: hover': {
+            transform: 'rotate(180deg)',
+        },
+    },
+    button: {
+        margin: 'auto',
+        borderRadius: '12px',
+        mr: '4px',
+
+        width: '115px',
+        '@media screen and (max-width:426px)': {
+            flexWrap: 'wrap',
+            width: '100%',
+            height: '48px',
+            m: 0,
+        },
+    },
 }
 
-export default function Search() {
+export default function Search({ sx }: any) {
     const isMobileDevice = useMediaQuery('(max-width:600px)')
     const router = useRouter()
     const [searchCities, setSearchCities] = useState([])
@@ -49,7 +76,7 @@ export default function Search() {
         setSearchCities(response.search_results)
     }
     return (
-        <Box sx={styles.searchWrapper}>
+        <Box sx={{ ...styles.searchWrapper, ...sx }}>
             <Autocomplete
                 autoSelect
                 disablePortal
@@ -64,21 +91,14 @@ export default function Search() {
             />
 
             {isMobileDevice && (
-                <Divider sx={{ width: '90%' }} variant="middle">
-                    <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
-                        <SwapHorizIcon
-                            fontSize="small"
-                            sx={isMobileDevice ? { transform: 'rotate(90deg)' } : undefined}
-                        />
-                    </IconButton>
-                </Divider>
+                // <Divider sx={{ width: '90%' }} variant="middle"></Divider>
+                <IconButton sx={styles.swapButton}>
+                    <ArrowDownwardIcon fontSize="small" />
+                </IconButton>
             )}
             {!isMobileDevice && (
-                <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
-                    <SwapHorizIcon
-                        fontSize="small"
-                        sx={isMobileDevice ? { transform: 'rotate(90deg)' } : undefined}
-                    />
+                <IconButton sx={styles.swapButton}>
+                    <ArrowForwardIcon fontSize="small" />
                 </IconButton>
             )}
 
@@ -94,7 +114,9 @@ export default function Search() {
                 onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
                 renderInput={(params) => <TextField placeholder="Куда" {...params} />}
             />
-            <Button variant="contained">Найти</Button>
+            <Button sx={styles.button} variant="contained">
+                Найти
+            </Button>
         </Box>
     )
 }
