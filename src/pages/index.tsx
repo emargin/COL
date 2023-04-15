@@ -1,7 +1,7 @@
 import { Inter } from '@next/font/google'
 import PageLayout from '@/layouts/PageLayout'
 import Header from '@/shared/components/Header'
-import Search from '@/features/Search'
+import SearchContainer from '@/widgets/SearchContainer'
 // import localFont from 'next/font/local'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -12,7 +12,7 @@ export default function Home() {
     return (
         <PageLayout>
             <Header homePageView />
-            <Search />
+            <SearchContainer />
         </PageLayout>
     )
 }
