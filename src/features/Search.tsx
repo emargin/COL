@@ -1,19 +1,30 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Autocomplete, Box, Button, Divider, IconButton, TextField, useMediaQuery } from '@mui/material'
+import {
+    Autocomplete,
+    Box,
+    Button,
+    Divider,
+    IconButton,
+    TextField,
+    Typography,
+    useMediaQuery,
+} from '@mui/material'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import api from '@/shared/api'
-
+const SWAP_BTN_SIZE = '30px'
 const styles = {
     searchWrapper: {
+        position: 'relative',
+        width: '100%',
         bgcolor: 'background.paper',
         borderRadius: 2,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: '8px',
+        gap: '12px',
         '@media screen and (max-width:426px)': {
             flexWrap: 'wrap',
             padding: '16px',
@@ -37,8 +48,13 @@ const styles = {
         },
     },
     swapButton: {
-        height: '35px',
-        width: '35px',
+        position: 'absolute',
+        left: `calc(45.5% - (${SWAP_BTN_SIZE}/2))`,
+        bgcolor: 'grey',
+        margin: 'auto',
+        zIndex: 100,
+        height: SWAP_BTN_SIZE,
+        width: SWAP_BTN_SIZE,
         textAlign: 'center',
         transitionDuration: '0.3s',
         transitionProperty: 'transform',
@@ -65,29 +81,39 @@ export default function Search({ sx }: any) {
     const isMobileDevice = useMediaQuery('(max-width:600px)')
     const router = useRouter()
     const [searchCities, setSearchCities] = useState([])
-
-    const redirectToCountryInfo = (_: unknown, value: any) => {
-        // router.push(`/city/${value.slug}`)
-    }
+    const [comparablePlace, setComparablePlace] = useState<{
+        from: string
+        to: string
+    }>({
+        from: '',
+        to: '',
+    })
 
     const handleSearch = async (query: string) => {
         if (query.length < 2) return
         const response = await api.search(query)
-        setSearchCities(response.search_results)
+        setSearchCities(response.cities_results)
     }
+    React.useEffect(() => {
+        console.log('comparablePlace', comparablePlace)
+    }, [comparablePlace])
     return (
         <Box sx={{ ...styles.searchWrapper, ...sx }}>
             <Autocomplete
-                autoSelect
-                disablePortal
-                freeSolo
                 sx={styles.input}
                 options={searchCities}
                 onInputChange={(_: unknown, value: string) => handleSearch(value)}
-                onChange={redirectToCountryInfo}
-                getOptionLabel={(option: any) => (option.name ? option.name : option)}
-                onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
+                getOptionLabel={(option: any) => `${option.name}, ${option.country_name}`}
+                renderOption={(props, option) => (
+                    <Box component="li" {...props}>
+                        <Typography>{`${option.name},`}</Typography>
+                        <Typography
+                            sx={{ color: 'text.secondary', ml: 0.5 }}
+                        >{`${option.country_name}`}</Typography>
+                    </Box>
+                )}
                 renderInput={(params) => <TextField autoFocus placeholder="Откуда" {...params} />}
+                popupIcon={''}
             />
 
             {isMobileDevice && (
@@ -103,16 +129,12 @@ export default function Search({ sx }: any) {
             )}
 
             <Autocomplete
-                autoSelect
-                disablePortal
-                freeSolo
                 sx={styles.input}
                 options={searchCities}
                 onInputChange={(_: unknown, value: string) => handleSearch(value)}
-                onChange={redirectToCountryInfo}
-                getOptionLabel={(option: any) => (option.name ? option.name : option)}
-                onKeyDown={(e) => e.key === 'Enter' && console.log('submit')}
+                getOptionLabel={(option: any) => `${option.name}, ${option.country_name}`}
                 renderInput={(params) => <TextField placeholder="Куда" {...params} />}
+                popupIcon={''}
             />
             <Button sx={styles.button} variant="contained">
                 Найти
