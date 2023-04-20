@@ -3,8 +3,12 @@ import { createTheme, PaletteMode, ThemeProvider } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
 
+const WHITE_GRADIENT = 'linear-gradient(rgb(248, 250, 253) 0%, rgba(248, 250, 253, 0) 413px)'
+
 const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
-    shape: { borderRadius: 8 },
+    shape: {
+        borderRadius: 8,
+    },
     palette: {
         mode,
         ...(mode === 'light'
@@ -23,12 +27,35 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
             styleOverrides: {
                 'input::-webkit-outer-spin-button, input::-webkit-inner-spin-button': {
                     '-webkit-appearance': 'none',
-                    margin: 0 /* <-- Apparently some margin are still there even though it's hidden */,
+                    margin: 0,
                 },
                 'input[type=number]': {
                     '-moz-appearance': 'textfield' /* Firefox */,
                 },
-                a: { color: 'inherit', textDecoration: 'none' },
+                a: {
+                    color: 'inherit',
+                    textDecoration: 'none',
+                },
+                '&::-webkit-scrollbar ': {
+                    width: '8px',
+                    height: '7px',
+                    cursor: 'pointer',
+                },
+                '&::-webkit-scrollbar-track': {
+                    '-webkit-border-radius': '4px',
+                    borderRadius: '4px',
+                },
+                '&::-webkit-scrollbar-thumb': {
+                    ' -webkit-border-radius': '4px',
+                    background: 'rgb(193, 193, 193)',
+                    borderRadius: '4px',
+                    width: '5px',
+                    height: '5px',
+                },
+
+                '&::-webkit-scrollbar-thumb:hover': {
+                    background: 'rgba(193, 193, 193, 0.7)',
+                },
             },
         },
         MuiInputBase: {

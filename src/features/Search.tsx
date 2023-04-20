@@ -6,6 +6,7 @@ import {
     Button,
     Divider,
     IconButton,
+    Paper,
     TextField,
     Typography,
     useMediaQuery,
@@ -40,11 +41,34 @@ const styles = {
             borderWidth: '2px',
             borderColor: 'transparent',
         },
-        '.MuiAutocomplete-popper': {
-            bgcolor: 'red',
-        },
         '&:hover:not($disabled) fieldset': {
             borderColor: 'primary.main',
+        },
+        '& .MuiAutocomplete-clearIndicator': {
+            display: 'none',
+        },
+        '& .MuiAutocomplete-popupIndicator': {
+            p: 0,
+        },
+        '& .MuiAutocomplete-endAdornment': {
+            top: 'calc(50% - 12px)',
+            '&.MuiAutocomplete-endAdornment': {
+                right: '12px',
+            },
+        },
+        '& .MuiOutlinedInput-root': {
+            pr: '48px !important',
+        },
+    },
+    paperBox: {
+        p: 0.5,
+    },
+    paper: {
+        '& .MuiAutocomplete-option[aria-selected="true"]': {
+            background: 'rgba(78, 19, 207, 0.04)',
+        },
+        '& .MuiAutocomplete-option[aria-selected="true"], .Mui-focused': {
+            borderRadius: '6px',
         },
     },
     swapButton: {
@@ -113,6 +137,11 @@ export default function Search({ sx }: any) {
                     </Box>
                 )}
                 renderInput={(params) => <TextField autoFocus placeholder="Откуда" {...params} />}
+                PaperComponent={({ children: childrens }) => (
+                    <Paper sx={styles.paper}>
+                        <Box sx={styles.paperBox}>{childrens}</Box>
+                    </Paper>
+                )}
                 popupIcon={''}
             />
 
