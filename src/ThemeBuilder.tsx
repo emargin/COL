@@ -3,11 +3,9 @@ import { createTheme, PaletteMode, ThemeProvider } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
 
-const WHITE_GRADIENT = 'linear-gradient(rgb(248, 250, 253) 0%, rgba(248, 250, 253, 0) 413px)'
-
 const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
     shape: {
-        borderRadius: 8,
+        borderRadius: 8, // mb -> 16 ??
     },
     palette: {
         mode,

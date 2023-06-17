@@ -5,7 +5,7 @@ const styles = {
     root: {
         width: '100%',
         color: 'text.primary',
-        padding: '28px 31px',
+        padding: 2.5,
         '@media (max-width: 600px)': {
             p: 1.5,
         },

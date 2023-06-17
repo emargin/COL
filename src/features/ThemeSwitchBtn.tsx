@@ -1,14 +1,13 @@
+import React from 'react'
 import { ColorModeContext } from '@/ThemeBuilder'
 import { styled, useTheme } from '@mui/material'
-import React from 'react'
+
 const styles = {
     themeToggle: {
         size: '2rem',
-
         background: 'none',
         border: 'none',
         padding: 0,
-
         inlineSize: '2rem',
         blockSize: '2rem',
         aspectRatio: '1',
@@ -88,17 +87,18 @@ export default function ThemeSwitchBtn() {
 
         document.querySelector('#theme-toggle')?.setAttribute('aria-label', theme.palette.mode)
     }
-    const onClick = () => {
+    const handleThemeSwitch = () => {
         reflectPreference()
         toggleColorMode()
     }
+
     return (
         <button
             style={styles.themeToggle}
             id="theme-toggle"
             title="Toggles light/dark"
             aria-label="auto"
-            onClick={onClick}
+            onClick={handleThemeSwitch}
         >
             <StyledSvg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
                 <circle className="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />

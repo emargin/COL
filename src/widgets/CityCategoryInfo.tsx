@@ -9,6 +9,11 @@ import MobileDataDrawer from '@/widgets/mobile/MobileDataDrawer'
 
 const styles = {
     table: {
+        mt: 2,
+        '& .MuiDataGrid-columnHeader': {
+            fontSize: 12,
+        },
+
         '& .customHeader': {
             fontWeight: 600,
         },
