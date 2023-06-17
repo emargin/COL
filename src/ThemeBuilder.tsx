@@ -11,7 +11,7 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
         mode,
         ...(mode === 'light'
             ? {
-                  background: { default: '#f5f5f5', paper: '#fff' },
+                  background: { default: '#eceff1', paper: '#fafafa' },
               }
             : {
                   background: { default: '#272731', paper: '#32323e' },
