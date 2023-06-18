@@ -7,10 +7,11 @@ import { TabPanel, allyProps } from '@/shared/components/tabs'
 import flagImg from '@/shared/assets/united-kingdom.png'
 
 import { CityLayout } from '@/layouts'
+import CityGeneralInfo from '@/widgets/CityGeneralInfo'
 
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import EastIcon from '@mui/icons-material/East'
-import CityGeneralInfo from '@/widgets/CityGeneralInfo'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 type IContry = any
 
@@ -26,14 +27,26 @@ const styles = {
     root: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '24px',
+        gap: '20px',
         p: '0 16px',
+        mb: 3,
     },
     country: {
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'center',
         gap: '8px',
+        justifyContent: 'flex-start',
+        mb: 1,
+    },
+    swapButton: {
+        height: 30,
+        width: 30,
+        textAlign: 'center',
+        transitionDuration: '0.3s',
+        transitionProperty: 'transform',
+        '&: hover': {
+            transform: 'rotate(180deg)',
+        },
     },
 }
 
@@ -70,33 +83,29 @@ export default function City({ city }: IContry) {
         <Box sx={styles.root}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                        <Typography variant="h6">
-                            {/* Из */}
-                            <Image
-                                alt="country flag img"
-                                style={{ margin: '0 8px' }}
-                                src={flagImg.src}
-                                width={16}
-                                height={16}
-                            />
-                            {city?.name || ''}
-                        </Typography>
-                        <EastIcon fontSize="small" sx={{ color: 'text.secondary', m: '0 10px' }} />
-                        <Typography variant="h6">
-                            <Image
-                                alt="country flag img"
-                                style={{ margin: '0 8px' }}
-                                src={flagImg.src}
-                                width={16}
-                                height={16}
-                            />
-                            Малайзиа
-                        </Typography>
-                        <IconButton sx={{ height: '35px', width: '35px', textAlign: 'center' }}>
-                            <SwapHorizIcon fontSize="small" />
-                        </IconButton>
-                    </Box>
+                    <Typography variant="h6" sx={{ opacity: 0.1 }}>
+                        <Image
+                            alt="country flag img"
+                            style={{ margin: '0 8px' }}
+                            src={flagImg.src}
+                            width={16}
+                            height={16}
+                        />
+                        Малайзиа
+                    </Typography>
+                    <IconButton sx={styles.swapButton}>
+                        <ArrowForwardIcon fontSize="small" />
+                    </IconButton>
+                    <Typography variant="h5">
+                        <Image
+                            alt="country flag img"
+                            style={{ margin: '0 8px' }}
+                            src={flagImg.src}
+                            width={16}
+                            height={16}
+                        />
+                        {city?.name || ''}
+                    </Typography>
                 </Box>
                 <Tabs value={tab} onChange={handleTabChange} variant="scrollable">
                     {TABS.map((item, index) => (
