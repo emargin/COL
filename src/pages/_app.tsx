@@ -13,13 +13,13 @@ type AppPropsWithLayout = AppProps & {
 }
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-    useEffect(() => {
-        function success(pos: any) {
-            const crd = pos.coords
-            api.getUserLocal(crd.latitude, crd.longitude)
-        }
-        navigator.geolocation.getCurrentPosition(success)
-    }, [])
+    // useEffect(() => {
+    //     function success(pos: any) {
+    //         const crd = pos.coords
+    //         api.getUserLocal(crd.latitude, crd.longitude)
+    //     }
+    //     navigator.geolocation.getCurrentPosition(success)
+    // }, [])
     const getLayout = Component.getLayout ?? ((page) => page)
     return <ThemeBuilder>{getLayout(<Component {...pageProps} />)}</ThemeBuilder>
 }

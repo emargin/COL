@@ -2,6 +2,9 @@ import React, { useMemo, useState, useEffect, createContext } from 'react'
 import { createTheme, PaletteMode, ThemeProvider } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
+import { Manrope } from '@next/font/google'
+
+const manrope = Manrope({ subsets: ['latin'], display: 'swap' })
 
 const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
     shape: {
@@ -19,6 +22,7 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
     },
     typography: {
         fontSize: isMobileDevice ? 12 : 14,
+        fontFamily: manrope.style.fontFamily,
     },
     components: {
         MuiCssBaseline: {
