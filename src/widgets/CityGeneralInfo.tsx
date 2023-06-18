@@ -3,51 +3,13 @@ import { Box } from '@mui/material'
 import InfoCard from '@/entities/InfoCard'
 import AddInfoAlert from '@/features/AddInfoAlert'
 import CityCategoryInfo from './CityCategoryInfo'
-
-const CARDS = [
-    {
-        id: 1,
-        title: 'Поход в ресторан',
-        price: '1255',
-        pricePosition: {
-            position: 1,
-            percent: '13%',
-        },
-    },
-    {
-        id: 2,
-        title: 'Продуктовая корзина',
-        price: '950',
-        pricePosition: {
-            position: 1,
-            percent: '48%',
-        },
-    },
-    {
-        id: 3,
-        title: 'Тратят на досуг',
-        price: '455',
-        pricePosition: {
-            position: 2,
-            percent: '62%',
-        },
-    },
-    {
-        id: 4,
-        title: 'Поездка на такси',
-        price: '155',
-        pricePosition: {
-            position: 2,
-            percent: '74%',
-        },
-    },
-]
+import { CARDS } from '@/mock'
 
 const styles = {
     root: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '24px',
+        gap: '20px',
     },
     infoBlocks: {
         display: 'flex',
