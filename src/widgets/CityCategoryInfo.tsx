@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, IconButton, Typography, useMediaQuery } from '@mui/material'
+import { alpha, Box, IconButton, Typography, useMediaQuery } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
 import InfoWrapper from '@/shared/components/InfoWrapper'
@@ -10,22 +10,25 @@ import MobileDataDrawer from '@/widgets/mobile/MobileDataDrawer'
 const styles = {
     table: {
         mt: 2,
+        border: 'none',
         '& .MuiDataGrid-columnHeader': {
             fontSize: 12,
         },
-
-        '& .customHeader': {
-            fontWeight: 600,
-        },
         '& .MuiDataGrid-row': {
-            '&: hover': {
-                '.price-btn': {
-                    display: 'block',
-                },
+            borderRadius: 1,
+            borderColor: 'transparent',
+        },
+        '& .MuiDataGrid-cell': {
+            // borderBottom: 'none',
+            '&:focus': {
+                outline: 'none',
             },
         },
-        '& .MuiDataGrid-cell:focus': {
-            outline: 'none',
+        '& .MuiDataGrid-columnSeparator': {
+            display: 'none',
+        },
+        '& .even': {
+            bgcolor: 'background.default',
         },
     },
     priceCell: {
@@ -40,7 +43,6 @@ const columns: GridColDef[] = [
     {
         field: 'name',
         headerName: 'Название',
-        headerClassName: 'customHeader',
         flex: 1,
         renderCell: (params: GridRenderCellParams) => (
             <Typography variant="body2">{params.row.name}</Typography>
@@ -111,6 +113,9 @@ export default function CityCategoryInfo(props: any) {
                     disableSelectionOnClick
                     hideFooterPagination
                     hideFooterSelectedRowCount
+                    getRowClassName={(params) =>
+                        params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
+                    }
                 />
             )}
         </InfoWrapper>
