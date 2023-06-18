@@ -22,7 +22,7 @@ export const cities = [
             extraInfo: {},
             statistic: countryInfo,
         },
-        slug: 'Russia',
+        slug: 'russia',
     },
     {
         id: 2,
@@ -32,7 +32,7 @@ export const cities = [
             statistic: countryInfo,
         },
 
-        slug: 'USA',
+        slug: 'usa',
     },
     {
         id: 3,
@@ -41,7 +41,7 @@ export const cities = [
             extraInfo: {},
             statistic: countryInfo,
         },
-        slug: 'Czech',
+        slug: 'czech',
     },
     {
         id: 4,
@@ -50,7 +50,7 @@ export const cities = [
             extraInfo: {},
             statistic: countryInfo,
         },
-        slug: 'Malaysia',
+        slug: 'malaysia',
     },
     {
         id: 5,
@@ -59,6 +59,45 @@ export const cities = [
             extraInfo: {},
             statistic: countryInfo,
         },
-        slug: 'China',
+        slug: 'china',
+    },
+]
+
+export const CARDS = [
+    {
+        id: 1,
+        title: 'Поход в ресторан',
+        price: '1255',
+        pricePosition: {
+            position: 1,
+            percent: '13%',
+        },
+    },
+    {
+        id: 2,
+        title: 'Продуктовая корзина',
+        price: '950',
+        pricePosition: {
+            position: 1,
+            percent: '48%',
+        },
+    },
+    {
+        id: 3,
+        title: 'Тратят на досуг',
+        price: '455',
+        pricePosition: {
+            position: 2,
+            percent: '62%',
+        },
+    },
+    {
+        id: 4,
+        title: 'Поездка на такси',
+        price: '155',
+        pricePosition: {
+            position: 2,
+            percent: '74%',
+        },
     },
 ]

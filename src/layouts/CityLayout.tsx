@@ -3,6 +3,7 @@ import { Box } from '@mui/material'
 import Head from 'next/head'
 import RootLayout from './RootLayout'
 import Header from '@/shared/components/Header'
+import Footer from '@/shared/components/Footer'
 
 const styles = {
     content: {
@@ -21,6 +22,7 @@ export default function CityLayout({ children }: Pick<React.HTMLAttributes<HTMLD
             <RootLayout>
                 <Header />
                 <Box sx={styles.content}>{children}</Box>
+                <Footer />
             </RootLayout>
         </>
     )
