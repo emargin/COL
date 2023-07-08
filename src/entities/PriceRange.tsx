@@ -55,7 +55,7 @@ export default function PriceRange({ max, min, current }: PriceRangeProps) {
                     display: 'flex',
                     flexDirection: 'row',
                     alignItems: 'center',
-                    gap: '8px',
+                    gap: 1,
                     height: '5px',
                 }}
             >

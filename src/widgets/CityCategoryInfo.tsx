@@ -19,7 +19,6 @@ const styles = {
             borderColor: 'transparent',
         },
         '& .MuiDataGrid-cell': {
-            // borderBottom: 'none',
             '&:focus': {
                 outline: 'none',
             },
@@ -34,7 +33,7 @@ const styles = {
     priceCell: {
         display: 'flex',
         alignItems: 'center',
-        gap: '8px',
+        gap: 1,
     },
 }
 

@@ -9,12 +9,12 @@ const styles = {
     root: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px',
+        gap: 2.5,
     },
     infoBlocks: {
         display: 'flex',
         flexDirection: 'row',
-        gap: '16px',
+        gap: 2,
         flexWrap: 'wrap',
     },
 }

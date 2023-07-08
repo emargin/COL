@@ -27,14 +27,14 @@ const styles = {
     root: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '20px',
+        gap: 2.5,
         p: '0 16px',
         mb: 3,
     },
     country: {
         display: 'flex',
         flexDirection: 'row',
-        gap: '8px',
+        gap: 1,
         justifyContent: 'flex-start',
         mb: 1,
     },
