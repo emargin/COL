@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, createContext } from 'react'
-import { createTheme, PaletteMode, ThemeProvider } from '@mui/material'
+import { createTheme, PaletteMode, Theme, ThemeProvider } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
 import { Manrope } from '@next/font/google'
@@ -8,16 +8,18 @@ const manrope = Manrope({ subsets: ['latin'], display: 'swap' })
 
 const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
     shape: {
-        borderRadius: 8, // mb -> 16 ??
+        borderRadius: 16, // mb -> 8 ??
     },
     palette: {
         mode,
         ...(mode === 'light'
             ? {
                   background: { default: '#eceff1', paper: '#fafafa' },
+                  //   background: { default: '#fafafa', paper: '#fafafa' },
               }
             : {
-                  background: { default: '#272731', paper: '#32323e' },
+                  //   background: { default: '#272731', paper: '#32323e' },
+                  background: { default: '#161617', paper: '#2f2f32' },
               }),
     },
     typography: {
@@ -63,16 +65,16 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
         MuiInputBase: {
             styleOverrides: {
                 root: {
-                    backgroundColor: mode === 'light' ? '#fff' : '#32323e',
+                    // backgroundColor: mode === 'light' ? '#fff' : '#32323e',
                 },
             },
         },
         MuiMenuItem: {
             styleOverrides: {
-                root: {
+                root: ({ theme }: { theme: Theme }) => ({
                     margin: 'auto 4px',
-                    borderRadius: 8,
-                },
+                    borderRadius: theme.shape.borderRadius,
+                }),
             },
         },
     },
