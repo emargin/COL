@@ -8,9 +8,11 @@ import { useLocale, LocalesMap } from '@/shared/utils'
 const locales: LocalesMap = {
     ru: {
         title: 'Сравнивайте цены по всему миру',
+        message: '',
     },
     en: {
         title: 'Compare prices around the world',
+        message: 'cost of living',
     },
 }
 
@@ -23,13 +25,6 @@ const styles = {
         textAlign: 'left',
         mb: 3,
     },
-
-    info: {
-        maxWidth: '215px',
-        textAlign: 'right',
-        margin: '16px 0 0 auto',
-        color: 'rgba(0, 0, 0, 0.38)',
-    },
 }
 
 export default function SearchContainer() {
@@ -39,8 +34,10 @@ export default function SearchContainer() {
             <Typography variant="h5" component="h1" sx={styles.title}>
                 {t('title')}
             </Typography>
-
             <Search />
+            <Typography variant="body2" sx={{ textAlign: 'right', color: 'text.secondary', mt: 1.5 }}>
+                {t('message')}
+            </Typography>
         </Box>
     )
 }

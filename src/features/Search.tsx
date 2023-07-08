@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import {
     Autocomplete,
@@ -15,26 +15,37 @@ import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import api from '@/shared/api'
+import { useLocale } from '@/shared/utils'
+
+const locales = {
+    ru: {
+        button: 'Найти',
+    },
+    en: {
+        button: 'Search',
+    },
+}
+
 const SWAP_BTN_SIZE = '30px'
+
 const styles = {
     searchWrapper: {
         position: 'relative',
-        width: '100%',
         bgcolor: 'background.paper',
-        borderRadius: 2,
+        borderRadius: 1,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        gap: '12px',
+        gap: 1.5,
         '@media screen and (max-width:426px)': {
             flexWrap: 'wrap',
-            padding: '16px',
+            p: 2,
         },
     },
+
     input: {
         width: '100%',
         '.MuiInputBase-root': {
-            borderRadius: 2,
             height: '59px',
         },
         '.MuiOutlinedInput-notchedOutline': {
@@ -74,7 +85,6 @@ const styles = {
     swapButton: {
         position: 'absolute',
         left: `calc(45.5% - (${SWAP_BTN_SIZE}/2))`,
-        bgcolor: 'grey',
         margin: 'auto',
         zIndex: 100,
         height: SWAP_BTN_SIZE,
@@ -87,11 +97,12 @@ const styles = {
         },
     },
     button: {
-        margin: 'auto',
-        borderRadius: '12px',
-        mr: '4px',
-
-        width: '115px',
+        minWidth: '120px',
+        mr: 0.5,
+        textTransform: 'none',
+        fontSize: '18px',
+        fontWeight: 500,
+        boxShadow: 'none',
         '@media screen and (max-width:426px)': {
             flexWrap: 'wrap',
             width: '100%',
@@ -102,6 +113,7 @@ const styles = {
 }
 
 export default function Search({ sx }: any) {
+    const t = useLocale(locales)
     const isMobileDevice = useMediaQuery('(max-width:600px)')
     const router = useRouter()
     const [searchCities, setSearchCities] = useState([])
@@ -114,13 +126,21 @@ export default function Search({ sx }: any) {
     })
 
     const handleSearch = async (query: string) => {
-        if (query.length < 2) return
+        if (query.length < 2) {
+            return
+        }
         const response = await api.search(query)
         setSearchCities(response.cities_results)
     }
-    React.useEffect(() => {
-        console.log('comparablePlace', comparablePlace)
-    }, [comparablePlace])
+
+    // useEffect(() => {
+    //     function success(pos: any) {
+    //         const crd = pos.coords
+    //         api.getUserLocal(crd.latitude, crd.longitude)
+    //     }
+    //     navigator.geolocation.getCurrentPosition(success)
+    // }, [])
+
     return (
         <Box sx={{ ...styles.searchWrapper, ...sx }}>
             <Autocomplete
@@ -131,9 +151,9 @@ export default function Search({ sx }: any) {
                 renderOption={(props, option) => (
                     <Box component="li" {...props}>
                         <Typography>{`${option.name},`}</Typography>
-                        <Typography
-                            sx={{ color: 'text.secondary', ml: 0.5 }}
-                        >{`${option.country_name}`}</Typography>
+                        <Typography sx={{ color: 'text.secondary', ml: 0.5 }}>
+                            {option.country_name}
+                        </Typography>
                     </Box>
                 )}
                 renderInput={(params) => <TextField autoFocus placeholder="Откуда" {...params} />}
@@ -145,7 +165,7 @@ export default function Search({ sx }: any) {
                 popupIcon={''}
             />
 
-            {isMobileDevice && (
+            {/* {isMobileDevice && (
                 // <Divider sx={{ width: '90%' }} variant="middle"></Divider>
                 <IconButton sx={styles.swapButton}>
                     <ArrowDownwardIcon fontSize="small" />
@@ -155,7 +175,7 @@ export default function Search({ sx }: any) {
                 <IconButton sx={styles.swapButton}>
                     <ArrowForwardIcon fontSize="small" />
                 </IconButton>
-            )}
+            )} */}
 
             <Autocomplete
                 sx={styles.input}
@@ -166,7 +186,7 @@ export default function Search({ sx }: any) {
                 popupIcon={''}
             />
             <Button sx={styles.button} variant="contained">
-                Найти
+                {t('button')}
             </Button>
         </Box>
     )
