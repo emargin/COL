@@ -19,6 +19,7 @@ const styles = {
             borderColor: 'transparent',
         },
         '& .MuiDataGrid-cell': {
+            borderBottom: 'none',
             '&:focus': {
                 outline: 'none',
             },
