@@ -11,9 +11,9 @@ import {
     Typography,
     useMediaQuery,
 } from '@mui/material'
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import api from '@/shared/api'
 import { useLocale } from '@/shared/utils'
 
@@ -26,11 +26,8 @@ const locales = {
     },
 }
 
-const SWAP_BTN_SIZE = '30px'
-
 const styles = {
     searchWrapper: {
-        position: 'relative',
         bgcolor: 'background.paper',
         borderRadius: 1,
         display: 'flex',
@@ -83,13 +80,9 @@ const styles = {
         },
     },
     swapButton: {
-        position: 'absolute',
-        left: `calc(45.5% - (${SWAP_BTN_SIZE}/2))`,
-        margin: 'auto',
-        zIndex: 100,
-        height: SWAP_BTN_SIZE,
-        width: SWAP_BTN_SIZE,
-        textAlign: 'center',
+        bgcolor: 'action.hover',
+        height: '30px',
+        width: '30px',
         transitionDuration: '0.3s',
         transitionProperty: 'transform',
         '&: hover': {
@@ -171,11 +164,12 @@ export default function Search({ sx }: any) {
                     <ArrowDownwardIcon fontSize="small" />
                 </IconButton>
             )}
+        */}
             {!isMobileDevice && (
                 <IconButton sx={styles.swapButton}>
-                    <ArrowForwardIcon fontSize="small" />
+                    <SwapHorizIcon fontSize="small" />
                 </IconButton>
-            )} */}
+            )}
 
             <Autocomplete
                 sx={styles.input}
