@@ -20,7 +20,7 @@ const styles = {
     },
 }
 
-export default function Header({ homePageView = false }: { homePageView?: boolean }) {
+export default function Header() {
     return (
         <Box sx={styles.root} component="header">
             <Box sx={styles.content}>
@@ -29,7 +29,7 @@ export default function Header({ homePageView = false }: { homePageView?: boolea
                 </Link>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <ThemeSwitchBtn />
-                    {!homePageView && <CurrensySelect />}
+                    {/* {!homePageView && <CurrensySelect />} */}
                 </Box>
             </Box>
         </Box>
