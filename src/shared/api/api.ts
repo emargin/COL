@@ -1,7 +1,12 @@
-import { instance } from './index'
+import { UserLocale } from '../models'
+import { instance } from './instance'
+
+interface UserLocaleResponse {
+    city: UserLocale
+}
 
 export const api = {
-    getUserLocal(latitude: string, longitude: string) {
+    getUserLocale(latitude: string, longitude: string): Promise<UserLocaleResponse> {
         return instance('/nearest-city', {
             query: {
                 latitude,
