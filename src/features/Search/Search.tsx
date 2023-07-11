@@ -16,6 +16,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import api from '@/shared/api'
 import { useLocale } from '@/shared/utils'
+import { UserLocale } from '@/shared/models'
 
 const locales = {
     ru: {
@@ -107,18 +108,13 @@ const styles = {
 
 export default function Search({ sx }: any) {
     const t = useLocale(locales)
-    const isMobileDevice = useMediaQuery('(max-width:600px)')
     const router = useRouter()
+    const isMobileDevice = useMediaQuery('(max-width:600px)')
     const [searchCities, setSearchCities] = useState([])
-    const [comparablePlace, setComparablePlace] = useState<{
-        from: string
-        to: string
-    }>({
-        from: '',
-        to: '',
-    })
+    const [placeFrom, setPlaceFrom] = useState<UserLocale>({} as UserLocale)
+    const [placeTo, setPlaceTo] = useState<UserLocale>({} as UserLocale)
 
-    const handleSearch = async (query: string) => {
+    const handlePlaceChange = async (query: string) => {
         if (query.length < 2) {
             return
         }
@@ -126,21 +122,41 @@ export default function Search({ sx }: any) {
         setSearchCities(response.cities_results)
     }
 
-    // useEffect(() => {
-    //     function success(pos: any) {
-    //         const crd = pos.coords
-    //         api.getUserLocal(crd.latitude, crd.longitude)
-    //     }
-    //     navigator.geolocation.getCurrentPosition(success)
-    // }, [])
+    const handleSwapPlaces = () => {
+        const oldFrom = placeFrom
+        const oldTo = placeTo
+        setPlaceFrom(oldTo)
+        setPlaceTo(oldFrom)
+    }
+
+    const handleSearch = () => {
+        router.push('/city/russia')
+    }
+
+    const renderOptionLabel = (option: UserLocale) => {
+        if (Object.keys(option).length === 0) {
+            return ''
+        }
+        return `${option.name}, ${option.country_name}`
+    }
+
+    useEffect(() => {
+        async function success(pos: any) {
+            const crd = pos.coords
+            const response = await api.getUserLocale(crd.latitude, crd.longitude)
+            setPlaceFrom(response.city)
+        }
+        navigator.geolocation.getCurrentPosition(success)
+    }, [])
 
     return (
         <Box sx={{ ...styles.searchWrapper, ...sx }}>
             <Autocomplete
                 sx={styles.input}
+                value={placeFrom}
                 options={searchCities}
-                onInputChange={(_: unknown, value: string) => handleSearch(value)}
-                getOptionLabel={(option: any) => `${option.name}, ${option.country_name}`}
+                onInputChange={(_: unknown, value: string) => handlePlaceChange(value)}
+                getOptionLabel={(option) => renderOptionLabel(option)}
                 renderOption={(props, option) => (
                     <Box component="li" {...props}>
                         <Typography>{`${option.name},`}</Typography>
@@ -166,20 +182,21 @@ export default function Search({ sx }: any) {
             )}
         */}
             {!isMobileDevice && (
-                <IconButton sx={styles.swapButton}>
+                <IconButton sx={styles.swapButton} onClick={handleSwapPlaces}>
                     <SwapHorizIcon fontSize="small" />
                 </IconButton>
             )}
 
             <Autocomplete
                 sx={styles.input}
+                value={placeTo}
                 options={searchCities}
-                onInputChange={(_: unknown, value: string) => handleSearch(value)}
-                getOptionLabel={(option: any) => `${option.name}, ${option.country_name}`}
+                onInputChange={(_: unknown, value: string) => handlePlaceChange(value)}
+                getOptionLabel={(option) => renderOptionLabel(option)}
                 renderInput={(params) => <TextField placeholder="Куда" {...params} />}
                 popupIcon={''}
             />
-            <Button sx={styles.button} variant="contained">
+            <Button sx={styles.button} variant="contained" onClick={handleSearch}>
                 {t('button')}
             </Button>
         </Box>
