@@ -4,13 +4,7 @@ import Head from 'next/head'
 import RootLayout from './RootLayout'
 import Header from '@/shared/components/Header'
 import Footer from '@/shared/components/Footer'
-
-const styles = {
-    content: {
-        maxWidth: '1290px',
-        margin: 'auto',
-    },
-}
+import Content from '@/shared/components/Content'
 
 export default function CityLayout({ children }: Pick<React.HTMLAttributes<HTMLDivElement>, 'children'>) {
     const city = 'Малайзия'
@@ -21,7 +15,7 @@ export default function CityLayout({ children }: Pick<React.HTMLAttributes<HTMLD
             </Head>
             <RootLayout>
                 <Header />
-                <Box sx={styles.content}>{children}</Box>
+                <Content>{children}</Content>
                 <Footer />
             </RootLayout>
         </>

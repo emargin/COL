@@ -3,13 +3,8 @@ import Head from 'next/head'
 import { Box } from '@mui/material'
 import RootLayout from './RootLayout'
 import { LocalesMap, useLocale } from '@/shared/utils'
+import Content from '@/shared/components/Content'
 
-const styles = {
-    content: {
-        maxWidth: '1290px',
-        margin: 'auto',
-    },
-}
 const locales: LocalesMap = {
     ru: {
         title: 'COL - сравненивайте цены в разных странах мира',
@@ -27,7 +22,7 @@ export default function PageLayout({ children }: Pick<React.HTMLAttributes<HTMLD
                 <title>{t('title')}</title>
             </Head>
             <RootLayout>
-                <Box sx={styles.content}>{children}</Box>
+                <Content>{children}</Content>
             </RootLayout>
         </>
     )

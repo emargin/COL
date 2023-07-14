@@ -5,7 +5,8 @@ const styles = {
     root: {
         height: '100vh',
         margin: '0 auto',
-        overflowX: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
     },
 }
 
