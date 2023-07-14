@@ -63,7 +63,6 @@ const DesktopCard = ({ title, price, pricePosition }: InfoCardProps) => (
 export default function InfoCard(props: InfoCardProps) {
     const isMobileDevice = useMediaQuery('(max-width:600px)')
     // TODO: REWORK APP TO MOBILE FIRST
-    // const isDesctopDevice = useMediaQuery('(min-width:600px)')
-    // console.log('isDesctopDevice', isDesctopDevice)
+
     return isMobileDevice ? <MobileCard {...props} /> : <DesktopCard {...props} />
 }
