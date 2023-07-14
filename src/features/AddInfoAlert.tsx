@@ -1,8 +1,24 @@
 import React, { useState } from 'react'
-import { Box, Alert, Collapse, IconButton, Link } from '@mui/material'
+import { Alert, Collapse, IconButton, Link } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
+import { useLocale } from '@/shared/utils'
 
+const createLocales = (locationName: string) => {
+    return {
+        ru: {
+            helpFindPrice: `Помогите другим путешественникам узнать цены в ${locationName}!`,
+            checkList: 'Заполните чек лист',
+        },
+        en: {
+            helpFindPrice: `Help other travelers find prices in ${locationName}!`,
+            checkList: 'Fill out our checklist',
+        },
+    }
+}
+
+// rename
 export default function AddInfoAlert({ locationName }: { locationName: string }) {
+    const t = useLocale(createLocales(locationName))
     const [open, setOpen] = useState<boolean>(true)
 
     return (
@@ -23,9 +39,9 @@ export default function AddInfoAlert({ locationName }: { locationName: string })
                     </IconButton>
                 }
             >
-                Помогите другим пушествиникам узнать цены в {locationName}!{' '}
-                <Link href="">Заполните чек лист</Link> или{' '}
-                <Link href="">отправьте нам фото вашего чека</Link>
+                {t('helpFindPrice')} <Link href="/give-feedback">{t('checkList')}</Link>
+                {/* it will be add later */}
+                {/* <Link href="">отправьте нам фото вашего чека</Link> */}
             </Alert>
         </Collapse>
     )
