@@ -20,7 +20,7 @@ const styles = {
     },
 }
 
-export default function Header() {
+export default function Header({ hideCurrent = false }: { hideCurrent?: boolean }) {
     return (
         <Box sx={styles.root} component="header">
             <Box sx={styles.content}>
@@ -29,7 +29,7 @@ export default function Header() {
                 </Link>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <ThemeSwitchBtn />
-                    {/* {!homePageView && <CurrensySelect />} */}
+                    {!hideCurrent && <CurrensySelect />}
                 </Box>
             </Box>
         </Box>
