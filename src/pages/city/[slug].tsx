@@ -9,8 +9,6 @@ import flagImg from '@/shared/assets/united-kingdom.png'
 import { CityLayout } from '@/layouts'
 import CityGeneralInfo from '@/widgets/CityGeneralInfo'
 
-import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
-import EastIcon from '@mui/icons-material/East'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 
 type IContry = any
@@ -35,7 +33,11 @@ const styles = {
         display: 'flex',
         flexDirection: 'row',
         gap: 1,
-        justifyContent: 'flex-start',
+        justifyContent: {
+            xs: 'center',
+            sm: 'flex-start',
+        },
+        alignItems: 'center',
         mb: 1,
     },
     swapButton: {
