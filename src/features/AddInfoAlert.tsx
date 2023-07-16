@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Alert, Collapse, IconButton, Link } from '@mui/material'
+import Link from 'next/link'
+import { Alert, Collapse, IconButton, Link as MuiLink } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import { useLocale } from '@/shared/utils'
 
@@ -39,7 +40,10 @@ export default function AddInfoAlert({ locationName }: { locationName: string })
                     </IconButton>
                 }
             >
-                {t('helpFindPrice')} <Link href="/give-feedback">{t('checkList')}</Link>
+                {t('helpFindPrice')}{' '}
+                <Link href="/give-feedback">
+                    <MuiLink>{t('checkList')}</MuiLink>
+                </Link>
                 {/* it will be add later */}
                 {/* <Link href="">отправьте нам фото вашего чека</Link> */}
             </Alert>
