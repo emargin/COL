@@ -141,12 +141,11 @@ export default function Search({ sx }: any) {
     }
 
     useEffect(() => {
-        async function success(pos: any) {
-            const crd = pos.coords
-            const response = await api.getUserLocale(crd.latitude, crd.longitude)
+        const getUserData = async () => {
+            const response = await api.getUserLocation()
             setPlaceFrom(response.city)
         }
-        navigator.geolocation.getCurrentPosition(success)
+        getUserData()
     }, [])
 
     return (

@@ -6,13 +6,8 @@ interface UserLocaleResponse {
 }
 
 export const api = {
-    getUserLocale(latitude: string, longitude: string): Promise<UserLocaleResponse> {
-        return instance('/nearest-city', {
-            query: {
-                latitude,
-                longitude,
-            },
-        })
+    getUserLocation(): Promise<UserLocaleResponse> {
+        return instance('/nearest-city')
     },
     search(query: string) {
         return instance('/search', {
