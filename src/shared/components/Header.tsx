@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import CurrensySelect from '@/features/CurrensySelect'
 import ThemeSwitchBtn from '@/features/ThemeSwitchBtn'
 
@@ -24,8 +24,14 @@ export default function Header({ hideCurrent = false }: { hideCurrent?: boolean 
     return (
         <Box sx={styles.root} component="header">
             <Box sx={styles.content}>
-                <Link href="/">
-                    <Image src="" alt="LOGO" width={24} height={24} />
+                <Link href="/" style={{ marginLeft: '8px' }}>
+                    {/* <Image src={logo} alt="LOGO" width={120} height={50} /> */}
+                    <Typography fontSize={24} fontWeight={800} sx={{ height: '22px' }}>
+                        COL
+                    </Typography>
+                    <Typography variant="caption" color="primary.main" fontWeight={600}>
+                        cost of living
+                    </Typography>
                 </Link>
                 <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <ThemeSwitchBtn />

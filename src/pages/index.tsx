@@ -5,7 +5,7 @@ import SearchContainer from '@/widgets/SearchContainer'
 export default function Home() {
     return (
         <PageLayout>
-            <Header homePageView />
+            <Header hideCurrent />
             <SearchContainer />
         </PageLayout>
     )
