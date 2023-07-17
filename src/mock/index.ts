@@ -17,7 +17,7 @@ export const countryInfo = {
 export const cities = [
     {
         id: 1,
-        name: 'Россия',
+        name: 'Russia',
         info: {
             extraInfo: {},
             statistic: countryInfo,
@@ -26,7 +26,7 @@ export const cities = [
     },
     {
         id: 2,
-        name: 'США',
+        name: 'USA',
         info: {
             extraInfo: {},
             statistic: countryInfo,
@@ -36,7 +36,7 @@ export const cities = [
     },
     {
         id: 3,
-        name: 'Чехия',
+        name: 'Czech',
         info: {
             extraInfo: {},
             statistic: countryInfo,
@@ -45,7 +45,7 @@ export const cities = [
     },
     {
         id: 4,
-        name: 'Малайзия',
+        name: 'Malaysia',
         info: {
             extraInfo: {},
             statistic: countryInfo,
@@ -54,7 +54,7 @@ export const cities = [
     },
     {
         id: 5,
-        name: 'КНР',
+        name: 'China',
         info: {
             extraInfo: {},
             statistic: countryInfo,

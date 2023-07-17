@@ -2,8 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { Box, Typography } from '@mui/material'
 
-import Search from '@/features/Search'
 import { useLocale, LocalesMap } from '@/shared/utils'
+import { Search } from '@/features/Search'
 
 const locales: LocalesMap = {
     ru: {
@@ -35,9 +35,9 @@ export default function SearchContainer() {
                 {t('title')}
             </Typography>
             <Search />
-            <Typography variant="body2" sx={{ textAlign: 'right', color: 'text.secondary', mt: 1.5 }}>
+            {/* <Typography variant="body2" sx={{ textAlign: 'right', color: 'text.secondary', mt: 1.5 }}>
                 {t('message')}
-            </Typography>
+            </Typography> */}
         </Box>
     )
 }

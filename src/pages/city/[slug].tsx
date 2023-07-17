@@ -93,7 +93,7 @@ export default function City({ city }: IContry) {
                             width={16}
                             height={16}
                         />
-                        Малайзиа
+                        Malaysia
                     </Typography>
                     <IconButton sx={styles.swapButton}>
                         <ArrowForwardIcon fontSize="small" />
