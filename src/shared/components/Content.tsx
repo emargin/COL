@@ -6,6 +6,7 @@ const styles = {
         width: '100%',
         maxWidth: '1290px',
         margin: '0 auto',
+        // padding: '0 16px',
     },
 }
 
