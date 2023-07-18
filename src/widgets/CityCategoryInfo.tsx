@@ -2,6 +2,8 @@ import React from 'react'
 import { alpha, Box, IconButton, Typography, useMediaQuery } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
+
 import InfoWrapper from '@/shared/components/InfoWrapper'
 import PricePosition from '@/entities/PricePosition'
 // ERROR
@@ -99,24 +101,33 @@ export default function CityCategoryInfo(props: any) {
     const isMobileDevice = useMediaQuery('(max-width:600px)')
     return (
         <InfoWrapper>
-            <Typography variant="h6" component="h2">
-                Магазины
-            </Typography>
-            {isMobileDevice && <MobileDataDrawer rows={rows} />}
+            {isMobileDevice && (
+                <>
+                    <Typography variant="h6" component="h2">
+                        Магазины
+                    </Typography>
+                    <MobileDataDrawer rows={rows} />
+                </>
+            )}
             {!isMobileDevice && (
-                <DataGrid
-                    sx={styles.table}
-                    autoHeight
-                    rows={rows}
-                    columns={columns}
-                    disableColumnMenu
-                    disableSelectionOnClick
-                    hideFooterPagination
-                    hideFooterSelectedRowCount
-                    getRowClassName={(params) =>
-                        params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
-                    }
-                />
+                <>
+                    <Typography variant="h6" component="h2">
+                        Магазины
+                    </Typography>
+                    <DataGrid
+                        sx={styles.table}
+                        autoHeight
+                        rows={rows}
+                        columns={columns}
+                        disableColumnMenu
+                        disableSelectionOnClick
+                        hideFooterPagination
+                        hideFooterSelectedRowCount
+                        getRowClassName={(params) =>
+                            params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
+                        }
+                    />
+                </>
             )}
         </InfoWrapper>
     )
