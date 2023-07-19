@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="350" height="300" src="/public/logo.readme.svg" alt="COL logo">
+  <img width="100%" height="auto" src="/public/logo.readme.svg" alt="COL logo">
 </p>
 
 # COL - compare prices around the world
