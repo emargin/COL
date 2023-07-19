@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Box, Link, Typography } from '@mui/material'
+
 const styles = {
     root: {
         mt: 'auto',
@@ -30,7 +31,7 @@ export default function Footer() {
     return (
         <Box sx={styles.root}>
             <Box sx={styles.content}>
-                <Image alt="Logo footer" src="" />
+                <Image alt="Logo footer" src="" width={36} height={36} />
                 <Box sx={styles.group}>
                     <Typography variant="h3" fontSize={14} sx={styles.groupTitle}>
                         Report a problem

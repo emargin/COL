@@ -45,7 +45,7 @@ export default function AddInfoAlert({ locationName }: { locationName: string })
                     <MuiLink>{t('checkList')}</MuiLink>
                 </Link>
                 {/* it will be add later */}
-                {/* <Link href="">отправьте нам фото вашего чека</Link> */}
+                {/* <Link href="/upload-receipt">отправьте нам фото вашего чека</Link> */}
             </Alert>
         </Collapse>
     )
