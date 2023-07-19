@@ -10,7 +10,7 @@ The web app that helps travelers compare prices across cities around the world, 
 
 ## Links
 
-[Web app](http://176.57.214.159/)
+[Web app](http://188.225.32.241/)
 
 ## Credits
 
