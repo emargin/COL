@@ -1,5 +1,6 @@
 import { Html, Head, Main, NextScript, DocumentProps } from 'next/document'
 import { Locales, LocalesMap } from '@/shared/utils'
+import Script from 'next/script'
 
 const locales: LocalesMap = {
     ru: {
@@ -19,11 +20,20 @@ export default function Document(props: DocumentProps) {
     return (
         <Html lang="en">
             <Head>
-                <title>{t('title')}</title>
+                <meta name="title" content="COL - compare prices around the world" />
                 <meta name="description" content={t('description')} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="keywords" content="Cost of living" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" type="image/ico" href="/favicon.ico" />
+                <Script async src="https://www.googletagmanager.com/gtag/js?id=G-57MFK2MWZM"></Script>
+                <Script>
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-57MFK2MWZM');
+                    `}
+                </Script>
             </Head>
             <body>
                 <Main />
