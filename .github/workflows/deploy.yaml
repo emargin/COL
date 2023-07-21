@@ -6,8 +6,8 @@ on:
             - '**'
 
 env:
-    REPO_NAME: col
-    IMAGE_TAG: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/col:$GITHUB_SHA
+    REPO_NAME: col-client
+    IMAGE_TAG: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/col-client:$GITHUB_SHA
 
 jobs:
     build:
