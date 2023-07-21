@@ -6,7 +6,7 @@ on:
             - '**'
 
 env:
-    REPO_NAME: ${{ github.event.repository.name }}
+    REPO_NAME: col
     IMAGE_TAG: cr.yandex/${{ secrets.YC_REGISTRY_ID }}/${{ github.event.repository.name }}:$GITHUB_SHA
 
 jobs:
