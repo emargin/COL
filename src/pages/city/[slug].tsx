@@ -63,7 +63,9 @@ export default function City({ city }: IContry) {
 
     const checkDirection = () => {
         const swipeSize = Math.abs(endX - startX)
-        if (swipeSize < 80) return
+        if (swipeSize < 80) {
+            return
+        }
         if (endX < startX && tab + 1 < TABS.length) {
             setTab((prev) => prev + 1)
         }
