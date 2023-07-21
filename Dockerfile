@@ -1,10 +1,10 @@
-FROM node:18.14.2-alpine
+FROM node:16.17.1
 
 WORKDIR /app/
 
 COPY . .
 
-RUN npm install
+RUN npm install --production
 RUN npm run build
 
 EXPOSE 3000
