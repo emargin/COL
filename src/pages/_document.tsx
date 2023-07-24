@@ -26,14 +26,14 @@ export default function Document(props: DocumentProps) {
                 <meta name="keywords" content="Cost of living" />
                 <link rel="icon" type="image/ico" href="/favicon.ico" />
                 <Script async src="https://www.googletagmanager.com/gtag/js?id=G-57MFK2MWZM"></Script>
-                <Script>
-                    {`
-                        window.dataLayer = window.dataLayer || [];
+                <Script
+                    dangerouslySetInnerHTML={{
+                        __html: `window.dataLayer = window.dataLayer || [];
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
-                        gtag('config', 'G-57MFK2MWZM');
-                    `}
-                </Script>
+                        gtag('config', 'G-57MFK2MWZM');`,
+                    }}
+                />
             </Head>
             <body>
                 <Main />
