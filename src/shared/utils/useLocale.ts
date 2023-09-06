@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
 
 export type Locales = 'ru' | 'en'
-
+type Tab = {
+    label: string
+}
 export type LocalesMap = {
     [locale in Locales]: { [key: string]: string }
 }

@@ -10,6 +10,7 @@ import { CityLayout } from '@/layouts'
 import CityGeneralInfo from '@/widgets/CityGeneralInfo'
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
+import { useLocale } from '@/shared/utils'
 
 type IContry = any
 
@@ -20,6 +21,7 @@ const TABS = [
     { label: 'Рестараны' },
     { label: 'Транспорт' },
 ]
+const EN_TABS = [{ label: 'General' }]
 
 const styles = {
     root: {
@@ -52,7 +54,16 @@ const styles = {
     },
 }
 
+const locales = {
+    ru: {
+        tabs: '',
+    },
+    en: {
+        tabs: '',
+    },
+}
 export default function City({ city }: IContry) {
+    const t = useLocale(locales)
     const [tab, setTab] = useState<number>(0)
     let startX = 0
     let endX = 0
@@ -112,7 +123,7 @@ export default function City({ city }: IContry) {
                     </Typography>
                 </Box>
                 <Tabs value={tab} onChange={handleTabChange} variant="scrollable">
-                    {TABS.map((item, index) => (
+                    {TABS.map((item: any, index: number) => (
                         <Tab key={index + item.label} label={item.label} {...allyProps(index)} />
                     ))}
                 </Tabs>
