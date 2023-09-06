@@ -53,11 +53,15 @@ const locales = {
         formTitle: 'Заполните форму',
         infoTitle: 'Расскажите друзьям о нас',
         info: '',
+        nextBtn: 'Далее',
+        prevBtn: 'Назад',
     },
     en: {
         formTitle: 'Fill the form',
         infoTitle: 'Tell your friends about us',
         info: '',
+        nextBtn: 'Next',
+        prevBtn: 'Back',
     },
 }
 
@@ -121,7 +125,9 @@ export default function GiveFeedback() {
                 </Stack>
             </InfoWrapper>
             <Stack gap={3}>
-                <InfoWrapper sx={{ bgcolor: '#fff1ea', maxWidth: '370px', height: 'auto' }}>
+                {/* DARK - #A66A4C */}
+                {/* LIGHT - #fff1ea */}
+                <InfoWrapper sx={{ bgcolor: 'other.announcement1', maxWidth: '370px', height: 'auto' }}>
                     <Typography sx={{ mb: 2 }} fontWeight={800} component="h3" fontSize={24}>
                         Помогите нам стать лучше
                     </Typography>
@@ -130,7 +136,9 @@ export default function GiveFeedback() {
                         разных странах мира более полной и точной. Спасибо.
                     </Typography>
                 </InfoWrapper>
-                <InfoWrapper sx={{ bgcolor: '#e6f45d', maxWidth: '370px', height: 'auto' }}>
+                {/* DARK - #929F1E */}
+                {/* LIGHT - #e6f45d */}
+                <InfoWrapper sx={{ bgcolor: 'other.announcement2', maxWidth: '370px', height: 'auto' }}>
                     <Typography sx={{ mb: 2 }} fontWeight={800} component="h3" fontSize={24}>
                         Расскажите друзьям о нас
                     </Typography>

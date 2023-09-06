@@ -21,6 +21,10 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
                   //   background: { default: '#272731', paper: '#32323e' },
                   background: { default: '#161617', paper: '#2f2f32' },
               }),
+        other: {
+            announcement1: mode === 'light' ? '#fff1ea' : '#a66a4c',
+            announcement2: mode === 'light' ? '#e6f45d' : '#929f1e',
+        },
     },
     typography: {
         fontSize: isMobileDevice ? 12 : 14,
