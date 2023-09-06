@@ -5,7 +5,7 @@ import Script from 'next/script'
 const locales: LocalesMap = {
     ru: {
         title: 'COL - сравненивайте цены в разных странах мира',
-        description: '',
+        description: 'COL это приложение которое поможет узнать о ценах в рахных городах мира',
     },
     en: {
         title: 'COL - compare prices around the world',

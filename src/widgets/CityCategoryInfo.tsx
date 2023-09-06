@@ -15,6 +15,7 @@ const styles = {
         border: 'none',
         '& .MuiDataGrid-columnHeader': {
             fontSize: 12,
+            border: 'none',
         },
         '& .MuiDataGrid-row': {
             borderRadius: 1,
@@ -121,6 +122,7 @@ export default function CityCategoryInfo(props: any) {
                         columns={columns}
                         disableColumnMenu
                         disableSelectionOnClick
+                        hideFooter
                         hideFooterPagination
                         hideFooterSelectedRowCount
                         getRowClassName={(params) =>
