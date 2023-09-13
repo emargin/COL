@@ -39,10 +39,13 @@ export default function Histogram() {
         data: data,
         options: {
             plugins: {
-                title: {
+                legend: {
                     display: false,
-                    text: 'Chart.js Bar Chart - Stacked',
                 },
+                // title: {
+                //     display: false,
+                //     text: 'Chart.js Bar Chart - Stacked',
+                // },
             },
             scales: {
                 y: {
@@ -50,7 +53,7 @@ export default function Histogram() {
                 },
             },
             maintainAspectRatio: false,
-            responsive: false,
+            // responsive: false,
         },
     }
 
@@ -63,5 +66,5 @@ export default function Histogram() {
         return () => myChart.destroy()
     }, [])
 
-    return <canvas id="canvas" ref={ctx} width="400px" height="350px"></canvas>
+    return <canvas id="canvas" ref={ctx} width="400px" height="400px"></canvas>
 }

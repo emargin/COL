@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { alpha, Box, IconButton, Typography, useMediaQuery } from '@mui/material'
+import { Box, IconButton, Typography, useMediaQuery } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 
 import InfoWrapper from '@/shared/components/InfoWrapper'
 import PricePosition from '@/entities/PricePosition'
-// ERROR
 import MobileDataDrawer from '@/widgets/mobile/MobileDataDrawer'
 import Histogram from '@/features/Histogram'
 
 const styles = {
     table: {
+        height: '450px',
         border: 'none',
         '& .MuiDataGrid-columnHeaders': {
             fontSize: 12,
@@ -42,6 +41,7 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         gap: 1,
+        position: 'relative',
     },
 }
 
@@ -62,15 +62,24 @@ const columns: GridColDef[] = [
         flex: 1,
         renderCell: (params: GridRenderCellParams) => {
             const { price } = params.row
+            console.log('params', params)
             return (
                 <Box sx={styles.priceCell}>
                     <Typography variant="body2">{price}₽</Typography>
-                    <IconButton sx={{ display: 'none' }} className="price-btn">
-                        <EditIcon fontSize="small" />
-                    </IconButton>
                 </Box>
             )
         },
+    },
+    {
+        field: 'editPrice',
+        headerName: '',
+        maxWidth: 38,
+        sortable: false,
+        renderCell: (params: GridRenderCellParams) => (
+            <IconButton className="price-btn" sx={{ p: 0.5, display: 'none' }}>
+                <EditIcon fontSize="small" />
+            </IconButton>
+        ),
     },
     {
         field: 'price_1',
@@ -82,12 +91,20 @@ const columns: GridColDef[] = [
             return (
                 <Box sx={styles.priceCell}>
                     <Typography variant="body2">{price}₽</Typography>
-                    <IconButton className="price-btn" sx={{ display: 'none' }}>
-                        <EditIcon fontSize="small" />
-                    </IconButton>
                 </Box>
             )
         },
+    },
+    {
+        field: 'editPrice_1',
+        headerName: '',
+        maxWidth: 38,
+        sortable: false,
+        renderCell: (params: GridRenderCellParams) => (
+            <IconButton className="price-btn" sx={{ p: 0.5, display: 'none' }}>
+                <EditIcon fontSize="small" />
+            </IconButton>
+        ),
     },
     {
         field: 'priceRange',
@@ -120,17 +137,16 @@ export default function CityCategoryInfo(props: any) {
         </InfoWrapper>
     ) : (
         <>
-            <Typography variant="h6" component="h2">
+            <Typography variant="h6" component="h2" sx={{ ml: 2 }}>
                 {title}
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
-                <InfoWrapper sx={{ width: 'auto' }}>
+                <InfoWrapper sx={{ width: 'auto', display: 'flex', alignItems: 'center' }}>
                     <Histogram />
                 </InfoWrapper>
                 <InfoWrapper style={{ width: '100%' }}>
                     <DataGrid
                         sx={styles.table}
-                        autoHeight
                         rows={rows}
                         columns={columns}
                         disableColumnMenu

@@ -98,28 +98,30 @@ export default function City({ city }: IContry) {
         <Box sx={styles.root}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
-                    <Typography variant="h6" sx={{ opacity: 0.1 }}>
-                        <Image
+                    <Typography variant="h5">
+                        {/* <Image
                             alt="country flag img"
                             style={{ margin: '0 8px' }}
                             src={flagImg.src}
                             width={16}
                             height={16}
-                        />
+                        /> */}
                         Malaysia
+                        <Box sx={{ width: '100%', height: '2px', bgcolor: '#5e35b1' }} />
                     </Typography>
                     <IconButton sx={styles.swapButton}>
                         <ArrowForwardIcon fontSize="small" />
                     </IconButton>
                     <Typography variant="h5">
-                        <Image
+                        {/* <Image
                             alt="country flag img"
                             style={{ margin: '0 8px' }}
                             src={flagImg.src}
                             width={16}
                             height={16}
-                        />
+                        /> */}
                         {city?.name || ''}
+                        <Box sx={{ width: '100%', height: '2px', bgcolor: '#1976d2' }} />
                     </Typography>
                 </Box>
                 <Tabs value={tab} onChange={handleTabChange} variant="scrollable">
