@@ -11,11 +11,14 @@ import MobileDataDrawer from '@/widgets/mobile/MobileDataDrawer'
 
 const styles = {
     table: {
-        mt: 2,
         border: 'none',
         '& .MuiDataGrid-columnHeaders': {
             fontSize: 12,
             border: 'none!important',
+            minHeight: '23px!important',
+        },
+        '& .MuiDataGrid-columnHeader': {
+            height: '23px!important',
         },
         '& .MuiDataGrid-row': {
             borderRadius: 1,

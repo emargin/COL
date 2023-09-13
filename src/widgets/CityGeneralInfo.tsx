@@ -39,7 +39,7 @@ export default function GeneralInfo({ locationName, categoryInfo }: any) {
                 ))}
             </Box>
             <AddInfoAlert locationName={locationName} />
-            <Typography variant="h6" component="h2">
+            <Typography variant="h6" component="h2" sx={{ ml: 2.5 }}>
                 Магазины
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
@@ -48,7 +48,7 @@ export default function GeneralInfo({ locationName, categoryInfo }: any) {
                 </InfoWrapper>
                 <CityCategoryInfo title="Магазины" rows={market} />
             </Box>
-            <Typography variant="h6" component="h2">
+            <Typography variant="h6" component="h2" sx={{ ml: 2.5 }}>
                 Рестораны
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
@@ -57,7 +57,7 @@ export default function GeneralInfo({ locationName, categoryInfo }: any) {
                 </InfoWrapper>
                 <CityCategoryInfo title="Рестораны" rows={restaurants} />
             </Box>
-            <Typography variant="h6" component="h2">
+            <Typography variant="h6" component="h2" sx={{ ml: 2.5 }}>
                 Жилье
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>

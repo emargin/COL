@@ -16,8 +16,8 @@ export default function Histogram() {
                 data: [Math.random() * 10], // [3, 2, 1, 4]
                 // borderColor: 'red',
                 backgroundColor: '#5e35b1',
-                borderRadius: 20,
-                barPercentage: 0.45,
+                borderRadius: 10,
+                barPercentage: 0.4,
 
                 // borderSkipped: false,
             },
@@ -26,8 +26,8 @@ export default function Histogram() {
                 data: [Math.random() * 10], //[1, 2, 3, 4]
                 // borderColor: 'blue',
                 backgroundColor: '#1976d2',
-                borderRadius: 20,
-                barPercentage: 0.45,
+                borderRadius: 10,
+                barPercentage: 0.4,
 
                 // borderSkipped: false,
             },
