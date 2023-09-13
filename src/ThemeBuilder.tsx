@@ -8,23 +8,31 @@ const manrope = Manrope({ subsets: ['latin'], display: 'swap' })
 
 const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
     shape: {
-        borderRadius: 16, // mb -> 8 ??
+        borderRadius: 16,
     },
     palette: {
         mode,
         ...(mode === 'light'
             ? {
-                  background: { default: '#eceff1', paper: '#fafafa' },
-                  //   background: { default: '#fafafa', paper: '#fafafa' },
+                  background: {
+                      default: '#eceff1',
+                      paper: '#fafafa',
+                  },
+                  other: {
+                      announcement1: '#fff1ea',
+                      announcement2: '#e6f45d',
+                  },
               }
             : {
-                  //   background: { default: '#272731', paper: '#32323e' },
-                  background: { default: '#161617', paper: '#2f2f32' },
+                  background: {
+                      default: '#161617',
+                      paper: '#2f2f32',
+                  },
+                  other: {
+                      announcement1: '#a66a4c',
+                      announcement2: '#929f1e',
+                  },
               }),
-        other: {
-            announcement1: mode === 'light' ? '#fff1ea' : '#a66a4c',
-            announcement2: mode === 'light' ? '#e6f45d' : '#929f1e',
-        },
     },
     typography: {
         fontSize: isMobileDevice ? 12 : 14,
@@ -101,9 +109,9 @@ export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivE
         [],
     )
     // Мерцание
-    useEffect(() => {
-        setMode(prefersLightMode ? 'light' : 'dark')
-    }, [])
+    // useEffect(() => {
+    //     setMode(prefersLightMode ? 'light' : 'dark')
+    // }, [])
 
     return (
         <ColorModeContext.Provider value={colorMode}>
