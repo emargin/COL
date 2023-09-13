@@ -13,9 +13,9 @@ const styles = {
     table: {
         mt: 2,
         border: 'none',
-        '& .MuiDataGrid-columnHeader': {
+        '& .MuiDataGrid-columnHeaders': {
             fontSize: 12,
-            border: 'none',
+            border: 'none!important',
         },
         '& .MuiDataGrid-row': {
             borderRadius: 1,
@@ -98,23 +98,23 @@ const columns: GridColDef[] = [
 ]
 
 export default function CityCategoryInfo(props: any) {
-    const { rows } = props
+    const { title, rows } = props
     const isMobileDevice = useMediaQuery('(max-width:600px)')
     return (
-        <InfoWrapper>
+        <InfoWrapper style={{ width: '100%' }}>
             {isMobileDevice && (
                 <>
                     <Typography variant="h6" component="h2">
-                        Магазины
+                        {title}
                     </Typography>
                     <MobileDataDrawer rows={rows} />
                 </>
             )}
             {!isMobileDevice && (
                 <>
-                    <Typography variant="h6" component="h2">
-                        Магазины
-                    </Typography>
+                    {/* <Typography variant="h6" component="h2">
+                        {title}
+                    </Typography> */}
                     <DataGrid
                         sx={styles.table}
                         autoHeight

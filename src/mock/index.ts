@@ -6,6 +6,7 @@ export const countryInfo = {
         { id: 3, name: 'Яйца 10шт', price: 120, priceRange: { min: 100, max: 312 } },
         { id: 4, name: 'Вода 1литр', price: 43, priceRange: { min: 100, max: 312 } },
         { id: 5, name: 'Бананы 1кг', price: 118, priceRange: { min: 100, max: 312 } },
+        { id: 6, name: 'Тролл_лол 666гр', price: 322, priceRange: { min: 10, max: 222 } },
     ],
     transport: [
         { id: 1, name: 'Проезд на автобусе', price: 32, priceRange: { min: 100, max: 312 } },
