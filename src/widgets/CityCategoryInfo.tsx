@@ -8,6 +8,7 @@ import InfoWrapper from '@/shared/components/InfoWrapper'
 import PricePosition from '@/entities/PricePosition'
 // ERROR
 import MobileDataDrawer from '@/widgets/mobile/MobileDataDrawer'
+import Histogram from '@/features/Histogram'
 
 const styles = {
     table: {
@@ -103,21 +104,23 @@ const columns: GridColDef[] = [
 export default function CityCategoryInfo(props: any) {
     const { title, rows } = props
     const isMobileDevice = useMediaQuery('(max-width:600px)')
-    return (
+    return isMobileDevice ? (
         <InfoWrapper style={{ width: '100%' }}>
-            {isMobileDevice && (
-                <>
-                    <Typography variant="h6" component="h2">
-                        {title}
-                    </Typography>
-                    <MobileDataDrawer rows={rows} />
-                </>
-            )}
-            {!isMobileDevice && (
-                <>
-                    {/* <Typography variant="h6" component="h2">
-                        {title}
-                    </Typography> */}
+            <Typography variant="h6" component="h2">
+                {title}
+            </Typography>
+            <MobileDataDrawer rows={rows} />
+        </InfoWrapper>
+    ) : (
+        <>
+            <Typography variant="h6" component="h2">
+                {title}
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+                <InfoWrapper sx={{ width: 'auto' }}>
+                    <Histogram />
+                </InfoWrapper>
+                <InfoWrapper style={{ width: '100%' }}>
                     <DataGrid
                         sx={styles.table}
                         autoHeight
@@ -132,8 +135,8 @@ export default function CityCategoryInfo(props: any) {
                             params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
                         }
                     />
-                </>
-            )}
-        </InfoWrapper>
+                </InfoWrapper>
+            </Box>
+        </>
     )
 }
