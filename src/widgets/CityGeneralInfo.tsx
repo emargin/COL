@@ -1,13 +1,9 @@
 import React from 'react'
-import Image from 'next/image'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import InfoCard from '@/entities/InfoCard'
 import AddInfoAlert from '@/features/AddInfoAlert'
 import CityCategoryInfo from './CityCategoryInfo'
 import { CARDS } from '@/mock'
-import Histogram from '@/features/Histogram'
-import InfoWrapper from '@/shared/components/InfoWrapper'
-import qr from '@/shared/assets/qrcode.png'
 
 const styles = {
     root: {

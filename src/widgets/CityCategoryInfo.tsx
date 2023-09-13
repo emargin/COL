@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { alpha, Box, IconButton, Typography, useMediaQuery } from '@mui/material'
 import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
@@ -104,7 +104,14 @@ const columns: GridColDef[] = [
 export default function CityCategoryInfo(props: any) {
     const { title, rows } = props
     const isMobileDevice = useMediaQuery('(max-width:600px)')
-    return isMobileDevice ? (
+    const [hideOnMobile, setHideOnMobile] = useState(false)
+
+    // TODO: ADD SSR CHECKING USER GADGET
+    useEffect(() => {
+        setHideOnMobile(isMobileDevice)
+    }, [isMobileDevice])
+
+    return hideOnMobile ? (
         <InfoWrapper style={{ width: '100%' }}>
             <Typography variant="h6" component="h2">
                 {title}

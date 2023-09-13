@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Box, Typography, useMediaQuery } from '@mui/material'
 
 import PricePosition from './PricePosition'
@@ -62,7 +62,12 @@ const DesktopCard = ({ title, price, pricePosition }: InfoCardProps) => (
 
 export default function InfoCard(props: InfoCardProps) {
     const isMobileDevice = useMediaQuery('(max-width:600px)')
-    // TODO: REWORK APP TO MOBILE FIRST
+    const [hideOnMobile, setHideOnMobile] = useState(false)
 
-    return isMobileDevice ? <MobileCard {...props} /> : <DesktopCard {...props} />
+    // TODO: ADD SSR CHECKING USER GADGET
+    useEffect(() => {
+        setHideOnMobile(isMobileDevice)
+    }, [isMobileDevice])
+    // TODO: REWORK APP TO MOBILE FIRST
+    return hideOnMobile ? <MobileCard {...props} /> : <DesktopCard {...props} />
 }

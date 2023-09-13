@@ -30,7 +30,7 @@ export const cities = [
     },
     {
         id: 2,
-        name: 'USA',
+        name: 'Usa',
         info: {
             extraInfo: {},
             statistic: countryInfo,
