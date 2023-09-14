@@ -155,6 +155,7 @@ export default function Search({ sx }: any) {
                 value={placeFrom}
                 options={searchCities}
                 onInputChange={(_: unknown, value: string) => handlePlaceChange(value)}
+                onChange={(_: unknown, value) => value && setPlaceFrom(value)}
                 getOptionLabel={(option) => renderOptionLabel(option)}
                 renderOption={(props, option) => (
                     <Box component="li" {...props}>
@@ -191,8 +192,22 @@ export default function Search({ sx }: any) {
                 value={placeTo}
                 options={searchCities}
                 onInputChange={(_: unknown, value: string) => handlePlaceChange(value)}
+                onChange={(_: unknown, value) => value && setPlaceTo(value)}
                 getOptionLabel={(option) => renderOptionLabel(option)}
-                renderInput={(params) => <TextField placeholder="Куда" {...params} />}
+                renderOption={(props, option) => (
+                    <Box component="li" {...props}>
+                        <Typography>{`${option.name},`}</Typography>
+                        <Typography sx={{ color: 'text.secondary', ml: 0.5 }}>
+                            {option.country_name}
+                        </Typography>
+                    </Box>
+                )}
+                renderInput={(params) => <TextField autoFocus placeholder="Куда" {...params} />}
+                PaperComponent={({ children: childrens }) => (
+                    <Paper sx={styles.paper}>
+                        <Box sx={styles.paperBox}>{childrens}</Box>
+                    </Paper>
+                )}
                 popupIcon={''}
             />
             <Button sx={styles.button} variant="contained" onClick={handleSearch}>
