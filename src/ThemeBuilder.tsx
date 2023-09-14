@@ -109,9 +109,9 @@ export default function ThemeBuilder({ children }: React.HTMLAttributes<HTMLDivE
         [],
     )
     // Мерцание
-    // useEffect(() => {
-    //     setMode(prefersLightMode ? 'light' : 'dark')
-    // }, [])
+    useEffect(() => {
+        setMode(prefersLightMode ? 'light' : 'dark')
+    }, [])
 
     return (
         <ColorModeContext.Provider value={colorMode}>
