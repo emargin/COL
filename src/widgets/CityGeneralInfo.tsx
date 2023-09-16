@@ -4,6 +4,7 @@ import InfoCard from '@/entities/InfoCard'
 import AddInfoAlert from '@/features/AddInfoAlert'
 import CityCategoryInfo from './CityCategoryInfo'
 import { CARDS } from '@/mock'
+import InfoBaner from '@/features/InfoBaner'
 
 const styles = {
     root: {
@@ -34,7 +35,8 @@ export default function GeneralInfo({ locationName, categoryInfo }: any) {
                     />
                 ))}
             </Box>
-            <AddInfoAlert locationName={locationName} />
+            <InfoBaner locationName={locationName} />
+            {/* <AddInfoAlert locationName={locationName} /> */}
             <CityCategoryInfo title="Магазины" rows={market} />
             <CityCategoryInfo title="Рестораны" rows={restaurants} />
             <CityCategoryInfo title="Жилье" rows={transport} />

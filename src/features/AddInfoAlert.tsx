@@ -41,7 +41,6 @@ export default function AddInfoAlert({ locationName }: { locationName: string })
                 }
             >
                 {t('helpFindPrice')}
-                {/* <Typography sx={{ color: 'primary.main' }}> */}
                 <MuiLink href="/give-feedback" component={Link}>
                     {t('checkList')}
                 </MuiLink>
