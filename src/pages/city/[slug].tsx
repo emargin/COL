@@ -15,11 +15,11 @@ import { useLocale } from '@/shared/utils'
 type IContry = any
 
 const TABS = [
-    { label: 'Общие' },
-    { label: 'Магазины' },
-    { label: 'Жилье' },
-    { label: 'Рестараны' },
-    { label: 'Транспорт' },
+    { label: 'general' },
+    { label: 'products' },
+    { label: 'housing' },
+    { label: 'restaurants' },
+    { label: 'transport' },
 ]
 const EN_TABS = [{ label: 'General' }]
 
@@ -30,6 +30,11 @@ const styles = {
         gap: 2.5,
         p: '0 16px',
         mb: 3,
+    },
+    tabs: {
+        '& .MuiTabs-indicator': {
+            display: 'none',
+        },
     },
     country: {
         display: 'flex',
@@ -56,10 +61,18 @@ const styles = {
 
 const locales = {
     ru: {
-        tabs: '',
+        general: 'Oбщие',
+        products: 'Продукты',
+        housing: 'Жилье',
+        restaurants: 'Рестараны',
+        transport: 'Транспорт',
     },
     en: {
-        tabs: '',
+        general: 'General',
+        products: 'Products',
+        housing: 'Housing',
+        restaurants: 'Restaurants',
+        transport: 'Transport',
     },
 }
 export default function City({ city }: IContry) {
@@ -107,7 +120,7 @@ export default function City({ city }: IContry) {
                             height={16}
                         /> */}
                         Malaysia
-                        <Box sx={{ width: '100%', height: '2px', bgcolor: '#5e35b1' }} />
+                        <Box sx={{ width: '100%', height: '2px', bgcolor: 'other.hist1' }} />
                     </Typography>
                     <IconButton sx={styles.swapButton}>
                         <ArrowForwardIcon fontSize="small" />
@@ -120,13 +133,14 @@ export default function City({ city }: IContry) {
                             width={16}
                             height={16}
                         /> */}
+                        {/* 56CFE1 */}
                         {city?.name || ''}
-                        <Box sx={{ width: '100%', height: '2px', bgcolor: '#1976d2' }} />
+                        <Box sx={{ width: '100%', height: '2px', bgcolor: 'other.hist2' }} />
                     </Typography>
                 </Box>
-                <Tabs value={tab} onChange={handleTabChange} variant="scrollable">
+                <Tabs value={tab} onChange={handleTabChange} variant="scrollable" sx={styles.tabs}>
                     {TABS.map((item: any, index: number) => (
-                        <Tab key={index + item.label} label={item.label} {...allyProps(index)} />
+                        <Tab key={index + item.label} label={t(item.label)} {...allyProps(index)} />
                     ))}
                 </Tabs>
             </InfoWrapper>
@@ -175,12 +189,16 @@ export async function getStaticProps({ params }: any) {
 export async function getStaticPaths() {
     const contries = await getCities()
 
-    const paths = contries.data.map((path) => ({
+    const pathsEn = contries.data.map((path) => ({
         params: { slug: path.slug },
+    }))
+    const pathsRu = contries.data.map((path) => ({
+        params: { slug: path.slug },
+        locale: 'ru',
     }))
 
     return {
-        paths,
+        paths: [...pathsEn, ...pathsRu],
         fallback: false,
     }
 }

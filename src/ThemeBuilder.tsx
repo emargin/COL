@@ -4,6 +4,22 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import CssBaseline from '@mui/material/CssBaseline'
 import { Manrope } from '@next/font/google'
 
+interface OtherPaletteColorOptions {
+    announcement1: string
+    announcement2: string
+    hist1: string
+    hist2: string
+}
+
+declare module '@mui/material/styles' {
+    interface Palette {
+        other: OtherPaletteColorOptions
+    }
+    interface PaletteOptions {
+        other: OtherPaletteColorOptions
+    }
+}
+
 const manrope = Manrope({ subsets: ['latin'], display: 'swap' })
 
 const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
@@ -21,6 +37,8 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
                   other: {
                       announcement1: '#fff1ea',
                       announcement2: '#e6f45d',
+                      hist1: '#8C67D8',
+                      hist2: '#1976d2',
                   },
               }
             : {
@@ -31,6 +49,8 @@ const getDesignTokens = (mode: PaletteMode, isMobileDevice: boolean) => ({
                   other: {
                       announcement1: '#a66a4c',
                       announcement2: '#929f1e',
+                      hist1: '#8C67D8',
+                      hist2: '#1976d2',
                   },
               }),
     },

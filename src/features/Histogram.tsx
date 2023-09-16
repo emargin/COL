@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import Chart, { ChartConfiguration } from 'chart.js/auto'
+import { useTheme } from '@mui/material'
+
 const DATA_COUNT = 7
 const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 }
 
@@ -7,6 +9,7 @@ const labels = ['Магазин']
 
 export default function Histogram() {
     const ctx = useRef<HTMLCanvasElement | null>(null)
+    const theme = useTheme()
 
     const data = {
         labels: labels,
@@ -15,7 +18,7 @@ export default function Histogram() {
                 label: 'Malasia',
                 data: [Math.random() * 10], // [3, 2, 1, 4]
                 // borderColor: 'red',
-                backgroundColor: '#5e35b1',
+                backgroundColor: theme.palette.other.hist1,
                 borderRadius: 10,
                 barPercentage: 0.4,
 
@@ -25,7 +28,7 @@ export default function Histogram() {
                 label: 'Russia',
                 data: [Math.random() * 10], //[1, 2, 3, 4]
                 // borderColor: 'blue',
-                backgroundColor: '#1976d2',
+                backgroundColor: theme.palette.other.hist2,
                 borderRadius: 10,
                 barPercentage: 0.4,
 
