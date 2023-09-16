@@ -89,7 +89,7 @@ const columns: GridColDef[] = [
         headerName: '',
         maxWidth: 38,
         sortable: false,
-        renderCell: (params: GridRenderCellParams) => (
+        renderCell: () => (
             <IconButton className="price-btn" sx={{ p: 0.5, display: 'none' }}>
                 <EditIcon fontSize="small" />
             </IconButton>
@@ -115,7 +115,7 @@ const columns: GridColDef[] = [
         headerName: '',
         maxWidth: 38,
         sortable: false,
-        renderCell: (params: GridRenderCellParams) => (
+        renderCell: () => (
             <IconButton className="price-btn" sx={{ p: 0.5, display: 'none' }}>
                 <EditIcon fontSize="small" />
             </IconButton>
