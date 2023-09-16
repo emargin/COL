@@ -36,6 +36,20 @@ const styles = {
         '& .even': {
             bgcolor: 'background.default',
         },
+        '& .price_1': {
+            '& .MuiDataGrid-columnHeaderTitleContainerContent': {
+                height: '20px',
+                borderBottom: '2px solid',
+                borderColor: 'other.hist1',
+            },
+        },
+        '& .price_2': {
+            '& .MuiDataGrid-columnHeaderTitleContainerContent': {
+                height: '20px',
+                borderBottom: '2px solid',
+                borderColor: 'other.hist2',
+            },
+        },
     },
     priceCell: {
         display: 'flex',
@@ -57,8 +71,9 @@ const columns: GridColDef[] = [
     },
     {
         field: 'price',
-        headerName: 'Цена',
+        headerName: 'Цена_1',
         type: 'number',
+        headerClassName: 'price_1',
         flex: 1,
         renderCell: (params: GridRenderCellParams) => {
             const { price } = params.row
@@ -82,8 +97,9 @@ const columns: GridColDef[] = [
     },
     {
         field: 'price_1',
-        headerName: 'Цена_1',
+        headerName: 'Цена_2',
         type: 'number',
+        headerClassName: 'price_2',
         flex: 1,
         renderCell: (params: GridRenderCellParams) => {
             const { price } = params.row
