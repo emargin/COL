@@ -25,6 +25,8 @@ jobs:
                   registry: cr.yandex
                   username: json_key
                   password: ${{ secrets.YC_SERVICE_ACCOUNT_KEY }}
+            - name: Create .env file
+              run: echo "${{ secrets.ENV_FILE }}" > .env
             - name: Build image
               run: docker build -t ${{ env.IMAGE_TAG }} .
             - name: Push image
