@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
 import InfoCard from '@/entities/InfoCard'
-import AddInfoAlert from '@/features/AddInfoAlert'
 import CityCategoryInfo from './CityCategoryInfo'
 import { CARDS } from '@/mock'
 import InfoBaner from '@/features/InfoBaner'
@@ -36,7 +35,6 @@ export default function GeneralInfo({ locationName, categoryInfo }: any) {
                 ))}
             </Box>
             <InfoBaner locationName={locationName} />
-            {/* <AddInfoAlert locationName={locationName} /> */}
             <CityCategoryInfo title="Магазины" rows={market} />
             <CityCategoryInfo title="Рестораны" rows={restaurants} />
             <CityCategoryInfo title="Жилье" rows={transport} />

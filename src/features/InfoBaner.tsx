@@ -62,7 +62,9 @@ interface InfoBannerWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const InfoBannerWrapper = ({ colorMode, children }: InfoBannerWrapperProps) => (
-    <Box sx={[styles.root, styles[colorMode]]}>{children}</Box>
+    <Link href="/give-feedback">
+        <Box sx={[styles.root, styles[colorMode]]}>{children}</Box>
+    </Link>
 )
 
 export default function InfoBaner({ locationName }: { locationName: string }) {
@@ -83,7 +85,8 @@ export default function InfoBaner({ locationName }: { locationName: string }) {
                     aria-label="close"
                     color="inherit"
                     size="small"
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.preventDefault()
                         setOpen(false)
                     }}
                 >
