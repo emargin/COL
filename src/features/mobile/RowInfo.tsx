@@ -126,6 +126,10 @@ export default function MobileRowInfo({ name, price, onEdit, isFirst, ...props }
                 showOnbording()
             })
         }, 7000)
+
+        return () => {
+            clearInterval()
+        }
     }, [])
 
     return (
