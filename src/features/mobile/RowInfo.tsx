@@ -1,10 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Box, Collapse, Divider, Typography } from '@mui/material'
 import EditIcon from '@mui/icons-material/Edit'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import PriceRange from '@/entities/PriceRange'
 import PricePosition from '@/entities/PricePosition'
+import { truncate } from 'fs'
 
 const styles = {
     root: {
@@ -13,6 +11,7 @@ const styles = {
         bgcolor: 'warning.main',
         position: 'relative',
         zIndex: 1,
+        transition: 'opacity .3s',
     },
     row: {
         zIndex: 2,
@@ -21,7 +20,6 @@ const styles = {
         flexDirection: 'row',
         alignItems: 'center',
         bgcolor: 'background.paper',
-        animation: 'border 1s ease-in-out',
     },
     title: {
         flexGrow: 1,
@@ -41,15 +39,14 @@ export default function MobileRowInfo({ name, price, onEdit, ...props }: any) {
     const rowRef = useRef<HTMLDivElement | null>(null)
     let startX = 0
     let startY = 0
-    let endX = 0
 
     const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
         const cRowRef = rowRef.current
         if (!cRowRef) {
             return
         }
-        // if scroll
-        if (Math.abs(e.changedTouches[0].clientY - startY) > 10) {
+        // disable while scroll
+        if (Math.abs(e.changedTouches[0].clientY - startY) > 12) {
             return
         }
         const pathX = e.changedTouches[0].clientX - startX
@@ -60,10 +57,11 @@ export default function MobileRowInfo({ name, price, onEdit, ...props }: any) {
 
         cRowRef.style.borderRadius = '8px 0 0 8px'
         cRowRef.style.transitionProperty = 'border-radius'
-        console.log('pathX', pathX)
         cRowRef.style.transform = `translateX(${pathX}px)`
-        if (cRowRef.clientWidth / pathX < 2) {
-            onEdit()
+        if (cRowRef.clientWidth / pathX < 3) {
+            setExtroInfoOpen(true)
+        } else {
+            setExtroInfoOpen(false)
         }
     }
 
@@ -81,12 +79,16 @@ export default function MobileRowInfo({ name, price, onEdit, ...props }: any) {
         if (!cRowRef) {
             return
         }
+        if (extroInfoOpen) {
+            onEdit()
+        }
+        setExtroInfoOpen(false)
         cRowRef.style.transition = 'transform .5s ease-in-out'
         cRowRef.style.transform = `translateX(0px)`
         cRowRef.style.borderRadius = '0'
     }
     return (
-        <Box sx={styles.root}>
+        <Box sx={{ ...styles.root, ...(extroInfoOpen && { opacity: '0.8' }) }}>
             <EditIcon fontSize="small" sx={{ position: 'absolute', zIndex: -1, top: '30%', left: '10%' }} />
             <Box
                 sx={styles.row}
