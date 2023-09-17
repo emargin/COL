@@ -165,7 +165,7 @@ export default function Search({ sx }: any) {
                         </Typography>
                     </Box>
                 )}
-                renderInput={(params) => <TextField autoFocus placeholder="Откуда" {...params} />}
+                renderInput={(params) => <TextField placeholder="Откуда" {...params} />}
                 PaperComponent={({ children: childrens }) => (
                     <Paper sx={styles.paper}>
                         <Box sx={styles.paperBox}>{childrens}</Box>

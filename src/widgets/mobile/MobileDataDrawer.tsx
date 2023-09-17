@@ -19,6 +19,7 @@ export default function MobileDataDrawer({ rows }: MobileDataDrawerProps) {
         <>
             {rows.map((item: any) => (
                 <RowInfo
+                    key={item.id}
                     name={item.name}
                     price={item.price}
                     min={item.priceRange.min}

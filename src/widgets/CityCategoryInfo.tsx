@@ -138,7 +138,7 @@ export default function CityCategoryInfo(props: any) {
     const isMobileDevice = useMediaQuery('(max-width:600px)')
 
     return isMobileDevice ? (
-        <InfoWrapper style={{ width: '100%' }}>
+        <InfoWrapper style={{ width: '100%', overflowX: 'hidden' }}>
             <Typography variant="h6" component="h2">
                 {title}
             </Typography>
