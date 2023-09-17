@@ -17,8 +17,9 @@ export default function MobileDataDrawer({ rows }: MobileDataDrawerProps) {
     }
     return (
         <>
-            {rows.map((item: any) => (
+            {rows.map((item: any, index: number) => (
                 <RowInfo
+                    isFirst={index === 0}
                     key={item.id}
                     name={item.name}
                     price={item.price}
