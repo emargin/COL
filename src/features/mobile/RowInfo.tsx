@@ -107,7 +107,7 @@ export default function MobileRowInfo({ name, price, onEdit, isFirst, ...props }
 
     const showOnbording = () => {
         const cRowRef = rowRef.current
-        if (!cRowRef || !isFirst) {
+        if (!cRowRef) {
             return
         }
         cRowRef.style.transition = 'transform .5s ease-in-out'
@@ -118,6 +118,9 @@ export default function MobileRowInfo({ name, price, onEdit, isFirst, ...props }
     }
 
     useEffect(() => {
+        if (!isFirst) {
+            return
+        }
         setInterval(() => {
             requestAnimationFrame(() => {
                 showOnbording()
