@@ -45,6 +45,7 @@ export default function MobileRowInfo({ name, price, onEdit, isFirst, ...props }
     const [extroInfoOpen, setExtroInfoOpen] = useState(false)
     const bgRowRef = useRef<HTMLDivElement | null>(null)
     const rowRef = useRef<HTMLDivElement | null>(null)
+    const flipInterval = useRef<ReturnType<typeof setInterval> | null>(null)
     const isReadyToEdit = useRef<boolean>(false)
     let startX = 0
     let startY = 0
@@ -121,14 +122,16 @@ export default function MobileRowInfo({ name, price, onEdit, isFirst, ...props }
         if (!isFirst) {
             return
         }
-        setInterval(() => {
+        flipInterval.current = setInterval(() => {
             requestAnimationFrame(() => {
                 showOnbording()
             })
         }, 7000)
 
         return () => {
-            clearInterval()
+            if (flipInterval.current) {
+                clearInterval(flipInterval.current)
+            }
         }
     }, [])
 
