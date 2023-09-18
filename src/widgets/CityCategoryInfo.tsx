@@ -23,6 +23,11 @@ const styles = {
         '& .MuiDataGrid-row': {
             borderRadius: 1,
             borderColor: 'transparent',
+            '&:hover': {
+                '.price-btn': {
+                    display: 'block',
+                },
+            },
         },
         '& .MuiDataGrid-cell': {
             borderBottom: 'none',
