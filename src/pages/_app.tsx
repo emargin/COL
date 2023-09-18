@@ -50,7 +50,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="keywords" content="Cost of living" />
                 <link rel="icon" type="image/ico" href="/favicon.ico" />
-                {/* <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+                <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
                 <Script
                     dangerouslySetInnerHTML={{
                         __html: `
@@ -63,7 +63,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
                           });
                         `,
                     }}
-                /> */}
+                />
             </Head>
             <ThemeBuilder>{getLayout(<Component {...pageProps} />)}</ThemeBuilder>
         </>
