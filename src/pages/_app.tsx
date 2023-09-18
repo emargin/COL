@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode, useEffect } from 'react'
 import Head from 'next/head'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
@@ -6,6 +6,8 @@ import ThemeBuilder from '@/ThemeBuilder'
 import { LocalesMap, useLocale } from '@/shared/utils'
 import { GA_TRACKING_ID } from '@/shared/lib/gtag'
 import Script from 'next/script'
+import { useRouter } from 'next/router'
+import * as gtag from '@/shared/lib/gtag'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -29,6 +31,17 @@ const locales: LocalesMap = {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)
     const t = useLocale(locales)
+    const router = useRouter()
+
+    useEffect(() => {
+        const handleRouteChange = (url: string) => {
+            gtag.pageview(url)
+        }
+        router.events.on('routeChangeComplete', handleRouteChange)
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange)
+        }
+    }, [router.events])
     return (
         <>
             <Head>
