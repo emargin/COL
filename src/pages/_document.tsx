@@ -5,7 +5,20 @@ import { GA_TRACKING_ID } from '@/shared/lib/gtag'
 export default function Document(props: DocumentProps) {
     return (
         <Html lang="en">
-            <Head></Head>
+            <Head>
+                <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+                <Script id="google-analytics">
+                    {`
+                          window.dataLayer = window.dataLayer || [];
+                          function gtag(){dataLayer.push(arguments);}
+                          gtag('js', new Date());
+            
+                          gtag('config', '${GA_TRACKING_ID}', {
+                            page_path: window.location.pathname,
+                          });
+                        `}
+                </Script>
+            </Head>
             <body>
                 <Main />
                 <NextScript />
