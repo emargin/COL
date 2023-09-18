@@ -4,6 +4,8 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import ThemeBuilder from '@/ThemeBuilder'
 import { LocalesMap, useLocale } from '@/shared/utils'
+import { GA_TRACKING_ID } from '@/shared/lib/gtag'
+import Script from 'next/script'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -35,6 +37,20 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta name="keywords" content="Cost of living" />
                 <link rel="icon" type="image/ico" href="/favicon.ico" />
+                {/* <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+                <Script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                          window.dataLayer = window.dataLayer || [];
+                          function gtag(){dataLayer.push(arguments);}
+                          gtag('js', new Date());
+            
+                          gtag('config', '${GA_TRACKING_ID}', {
+                            page_path: window.location.pathname,
+                          });
+                        `,
+                    }}
+                /> */}
             </Head>
             <ThemeBuilder>{getLayout(<Component {...pageProps} />)}</ThemeBuilder>
         </>
