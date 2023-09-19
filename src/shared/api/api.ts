@@ -16,4 +16,14 @@ export const api = {
             },
         })
     },
+    getSummery(query: { placeId: string; comparedPlaceId: string }) {
+        const { placeId, comparedPlaceId } = query
+        return instance('/summery', {
+            query: {
+                place_id: placeId,
+                compared_place_id: comparedPlaceId,
+                place_type: 'city',
+            },
+        })
+    },
 }

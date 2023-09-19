@@ -31,6 +31,10 @@ const styles = {
         p: '0 16px',
         mb: 3,
     },
+    placeLabel: {
+        width: '100%',
+        height: '2px',
+    },
     tabs: {
         '& .MuiTabs-indicator': {
             display: 'none',
@@ -107,35 +111,28 @@ export default function City({ city }: IContry) {
         checkDirection()
     }
 
+    // useEffect(() => {
+    //     const getUserData = async () => {
+    //         const response = await api.getUserLocation()
+    //         setPlaceFrom(response.city)
+    //     }
+    //     getUserData()
+    // }, [])
+
     return (
         <Box sx={styles.root}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
                     <Typography variant="h5">
-                        {/* <Image
-                            alt="country flag img"
-                            style={{ margin: '0 8px' }}
-                            src={flagImg.src}
-                            width={16}
-                            height={16}
-                        /> */}
                         Malaysia
-                        <Box sx={{ width: '100%', height: '2px', bgcolor: 'other.hist1' }} />
+                        <Box sx={[styles.placeLabel, { bgcolor: 'other.hist1' }]} />
                     </Typography>
                     <IconButton sx={styles.swapButton}>
                         <ArrowForwardIcon fontSize="small" />
                     </IconButton>
                     <Typography variant="h5">
-                        {/* <Image
-                            alt="country flag img"
-                            style={{ margin: '0 8px' }}
-                            src={flagImg.src}
-                            width={16}
-                            height={16}
-                        /> */}
-                        {/* 56CFE1 */}
                         {city?.name || ''}
-                        <Box sx={{ width: '100%', height: '2px', bgcolor: 'other.hist2' }} />
+                        <Box sx={[styles.placeLabel, { bgcolor: 'other.hist2' }]} />
                     </Typography>
                 </Box>
                 <Tabs value={tab} onChange={handleTabChange} variant="scrollable" sx={styles.tabs}>
