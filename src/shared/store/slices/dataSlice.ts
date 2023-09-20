@@ -14,7 +14,7 @@ interface DataSliceProps {
     summery: Record<SummoryCategoryType, ISummery> | null
 }
 
-export const dataSlice = create<DataSliceProps>((set) => ({
+export const createDataSlice = create<DataSliceProps>((set) => ({
     summery: null,
     getSummery: async (query: any) => {
         const response = await api.getSummery(query)
