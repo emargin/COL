@@ -1,6 +1,4 @@
 export interface IPlace {
     name: string
-    countryName: string
-    latitude: string
-    longitude: string
+    country_name: string
 }

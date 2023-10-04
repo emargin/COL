@@ -1,8 +1,8 @@
-import { UserLocale } from '../models'
 import { instance } from './instance'
+import { IPlace } from '@/shared/models'
 
 interface UserLocaleResponse {
-    city: UserLocale
+    city: IPlace
 }
 
 export const api = {

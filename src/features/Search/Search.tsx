@@ -11,12 +11,12 @@ import {
     Typography,
     useMediaQuery,
 } from '@mui/material'
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import api from '@/shared/api'
 import { useLocale } from '@/shared/utils'
-import { UserLocale } from '@/shared/models'
+import { IPlace, UserLocale } from '@/shared/models'
+import { store } from '@/shared/store'
+import { useLocationsStore } from '@/shared/store/slices/locationsSlice'
 
 const locales = {
     ru: {
@@ -111,8 +111,12 @@ export default function Search({ sx }: any) {
     const router = useRouter()
     const isMobileDevice = useMediaQuery('(max-width:600px)')
     const [searchCities, setSearchCities] = useState([])
-    const [placeFrom, setPlaceFrom] = useState<UserLocale>({} as UserLocale)
-    const [placeTo, setPlaceTo] = useState<UserLocale>({} as UserLocale)
+    const placeFrom = useLocationsStore((state) => state.placeFrom)
+    const placeTo = useLocationsStore((state) => state.placeTo)
+    const setPlaceTo = useLocationsStore((state) => state.setPlaceTo)
+    const setPlaceFrom = useLocationsStore((state) => state.setPlaceFrom)
+    const swapLocations = useLocationsStore((state) => state.swapLocations)
+    const getUserLocation = useLocationsStore((state) => state.getUserLocation)
 
     const handlePlaceChange = async (query: string) => {
         if (query.length < 2) {
@@ -122,18 +126,18 @@ export default function Search({ sx }: any) {
         setSearchCities(response.cities_results)
     }
 
-    const handleSwapPlaces = () => {
-        const oldFrom = placeFrom
-        const oldTo = placeTo
-        setPlaceFrom(oldTo)
-        setPlaceTo(oldFrom)
-    }
+    // const handleSwapPlaces = () => {
+    //     const oldFrom = placeFrom
+    //     const oldTo = placeTo
+    //     setPlaceFrom(oldTo)
+    //     setPlaceTo(oldFrom)
+    // }
 
     const handleSearch = () => {
         router.push('/city/russia')
     }
 
-    const renderOptionLabel = (option: UserLocale) => {
+    const renderOptionLabel = (option: IPlace) => {
         if (Object.keys(option).length === 0) {
             return ''
         }
@@ -141,15 +145,16 @@ export default function Search({ sx }: any) {
     }
 
     useEffect(() => {
-        const getUserData = async () => {
-            const response = await api.getUserLocation()
-            setPlaceFrom(response.city)
-        }
-        getUserData()
+        // const getUserData = async () => {
+        //     const response = await api.getUserLocation()
+        //     // setPlaceFrom(response.city)
+        // }
+        // getUserData()
+        getUserLocation()
     }, [])
 
     return (
-        <Box sx={{ ...styles.searchWrapper, ...sx }}>
+        <Box sx={[styles.searchWrapper, sx]}>
             <Autocomplete
                 sx={styles.input}
                 value={placeFrom}
@@ -182,7 +187,7 @@ export default function Search({ sx }: any) {
             )}
         */}
             {!isMobileDevice && (
-                <IconButton sx={styles.swapButton} onClick={handleSwapPlaces}>
+                <IconButton sx={styles.swapButton} onClick={swapLocations}>
                     <SwapHorizIcon fontSize="small" />
                 </IconButton>
             )}
