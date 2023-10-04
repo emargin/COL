@@ -14,9 +14,8 @@ import {
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import api from '@/shared/api'
 import { useLocale } from '@/shared/utils'
-import { IPlace, UserLocale } from '@/shared/models'
-import { store } from '@/shared/store'
-import { useLocationsStore } from '@/shared/store/slices/locationsSlice'
+import { IPlace } from '@/shared/models'
+import { useLocationsStore } from '@/shared/store'
 
 const locales = {
     ru: {
@@ -126,13 +125,6 @@ export default function Search({ sx }: any) {
         setSearchCities(response.cities_results)
     }
 
-    // const handleSwapPlaces = () => {
-    //     const oldFrom = placeFrom
-    //     const oldTo = placeTo
-    //     setPlaceFrom(oldTo)
-    //     setPlaceTo(oldFrom)
-    // }
-
     const handleSearch = () => {
         router.push('/city/russia')
     }
@@ -145,11 +137,6 @@ export default function Search({ sx }: any) {
     }
 
     useEffect(() => {
-        // const getUserData = async () => {
-        //     const response = await api.getUserLocation()
-        //     // setPlaceFrom(response.city)
-        // }
-        // getUserData()
         getUserLocation()
     }, [])
 
