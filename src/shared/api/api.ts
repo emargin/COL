@@ -6,7 +6,7 @@ interface UserLocaleResponse {
 }
 
 interface PlaceByNameResponse {
-    place: Pick<IPlace, 'id' | 'name'> | null
+    place: IPlace | null
 }
 
 export const api = {

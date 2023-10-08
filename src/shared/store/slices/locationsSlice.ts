@@ -9,7 +9,10 @@ export interface LocationsState {
     setPlaceFrom: (place: IPlace) => void
     swapLocations: () => void
     getUserLocation: () => void
-    getPlaceByName: (placeName: string) => any
+    getPlaceByName: (request: {
+        placeName: string
+        direction: 'placeFrom' | 'placeTo'
+    }) => Promise<IPlace | null | undefined>
 }
 
 export const useLocationsStore = create<LocationsState>((set) => ({
@@ -34,9 +37,11 @@ export const useLocationsStore = create<LocationsState>((set) => ({
             console.log('e', e)
         }
     },
-    getPlaceByName: async (placeName: string) => {
+    getPlaceByName: async (request) => {
         try {
+            const { placeName, direction } = request
             const response = await api.getPlaceByName(placeName)
+            set({ [direction]: response.place })
             console.log('response', response)
             return response.place
         } catch (e) {

@@ -184,12 +184,9 @@ export const getServerSideProps = async ({ params }: any) => {
     const state = zustandStore.getState()
     const places = params.slug.split('|')
 
-    const placeFrom = await state.getPlaceByName(places[0])
-    const placeTo = await state.getPlaceByName(places[1])
+    const placeFrom = await state.getPlaceByName({ placeName: places[0], direction: 'placeFrom' })
+    const placeTo = await state.getPlaceByName({ placeName: places[1], direction: 'placeTo' })
 
-    // const [placeFrom, placeTo] = await Promise.all([
-
-    // ])
     const summeryResponse = await state.getSummary({ placeId: placeFrom.id, comparedPlaceId: placeTo.id })
     const response = await getCity(params.slug)
     const city = response.data
