@@ -1,22 +1,14 @@
 import { create } from 'zustand'
 import api from '@/shared/api'
-
-type SummoryCategoryType = 'restaurant' | 'market' | 'transport' | 'leisure'
-type TrendType = 'down' | 'up'
-
-interface ISummery {
-    value: number
-    trend: TrendType
-    diffPercentage: number
-}
+import type { ISummaryData } from '@/shared/models'
 
 export interface DataState {
-    summery: Record<SummoryCategoryType, ISummery> | null
-    getSummary: (request: { placeId: number; comparedPlaceId: number }) => void
+    summery: ISummaryData
+    getSummary: (request: { placeId: number; comparedPlaceId: number }) => Promise<ISummaryData | undefined>
 }
 
 export const useDataStore = create<DataState>(() => ({
-    summery: null,
+    summery: {} as ISummaryData,
     getSummary: async (query) => {
         try {
             const response = await api.getSummary(query)

@@ -1,5 +1,5 @@
 import { instance } from './instance'
-import { IPlace } from '@/shared/models'
+import type { IPlace, ISummaryData } from '@/shared/models'
 
 interface UserLocaleResponse {
     city: IPlace | null
@@ -28,7 +28,7 @@ export const api = {
             },
         })
     },
-    getSummary(query: { placeId: number; comparedPlaceId: number }) {
+    getSummary(query: { placeId: number; comparedPlaceId: number }): Promise<ISummaryData> {
         const { placeId, comparedPlaceId } = query
         return instance('/summary', {
             query: {

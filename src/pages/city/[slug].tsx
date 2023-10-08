@@ -81,7 +81,7 @@ const locales = {
         transport: 'Transport',
     },
 }
-export default function City({ city }: IContry) {
+export default function City({ placeFrom, placeTo, summery, city }: any) {
     const t = useLocale(locales)
     const [tab, setTab] = useState<number>(0)
     let startX = 0
@@ -130,14 +130,14 @@ export default function City({ city }: IContry) {
             <InfoWrapper style={{ paddingBottom: 0 }}>
                 <Box sx={styles.country}>
                     <Typography variant="h5">
-                        Malaysia
+                        {placeFrom?.name || ''}
                         <Box sx={[styles.placeLabel, { bgcolor: 'other.hist1' }]} />
                     </Typography>
                     <IconButton sx={styles.swapButton}>
                         <ArrowForwardIcon fontSize="small" />
                     </IconButton>
                     <Typography variant="h5">
-                        {city?.name || ''}
+                        {placeTo?.name || ''}
                         <Box sx={[styles.placeLabel, { bgcolor: 'other.hist2' }]} />
                     </Typography>
                 </Box>
@@ -186,13 +186,17 @@ export const getServerSideProps = async ({ params }: any) => {
 
     const placeFrom = await state.getPlaceByName({ placeName: places[0], direction: 'placeFrom' })
     const placeTo = await state.getPlaceByName({ placeName: places[1], direction: 'placeTo' })
-
-    const summeryResponse = await state.getSummary({ placeId: placeFrom.id, comparedPlaceId: placeTo.id })
+    let summeryResponse
+    if (placeFrom?.id && placeTo?.id) {
+        summeryResponse = await state.getSummary({ placeId: placeFrom.id, comparedPlaceId: placeTo.id })
+    }
     const response = await getCity(params.slug)
     const city = response.data
     return {
         props: {
             city,
+            placeFrom,
+            placeTo,
             summery: summeryResponse,
         },
     }
