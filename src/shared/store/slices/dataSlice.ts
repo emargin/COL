@@ -10,14 +10,20 @@ interface ISummery {
     diffPercentage: number
 }
 
-interface DataState {
+export interface DataState {
     summery: Record<SummoryCategoryType, ISummery> | null
+    getSummary: (request: { placeId: number; comparedPlaceId: number }) => void
 }
 
-export const createDataSlice = create<DataState>((set) => ({
+export const useDataStore = create<DataState>(() => ({
     summery: null,
-    getSummery: async (query: any) => {
-        const response = await api.getSummery(query)
-        console.log('response', response)
+    getSummary: async (query) => {
+        try {
+            const response = await api.getSummary(query)
+            console.log('response', response)
+            return response
+        } catch (e) {
+            console.log('e', e)
+        }
     },
 }))

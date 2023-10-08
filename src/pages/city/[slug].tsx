@@ -1,16 +1,18 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Box, Typography, Tabs, Tab, IconButton } from '@mui/material'
-import { cities } from '@/mock'
+import { cities, citiesSlugs } from '@/mock'
 import InfoWrapper from '@/shared/components/InfoWrapper'
 import { TabPanel, allyProps } from '@/shared/components/tabs'
-import flagImg from '@/shared/assets/united-kingdom.png'
+import flagImg from '@/shared/assets/united-kingdom.png' // remove
 
 import { CityLayout } from '@/layouts'
 import CityGeneralInfo from '@/widgets/CityGeneralInfo'
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useLocale } from '@/shared/utils'
+import { useDataStore, useLocationsStore } from '@/shared/store'
+import { initializeStore } from '@/shared/store/store'
 
 type IContry = any
 
@@ -111,13 +113,17 @@ export default function City({ city }: IContry) {
         checkDirection()
     }
 
+    // const placeFrom = useLocationsStore((state) => state.placeFrom)
+    // const placeTo = useLocationsStore((state) => state.placeTo)
+    // const getSummary = useDataStore((state) => state.getSummary)
     // useEffect(() => {
-    //     const getUserData = async () => {
-    //         const response = await api.getUserLocation()
-    //         setPlaceFrom(response.city)
+    //     if (placeFrom && placeTo) {
+    //         getSummary({
+    //             placeId: placeFrom.id,
+    //             comparedPlaceId: placeTo.id,
+    //         })
     //     }
-    //     getUserData()
-    // }, [])
+    // }, [placeFrom, placeTo])
 
     return (
         <Box sx={styles.root}>
@@ -157,8 +163,8 @@ export default function City({ city }: IContry) {
         </Box>
     )
 }
-const getCities = async () => ({
-    data: cities,
+const getCitieSlugs = async () => ({
+    data: citiesSlugs,
     message: 'its ok',
     error: null,
 })
@@ -173,29 +179,51 @@ City.getLayout = function getLayout(page: ReactElement) {
     return <CityLayout>{page}</CityLayout>
 }
 
-export async function getStaticProps({ params }: any) {
+export const getServerSideProps = async ({ params }: any) => {
+    const zustandStore = initializeStore()
+    const state = zustandStore.getState()
+    const places = params.slug.split('|')
+
+    const placeFrom = await state.getPlaceByName(places[0])
+    const placeTo = await state.getPlaceByName(places[1])
+
+    // const [placeFrom, placeTo] = await Promise.all([
+
+    // ])
+    const summeryResponse = await state.getSummary({ placeId: placeFrom.id, comparedPlaceId: placeTo.id })
     const response = await getCity(params.slug)
     const city = response.data
     return {
         props: {
             city,
+            summery: summeryResponse,
         },
     }
 }
 
-export async function getStaticPaths() {
-    const contries = await getCities()
+// export async function getStaticProps({ params }: any) {
+//     const response = await getCity(params.slug)
+//     const city = response.data
+//     return {
+//         props: {
+//             city,
+//         },
+//     }
+// }
 
-    const pathsEn = contries.data.map((path) => ({
-        params: { slug: path.slug },
-    }))
-    const pathsRu = contries.data.map((path) => ({
-        params: { slug: path.slug },
-        locale: 'ru',
-    }))
+// export async function getStaticPaths() {
+//     const slugs = await getCitieSlugs()
 
-    return {
-        paths: [...pathsEn, ...pathsRu],
-        fallback: false,
-    }
-}
+//     const pathsEn = slugs.data.map((path) => ({
+//         params: { slug: path },
+//     }))
+//     const pathsRu = slugs.data.map((path) => ({
+//         params: { slug: path },
+//         locale: 'ru',
+//     }))
+
+//     return {
+//         paths: [...pathsEn, ...pathsRu],
+//         fallback: false,
+//     }
+// }

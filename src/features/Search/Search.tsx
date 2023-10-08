@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import {
     Autocomplete,
@@ -10,6 +10,7 @@ import {
     TextField,
     Typography,
     useMediaQuery,
+    Theme,
 } from '@mui/material'
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 import api from '@/shared/api'
@@ -49,34 +50,24 @@ const styles = {
             borderWidth: '2px',
             borderColor: 'transparent',
         },
-        '&:hover:not($disabled) fieldset': {
-            borderColor: 'primary.main',
-        },
         '& .MuiAutocomplete-clearIndicator': {
             display: 'none',
         },
         '& .MuiAutocomplete-popupIndicator': {
             p: 0,
         },
-        '& .MuiAutocomplete-endAdornment': {
-            top: 'calc(50% - 12px)',
-            '&.MuiAutocomplete-endAdornment': {
-                right: '12px',
-            },
-        },
-        '& .MuiOutlinedInput-root': {
-            pr: '48px !important',
+
+        '&:hover .MuiOutlinedInput-notchedOutline': {
+            pointerEvents: 'none!important',
+            borderColor: 'red',
         },
     },
     paperBox: {
         p: 0.5,
     },
     paper: {
-        '& .MuiAutocomplete-option[aria-selected="true"]': {
-            background: 'rgba(78, 19, 207, 0.04)',
-        },
         '& .MuiAutocomplete-option[aria-selected="true"], .Mui-focused': {
-            borderRadius: '6px',
+            borderRadius: (theme: Theme) => theme.shape.borderRadius,
         },
     },
     swapButton: {
@@ -117,6 +108,8 @@ export default function Search({ sx }: any) {
     const swapLocations = useLocationsStore((state) => state.swapLocations)
     const getUserLocation = useLocationsStore((state) => state.getUserLocation)
 
+    const isReadyToSearch = useMemo(() => placeFrom && placeTo, [placeFrom, placeTo])
+
     const handlePlaceChange = async (query: string) => {
         if (query.length < 2) {
             return
@@ -126,7 +119,9 @@ export default function Search({ sx }: any) {
     }
 
     const handleSearch = () => {
-        router.push('/city/russia')
+        if (isReadyToSearch) {
+            router.push('/city/perm|moscow')
+        }
     }
 
     const renderOptionLabel = (option: IPlace) => {
@@ -202,6 +197,7 @@ export default function Search({ sx }: any) {
                 )}
                 popupIcon={''}
             />
+
             <Button sx={styles.button} variant="contained" onClick={handleSearch}>
                 {t('button')}
             </Button>

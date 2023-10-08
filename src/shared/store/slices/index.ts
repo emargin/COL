@@ -1,3 +1,3 @@
 export { createAppSlice } from './appSlice'
-export { createDataSlice } from './dataSlice'
-export { useLocationsStore } from './locationsSlice'
+export * from './dataSlice'
+export * from './locationsSlice'

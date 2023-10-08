@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import ThemeBuilder from '@/ThemeBuilder'
 import { LocalesMap, useLocale } from '@/shared/utils'
-import { useRouter } from 'next/router'
+import StoreProvider from '@/shared/store/StoreProvider'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode
@@ -28,7 +28,7 @@ const locales: LocalesMap = {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)
     const t = useLocale(locales)
-    const router = useRouter()
+    // const store = useHydrate(pageProps.initialZustandState)
 
     return (
         <>
@@ -39,7 +39,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
                 <meta name="keywords" content="Cost of living" />
                 <link rel="icon" type="image/ico" href="/favicon.ico" />
             </Head>
-            <ThemeBuilder>{getLayout(<Component {...pageProps} />)}</ThemeBuilder>
+            <StoreProvider {...pageProps.initialZustandState}>
+                <ThemeBuilder>{getLayout(<Component {...pageProps} />)}</ThemeBuilder>
+            </StoreProvider>
         </>
     )
 }

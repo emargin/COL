@@ -18,53 +18,55 @@ export const countryInfo = {
     ],
 }
 
+export const citiesSlugs = ['perm|moscow', 'omsk-dubai', 'newyork-milan']
+
 export const cities = [
     {
         id: 1,
-        name: 'Russia',
+        name: 'perm|moscow',
         info: {
             extraInfo: {},
             statistic: countryInfo,
         },
-        slug: 'russia',
+        slug: 'perm|moscow',
     },
     {
         id: 2,
-        name: 'Usa',
+        name: 'omsk-dubai',
         info: {
             extraInfo: {},
             statistic: countryInfo,
         },
 
-        slug: 'usa',
+        slug: 'omsk-dubai',
     },
     {
         id: 3,
-        name: 'Czech',
+        name: 'newyork-milan',
         info: {
             extraInfo: {},
             statistic: countryInfo,
         },
-        slug: 'czech',
+        slug: 'newyork-milan',
     },
-    {
-        id: 4,
-        name: 'Malaysia',
-        info: {
-            extraInfo: {},
-            statistic: countryInfo,
-        },
-        slug: 'malaysia',
-    },
-    {
-        id: 5,
-        name: 'China',
-        info: {
-            extraInfo: {},
-            statistic: countryInfo,
-        },
-        slug: 'china',
-    },
+    // {
+    //     id: 4,
+    //     name: 'Malaysia',
+    //     info: {
+    //         extraInfo: {},
+    //         statistic: countryInfo,
+    //     },
+    //     slug: 'malaysia',
+    // },
+    // {
+    //     id: 5,
+    //     name: 'China',
+    //     info: {
+    //         extraInfo: {},
+    //         statistic: countryInfo,
+    //     },
+    //     slug: 'china',
+    // },
 ]
 
 export const CARDS = [
