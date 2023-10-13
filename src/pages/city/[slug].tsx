@@ -4,15 +4,14 @@ import { Box, Typography, Tabs, Tab, IconButton } from '@mui/material'
 import { cities, citiesSlugs } from '@/mock'
 import InfoWrapper from '@/shared/components/InfoWrapper'
 import { TabPanel, allyProps } from '@/shared/components/tabs'
-import flagImg from '@/shared/assets/united-kingdom.png' // remove
 
 import { CityLayout } from '@/layouts'
 import CityGeneralInfo from '@/widgets/CityGeneralInfo'
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward'
 import { useLocale } from '@/shared/utils'
-import { useDataStore, useLocationsStore } from '@/shared/store'
 import { initializeStore } from '@/shared/store/store'
+import { useRouter } from 'next/navigation'
 
 type IContry = any
 
@@ -82,6 +81,7 @@ const locales = {
     },
 }
 export default function City({ placeFrom, placeTo, summery, city }: any) {
+    const router = useRouter()
     const t = useLocale(locales)
     const [tab, setTab] = useState<number>(0)
     let startX = 0
@@ -103,6 +103,11 @@ export default function City({ placeFrom, placeTo, summery, city }: any) {
             setTab((prev) => prev - 1)
         }
     }
+    const handleSwapLocations = () => {
+        if (placeFrom?.name && placeTo?.name) {
+            router.push(`/city/${placeTo.name.toLowerCase()}|${placeFrom.name.toLowerCase()}`)
+        }
+    }
 
     const handleTouchStart = (e: any) => {
         startX = e.changedTouches[0].screenX
@@ -121,7 +126,7 @@ export default function City({ placeFrom, placeTo, summery, city }: any) {
                         {placeFrom?.name || ''}
                         <Box sx={[styles.placeLabel, { bgcolor: 'other.hist1' }]} />
                     </Typography>
-                    <IconButton sx={styles.swapButton}>
+                    <IconButton sx={styles.swapButton} onClick={handleSwapLocations}>
                         <ArrowForwardIcon fontSize="small" />
                     </IconButton>
                     <Typography variant="h5">

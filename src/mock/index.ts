@@ -18,7 +18,7 @@ export const countryInfo = {
     ],
 }
 
-export const citiesSlugs = ['perm|moscow', 'omsk-dubai', 'newyork-milan']
+export const citiesSlugs = ['perm|moscow', 'moscow|perm', 'omsk-dubai', 'newyork-milan']
 
 export const cities = [
     {
@@ -29,6 +29,15 @@ export const cities = [
             statistic: countryInfo,
         },
         slug: 'perm|moscow',
+    },
+    {
+        id: 4,
+        name: 'moscow|perm',
+        info: {
+            extraInfo: {},
+            statistic: countryInfo,
+        },
+        slug: 'moscow|perm',
     },
     {
         id: 2,
