@@ -98,21 +98,18 @@ export default function InfoBanner({ locationName }: { locationName: string }) {
     const isMobileDevice = useMediaQuery('(max-width:600px)')
     const t = useLocale(createLocales(locationName))
     const theme = useTheme()
-    const [open, setOpen] = useState<boolean>(true)
 
     return (
-        <Collapse in={open} unmountOnExit>
-            <InfoBannerWrapper colorMode={theme.palette.mode}>
-                <Box sx={{ m: 'auto 0' }}>
-                    <Typography sx={styles.title} variant="h6" fontWeight={500}>
-                        {isMobileDevice ? t('helpFindPriceShort') : t('helpFindPrice')}
-                    </Typography>
-                    <Typography variant="body2">{t('checkList')}</Typography>
-                </Box>
-                <Button variant="contained" sx={styles.button}>
-                    {t('btn')}
-                </Button>
-            </InfoBannerWrapper>
-        </Collapse>
+        <InfoBannerWrapper colorMode={theme.palette.mode}>
+            <Box sx={{ m: 'auto 0' }}>
+                <Typography sx={styles.title} variant="h6" fontWeight={500}>
+                    {isMobileDevice ? t('helpFindPriceShort') : t('helpFindPrice')}
+                </Typography>
+                <Typography variant="body2">{t('checkList')}</Typography>
+            </Box>
+            <Button variant="contained" sx={styles.button}>
+                {t('btn')}
+            </Button>
+        </InfoBannerWrapper>
     )
 }

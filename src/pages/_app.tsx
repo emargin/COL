@@ -28,7 +28,6 @@ const locales: LocalesMap = {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
     const getLayout = Component.getLayout ?? ((page) => page)
     const t = useLocale(locales)
-    // const store = useHydrate(pageProps.initialZustandState)
 
     return (
         <>

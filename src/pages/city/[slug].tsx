@@ -113,18 +113,6 @@ export default function City({ placeFrom, placeTo, summery, city }: any) {
         checkDirection()
     }
 
-    // const placeFrom = useLocationsStore((state) => state.placeFrom)
-    // const placeTo = useLocationsStore((state) => state.placeTo)
-    // const getSummary = useDataStore((state) => state.getSummary)
-    // useEffect(() => {
-    //     if (placeFrom && placeTo) {
-    //         getSummary({
-    //             placeId: placeFrom.id,
-    //             comparedPlaceId: placeTo.id,
-    //         })
-    //     }
-    // }, [placeFrom, placeTo])
-
     return (
         <Box sx={styles.root}>
             <InfoWrapper style={{ paddingBottom: 0 }}>
@@ -176,7 +164,12 @@ const getCity = async (slug: string) => ({
 })
 
 City.getLayout = function getLayout(page: ReactElement) {
-    return <CityLayout>{page}</CityLayout>
+    const { props } = page
+    return (
+        <CityLayout placeFrom={props.placeFrom.name} placeTo={props.placeTo.name}>
+            {page}
+        </CityLayout>
+    )
 }
 
 export const getServerSideProps = async ({ params }: any) => {
@@ -201,30 +194,3 @@ export const getServerSideProps = async ({ params }: any) => {
         },
     }
 }
-
-// export async function getStaticProps({ params }: any) {
-//     const response = await getCity(params.slug)
-//     const city = response.data
-//     return {
-//         props: {
-//             city,
-//         },
-//     }
-// }
-
-// export async function getStaticPaths() {
-//     const slugs = await getCitieSlugs()
-
-//     const pathsEn = slugs.data.map((path) => ({
-//         params: { slug: path },
-//     }))
-//     const pathsRu = slugs.data.map((path) => ({
-//         params: { slug: path },
-//         locale: 'ru',
-//     }))
-
-//     return {
-//         paths: [...pathsEn, ...pathsRu],
-//         fallback: false,
-//     }
-// }
