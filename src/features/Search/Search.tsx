@@ -119,8 +119,8 @@ export default function Search({ sx }: any) {
     }
 
     const handleSearch = () => {
-        if (isReadyToSearch) {
-            router.push('/city/perm|moscow')
+        if (isReadyToSearch && placeFrom?.name && placeTo?.name) {
+            router.push(`/city/${placeFrom.name.toLowerCase()}|${placeTo.name.toLowerCase()}`)
         }
     }
 

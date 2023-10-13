@@ -20,10 +20,17 @@ const styles = {
     root: {
         width: '78%',
         margin: 'calc(50vh - 170px) auto auto auto',
+        '@media screen and (max-width:426px)': {
+            margin: 'calc(50vh - 250px) auto auto auto',
+        },
     },
     title: {
         textAlign: 'left',
         mb: 3,
+        '@media screen and (max-width:426px)': {
+            textAlign: 'center',
+            textWrap: 'balance',
+        },
     },
 }
 
