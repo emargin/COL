@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import InfoCard from '@/entities/InfoCard'
 import CityCategoryInfo from './CityCategoryInfo'
 import { CARDS } from '@/mock'
-import InfoBaner from '@/features/InfoBaner'
+import InfoBanner from '@/features/InfoBanner'
 
 const styles = {
     root: {
@@ -34,7 +34,7 @@ export default function GeneralInfo({ locationName, categoryInfo }: any) {
                     />
                 ))}
             </Box>
-            <InfoBaner locationName={locationName} />
+            <InfoBanner locationName={locationName} />
             <CityCategoryInfo title="Магазины" rows={market} />
             <CityCategoryInfo title="Рестораны" rows={restaurants} />
             <CityCategoryInfo title="Жилье" rows={transport} />

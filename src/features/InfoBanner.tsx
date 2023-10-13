@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { Box, Collapse, IconButton, Link as MuiLink, Typography, useTheme, Theme } from '@mui/material'
+import {
+    Box,
+    Collapse,
+    IconButton,
+    Link as MuiLink,
+    Typography,
+    useTheme,
+    Theme,
+    useMediaQuery,
+    Button,
+} from '@mui/material'
 import { useLocale } from '@/shared/utils'
-import CloseIcon from '@mui/icons-material/Close'
 import imgDarkDark from '../shared/img/infoBanerBig.jpg'
 import imgLightBig from '../shared/img/infoBaner_light.jpg'
 
@@ -10,11 +19,15 @@ const createLocales = (locationName: string) => {
     return {
         ru: {
             helpFindPrice: `Помогите другим путешественникам узнать цены в ${locationName}! `,
+            helpFindPriceShort: 'Помогите другим путешественникам!',
             checkList: 'Заполните чек лист',
+            btn: 'Заполнить',
         },
         en: {
             helpFindPrice: `Help other travelers find prices in ${locationName}! `,
-            checkList: 'Fill out our checklist',
+            helpFindPriceShort: 'Help other travelers!',
+            checkList: 'Fill out a checklist',
+            btn: 'Fill out',
         },
     }
 }
@@ -22,38 +35,52 @@ const createLocales = (locationName: string) => {
 const styles = {
     root: {
         width: '100%',
-        height: '64px',
         display: 'flex',
+        minHeight: '72px',
         justifyContent: 'space-between',
         backgroundRepeat: 'no-repeat',
         borderRadius: 2,
-        p: (theme: Theme) => theme.spacing(1, 8),
-        '@media screen and (max-width:426px)': {
+        p: (theme: Theme) => theme.spacing(1, 6),
+        '@media screen and (max-width:600px)': {
             flexWrap: 'wrap',
-            p: (theme: Theme) => theme.spacing(1, 1.5),
+            p: (theme: Theme) => theme.spacing(0.5, 3),
         },
     },
     title: {
+        fontWeight: 500,
         '@media screen and (max-width:600px)': {
             fontSize: 14,
         },
         '@media screen and (max-width:426px)': {
-            fontSize: 12,
-            fontWeight: 500,
+            fontSize: 14,
         },
     },
     light: {
         backgroundSize: 'auto',
-        backgroundPosition: 'center 42%',
+        backgroundPosition: '30% 42%',
         backgroundImage: `url(${imgLightBig.src})`,
         '@media screen and (max-width:600px)': {
-            backgroundPosition: '35% 40%',
+            backgroundPosition: '36.6% 40%',
         },
     },
     dark: {
         backgroundSize: 'cover',
         backgroundPosition: 'center 60%',
         backgroundImage: `url(${imgDarkDark.src})`,
+    },
+    button: {
+        maxWidth: '75px',
+        minWidth: '75px',
+        textTransform: 'none',
+        color: 'text.primary',
+        bgcolor: 'rgba(0, 0, 0, 0.04)',
+        height: '20%',
+        m: 'auto 0',
+        boxShadow: 'none',
+        '&:hover': {
+            boxShadow: 'none',
+            bgcolor: 'transparent',
+        },
     },
 }
 
@@ -67,7 +94,8 @@ const InfoBannerWrapper = ({ colorMode, children }: InfoBannerWrapperProps) => (
     </Link>
 )
 
-export default function InfoBaner({ locationName }: { locationName: string }) {
+export default function InfoBanner({ locationName }: { locationName: string }) {
+    const isMobileDevice = useMediaQuery('(max-width:600px)')
     const t = useLocale(createLocales(locationName))
     const theme = useTheme()
     const [open, setOpen] = useState<boolean>(true)
@@ -75,23 +103,15 @@ export default function InfoBaner({ locationName }: { locationName: string }) {
     return (
         <Collapse in={open} unmountOnExit>
             <InfoBannerWrapper colorMode={theme.palette.mode}>
-                <Box>
+                <Box sx={{ m: 'auto 0' }}>
                     <Typography sx={styles.title} variant="h6" fontWeight={500}>
-                        {t('helpFindPrice')}
+                        {isMobileDevice ? t('helpFindPriceShort') : t('helpFindPrice')}
                     </Typography>
                     <Typography variant="body2">{t('checkList')}</Typography>
                 </Box>
-                <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    size="small"
-                    onClick={(e) => {
-                        e.preventDefault()
-                        setOpen(false)
-                    }}
-                >
-                    <CloseIcon fontSize="inherit" />
-                </IconButton>
+                <Button variant="contained" sx={styles.button}>
+                    {t('btn')}
+                </Button>
             </InfoBannerWrapper>
         </Collapse>
     )
