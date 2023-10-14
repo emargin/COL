@@ -59,7 +59,6 @@ const styles = {
 
         '&:hover .MuiOutlinedInput-notchedOutline': {
             pointerEvents: 'none!important',
-            borderColor: 'red',
         },
     },
     paperBox: {

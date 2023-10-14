@@ -23,7 +23,7 @@ export default function CurrensySelect() {
         <Select
             size="small"
             sx={styles.root}
-            defaultValue={1}
+            defaultValue={2}
             // IconComponent={() => <KeyboardArrowDownIcon fontSize="small" />}
         >
             {CURRENCIES.map((currensy) => (
