@@ -38,6 +38,7 @@ const styles = {
         '@media screen and (max-width:426px)': {
             flexWrap: 'wrap',
             p: 2,
+            position: 'relative',
         },
     },
 
@@ -70,13 +71,26 @@ const styles = {
         },
     },
     swapButton: {
-        bgcolor: 'action.hover',
+        bgcolor: (theme: Theme) => (theme.palette.mode === 'light' ? 'grey.100' : 'grey.800'),
         height: '30px',
         width: '30px',
         transitionDuration: '0.3s',
         transitionProperty: 'transform',
         '&: hover': {
             transform: 'rotate(180deg)',
+        },
+        '@media screen and (max-width:426px)': {
+            zIndex: 10,
+            height: '40px',
+            width: '40px',
+            padding: '26px',
+            position: 'absolute',
+            right: '10%',
+            top: '25%',
+            transform: 'rotate(90deg)',
+            '&:not(.disable):hover ': {
+                transform: 'rotate(90deg)',
+            },
         },
     },
     button: {
@@ -98,7 +112,6 @@ const styles = {
 export default function Search({ sx }: any) {
     const t = useLocale(locales)
     const router = useRouter()
-    const isMobileDevice = useMediaQuery('(max-width:600px)')
     const [searchCities, setSearchCities] = useState([])
     const placeFrom = useLocationsStore((state) => state.placeFrom)
     const placeTo = useLocationsStore((state) => state.placeTo)
@@ -160,18 +173,9 @@ export default function Search({ sx }: any) {
                 popupIcon={''}
             />
 
-            {/* {isMobileDevice && (
-                // <Divider sx={{ width: '90%' }} variant="middle"></Divider>
-                <IconButton sx={styles.swapButton}>
-                    <ArrowDownwardIcon fontSize="small" />
-                </IconButton>
-            )}
-        */}
-            {!isMobileDevice && (
-                <IconButton sx={styles.swapButton} onClick={swapLocations}>
-                    <SwapHorizIcon fontSize="small" />
-                </IconButton>
-            )}
+            <IconButton sx={styles.swapButton} onClick={swapLocations}>
+                <SwapHorizIcon fontSize="small" />
+            </IconButton>
 
             <Autocomplete
                 sx={styles.input}

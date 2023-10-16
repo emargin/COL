@@ -48,7 +48,7 @@ const styles = {
     },
 }
 
-export default function SwipeableEdgeDrawer({ open, onOpen, onClose }: any) {
+export default function MobileEditDataModal({ open, onOpen, onClose }: any) {
     const inputRef = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {

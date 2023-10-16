@@ -1,20 +1,12 @@
 import React, { useState } from 'react'
 import RowInfo from '@/features/mobile/RowInfo'
-import SwipableModal from './SwipableModal'
 
 interface MobileDataDrawerProps {
     rows: any[]
 }
 
 export default function MobileDataDrawer({ rows }: MobileDataDrawerProps) {
-    const [editOpen, setEditOpen] = useState(false)
-
-    const handleEditOpen = () => {
-        setEditOpen(true)
-    }
-    const handleEditClose = () => {
-        setEditOpen(false)
-    }
+    const handleEditOpen = () => {}
     return (
         <>
             {rows.map((item: any, index: number) => (
@@ -29,7 +21,6 @@ export default function MobileDataDrawer({ rows }: MobileDataDrawerProps) {
                     onEdit={handleEditOpen}
                 />
             ))}
-            <SwipableModal open={editOpen} onOpen={handleEditOpen} onClose={handleEditClose} />
         </>
     )
 }
