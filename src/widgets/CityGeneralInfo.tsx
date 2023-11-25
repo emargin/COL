@@ -24,7 +24,7 @@ const styles = {
 export default function GeneralInfo({ locationName, categoryInfo }: any) {
     const { restaurants, market, transport } = categoryInfo
     const isMobileDevice = useMediaQuery('(max-width:600px)')
-    const [editOpen, setEditOpen] = useState<boolean>(true)
+    const [editOpen, setEditOpen] = useState<boolean>(false)
 
     const handleEditOpen = () => {
         setEditOpen(true)

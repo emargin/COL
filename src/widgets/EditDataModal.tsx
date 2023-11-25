@@ -40,7 +40,7 @@ export default function EditDataModal({ open, onClose }: DialogProps) {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
-            <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+            <DialogTitle id="alert-dialog-title">Введите стоимость продукта</DialogTitle>
             <DialogContent sx={{ width: '540px' }}>
                 <TextField
                     autoFocus
@@ -60,8 +60,8 @@ export default function EditDataModal({ open, onClose }: DialogProps) {
                 />
             </DialogContent>
             <DialogActions>
-                <Button>Disagree</Button>
-                <Button autoFocus>Agree</Button>
+                <Button>Отмена</Button>
+                <Button autoFocus>Сохранить</Button>
             </DialogActions>
         </Dialog>
     )
